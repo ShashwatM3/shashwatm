@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import insurancemarket from '@/components/icons/insurancemarket.jpg';
 import danubeProperties from "@/components/icons/danubeProperties.png"
 
-function page() {
+function Page() {
   const router = useRouter();
   return (
     <div className='experience-main'>
@@ -53,4 +53,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
