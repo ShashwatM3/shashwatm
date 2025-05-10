@@ -1,0 +1,120 @@
+.project-bcs-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(1, 1, 27) 90%);
+  height: 100vh;
+  width: 100vw;
+  animation: fadeIn 1s;
+}
+
+.project-bcs-main > div {
+  width: 50%;
+}
+
+.project-bcs-main > div > h1 {
+  font-size: 5vh;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 10px;
+}
+
+.project-bcs-main > div > h3 {
+  opacity: 70%;
+  font-size: 2.4vh;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.project-bcs-main > div > ul {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.project-bcs > div {
+  margin-bottom: 20px;
+}
+
+.project-bcs > div:nth-child(2) > h3 {
+  width: 70%;
+  opacity: 60%;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  } 25% {
+    opacity: 0;
+  } 50% {
+    opacity: 1;
+  } 75% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
+  }
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #1aa34a;
+  border-radius: 50%;
+  display: inline-block;
+  animation: 3s blink infinite;
+}
+
+@media only screen and (max-width: 1000px) {
+  .project-bcs-main > div {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .project-bcs > div:nth-child(2) {
+    display: flex; 
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .project-bcs > div:nth-child(2) > h3 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .project-bcs > div:nth-child(2) > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .project-bcs > div:nth-child(2) > div > button {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 555px) {
+  .project-bcs-main > div > h1 {
+    font-size: 4vh;
+  }
+
+  .project-bcs-main > div {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .project-bcs-main {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-top: 50px;
+    height: 150vh;
+  }
+
+  .project-bcs > div:nth-child(2) > h3 {
+    font-size: 2vh;
+  }
+}

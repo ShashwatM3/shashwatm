@@ -1,0 +1,68 @@
+.experience-main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s;
+}
+
+.experience-main > div {
+  width: 60%;
+}
+
+.experience-main > div > h1 {
+  margin-bottom: 50px;
+}
+
+.experience {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.imageexp {
+  height: 6vh;
+  width: auto;
+  border-radius: 25px;
+}
+
+.experience > div > h3 {
+  opacity: 50%;
+}
+
+.expdes {
+  animation: fadeIn 1s;
+}
+
+.experience > div > h1 > span {
+  font-weight: 200;
+  letter-spacing: 100%;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 560px) {
+  .experience-main > div {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .experience-main > div > h1 {
+    font-size: 4vh;
+    margin-bottom: 30px;
+  }
+
+  .experience > div > h1 {
+    font-size: 2vh;
+  }
+
+  .experience > div > h3 {
+    font-size: 1.7vh;
+  }
+
+  .imageexp {
+    height: 5vh;
+  }
+}

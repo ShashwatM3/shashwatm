@@ -1,0 +1,158 @@
+.home-main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+  25% {
+    transform: translateY(-10px);
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: translateY(-10px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+}
+
+.home-main > div {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.home-main > div > div {
+  width: 50%;
+}
+
+.home-main > div > div > h1 {
+  font-size: 5vh;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.home-main > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-main > div > div > h3 {
+  font-size: 2vh;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.home-main > div > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 1rem; */
+}
+
+.me {
+  height: 43vh;
+  width: 35vh;
+  border-radius: 30px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: rgba( 255, 255, 255, 0 );
+  box-shadow: 0 8px 32px 0 rgba(36, 180, 182, 0.587);
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgb(57, 57, 57);
+  transition: 0.2s ease-in-out;
+}
+
+.me:hover {
+  animation: bounce 0.35s ease;
+  cursor: pointer;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: 0.4s ease-in-out;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .home-main > div {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .home-main > div > div > h3 {
+    font-size: 2vh;
+  }
+
+  .home-main > div > div > h1 {
+    font-size: 4vh;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .home-main > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .home-main > div > div {
+    width: 80%;
+    text-align: center;
+  }
+
+  .me {
+    height: 40vh;
+    width: 30vh;
+    margin-bottom: 20px;
+  }
+
+  .home-main > div > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .home-main > div > div {
+    width: 90%;
+  }
+
+  .home-main > div > div > h3 {
+    font-size: 1.7vh;
+  }
+  
+  .home-main > div > div > div > button {
+    font-size: 1.5vh;
+    padding: 8px 20px;
+  }
+}
