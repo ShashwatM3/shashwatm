@@ -48,8 +48,12 @@ function ProjectBCS() {
             <div className='flex items-center justify-between'>
               <h3>Stormee AI helps you turn a rough idea into a clear, ready-to-build plan in minutes. From one-line idea to detailed execution blueprint, Stormee diagnoses your blind spots, challenges your assumptions, and delivers market insight, product design, and technical architecture — fast, brutally, and without fluff.</h3>
               <div className='flex items-center justify-center gap-2 flex-col'>
-                <Button className='dark w-full'>Visit Site</Button>
-                <Button className='border bg-transparent border-neutral-700'>View Progress</Button>
+                <Button onClick={() => {
+                  window.open("https://stormee-eight.vercel.app/");
+                }} className='dark w-full'>Visit Site</Button>
+                <Button onClick={() => {
+                  window.open("https://x.com/ShashwatM30");
+                }} className='border bg-transparent border-neutral-700'>View Progress</Button>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ function Page() {
         <div className='experience'>
           <Image className='imageexp' alt="" src={codelab}/>
           <div>
-            <h1 className='scroll-m-20 text-xl font-semibold tracking-tight'>CodeLab Davis &#8212; <span>Software Developer</span> </h1>
+            <h1 className='scroll-m-20 text-xl font-semibold tracking-tight'>CodeLab Davis &#8212; <span>Software Developer (Product Cohort)</span> </h1>
             <h3>Sep. 2024&#8212; present </h3>
           </div>
         </div><br/>

@@ -38,7 +38,7 @@
 
 .experience > div > h1 > span {
   font-weight: 200;
-  letter-spacing: 100%;
+  /* letter-spacing: 100%; */
   font-style: italic;
 }
 
