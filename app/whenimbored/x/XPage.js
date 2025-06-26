@@ -129,6 +129,10 @@ function XPage() {
           <Image alt='' src={exploreX} className='h-6 w-auto'/>
           <input className='searchX' placeholder='Search'/>
         </div>
+
+        <div className='promo-x'>
+          <h1>If you've got a startup , </h1>
+        </div>
       </div>
     </div>
   )

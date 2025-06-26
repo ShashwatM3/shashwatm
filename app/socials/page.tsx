@@ -4,7 +4,7 @@ import React from 'react';
 import './styles.css';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import x from "@/components/icons/x.png";
+import xlogo from "@/components/icons/xlogo.png";
 import linkedin from "@/components/icons/linkedin.jpg";
 import gmail from "@/components/icons/gmail.png"
 import { useRouter } from 'next/navigation';
@@ -27,7 +27,7 @@ function Page() {
         <div className='social' onClick={() => {
           window.open("https://x.com/ShashwatM30")
         }}>
-          <Image className='imagesocial' alt="" src={x}/>
+          <Image className='imagesocial' alt="" src={xlogo}/>
           <div>
             <h1 className='scroll-m-20 text-xl font-semibold tracking-tight'>X &#8212; See what i'm upto! </h1>
             <h3>@ShashwatM30</h3>
