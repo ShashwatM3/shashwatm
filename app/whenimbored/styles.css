@@ -1,0 +1,22 @@
+.whenimbored-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.whenimbored-main > div > h1 {
+  font-size: 5vh;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.whenimbored-main > div {
+  width: 40%;
+  text-align: center;
+}
+
+.whenimbored-main > div > div {
+  margin-top: 20px;
+}
