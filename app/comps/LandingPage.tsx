@@ -1,16 +1,16 @@
 import { AuroraText } from '@/components/magicui/aurora-text'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Card from './Card'
-import stormee from "@/components/media/stormee.png"
-import youtube from "@/components/media/youtube.png"
 import { Badge } from '@/components/ui/badge'
 import { BadgeCheckIcon } from 'lucide-react'
 import SocialMediaLinks from './SocialMediaLinks'
+import projects from "@/app/data/projects";
 
 function LandingPage() {
+  const [restricted, setRestricted] = useState(true);
   return (
-    <div className='flex items-center justify-center h-full'>
+    <div className={`flex ${restricted ? 'items-center' : 'items-start pt-15'} justify-center h-full`}>
       <div className='w-[50vw]'>
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
           I am Shashwat and I <AuroraText>learn</AuroraText> and <span className='text-amber-500'>build</span> AI at every moment.
@@ -19,44 +19,41 @@ function LandingPage() {
         <SocialMediaLinks/> 
         <br/>
         <div className='flex items-center justify-center flex-col gap-3'>
-          <Card
-            title="Stormee AI"
-            description='Get validation & competitor insights in minutes'
-            webURL='https://www.stormee.app/'
-            logo={stormee}
-            skills={["AI Workflows", "Prompt Engineering", "UI/UX Design Thinking", "State Management", "DB + Auth"]}
-            medias={[
-              {
-                "name": "Launch Video",
-                "url": "https://youtu.be/Xvx7qHtPKQM?si=mrImzsRbopEISCqE",
-                "media": null
-              },
-              {
-                "name": "ProductHunt",
-                "url": "https://www.producthunt.com/posts/stormee-ai?utm_source=other&utm_medium=social",
-                "media": null
-              }
-            ]}
-          />
-          <Card
-            title="YouTube Books"
-            description='Never miss a video offline with YouTube Books'
-            webURL='https://yt2doc.streamlit.app/'
-            logo={youtube}
-            skills={["Multi-agent pipelines", "API-powered content processing", "Modular Agentic Architecture", "Memory Optimization", "Performance Optimization", "Educational Value"]}
-            medias={[
-              {
-                "name": "GitHub Repo",
-                "url": "https://github.com/ShashwatM3/youtube-to-pdf",
-                "media": null
-              },
-            ]}
-          />
+          {projects.map((item, index) => (
+            restricted
+              ? (index <= 1 && (
+                <Card
+                  key={index}
+                  title={item.title}
+                  description={item.description}
+                  webURL={item.webURL}
+                  logo={item.logo}
+                  skills={item.skills}
+                  medias={item.medias}
+                />
+              ))
+              : (index >= 0 && (
+                <Card
+                  key={index}
+                  title={item.title}
+                  description={item.description}
+                  webURL={item.webURL}
+                  logo={item.logo}
+                  skills={item.skills}
+                  medias={item.medias}
+                />
+              ))
+          ))}
           <div className='flex items-center justify-between w-[60%] mt-3'>
-            <Button>More projects</Button>
+            {restricted ? (
+              <Button onClick={() => setRestricted(false)}>Show more</Button>
+            ):(
+              <Button onClick={() => setRestricted(true)}>Show less</Button>
+            )}
             <h3>Or</h3>
             <Button variant={'secondary'}>Experience</Button>
           </div>
+          <br/>
         </div>
       </div>
     </div>

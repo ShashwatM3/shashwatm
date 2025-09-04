@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 
 function Card(props: { title: string, description: string, webURL: string, logo: any, medias: any, skills: any }) {
   return (
-    <div className='w-full p-5 border border-solid rounded-lg py-6'>
+    <div className='w-full p-5 border border-solid rounded-lg py-6 hover:shadow-xl hover:border-neutral-600 transition-all duration-500'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
           {props.logo ? (
