@@ -4,8 +4,9 @@ import { Eye, MoveUpRight } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
+import WaverCircle from '@/components/ui/WaverCircle'
 
-function Card(props: { title: string, description: string, webURL: string, logo: any, medias: any, skills: any }) {
+function Card(props: { title: string, description: string, webURL: string, logo: any, medias: any, skills: any, active: boolean }) {
   return (
     <div className='w-full p-5 border border-solid rounded-lg py-6 hover:shadow-xl hover:border-neutral-600 transition-all duration-500'>
       <div className='flex items-center justify-between'>
@@ -23,10 +24,18 @@ function Card(props: { title: string, description: string, webURL: string, logo:
         <Button onClick={() => window.open(`${props.webURL}`)}><Eye/></Button>
       </div>
       <div className='flex items-start justify-center flex-col gap-5 mt-5'>
-        <div className='flex-1 flex items-center gap-2'>
-          {props.medias.map((media: any) => (
-            <Button variant={'outline'} key={media.name} onClick={() => window.open(media.url)}>{media.name}</Button>
-          ))}
+        <div className='flex items-center justify-between w-full'>
+          <div className='flex-1 flex items-center gap-2'>
+            {props.medias.map((media: any) => (
+              <Button variant={'outline'} key={media.name} onClick={() => window.open(media.url)}>{media.name}</Button>
+            ))}
+          </div>
+          {props.active && (
+            <div className='flex items-center gap-2'>
+              <WaverCircle/>
+              <h1 className='text-green-500 animate-pulse-slow'>In build mode</h1>
+            </div>
+          )}
         </div>
         <div className='flex-1 flex items-center gap-2 flex-wrap'>
             {props.skills.map((skill: string) => (
