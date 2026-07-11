@@ -2,13 +2,15 @@
 import Image from "next/image";
 import LandingPage2 from "./LandingPage2";
 import LandingPage3 from "./LandingPage3";
+import LandingPage4 from "./LandingPage4";
 import ConsoleSpinner from "@/components/ConsoleSpinner";
 
 export default function Home() {
   return (
     <div className="h-screen">
       {/* <LandingPage2/> */}
-      <LandingPage3/>
+      {/* <LandingPage3/> */}
+      <LandingPage4/>
       {/* <div className="fixed top-5 right-7 cursor-pointer">
         <h3 className="text-neutral-500 hover:text-white transition-all">
           <ConsoleSpinner/>&nbsp;
