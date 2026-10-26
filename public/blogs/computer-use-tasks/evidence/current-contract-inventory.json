@@ -1,0 +1,572 @@
+[
+  {
+    "task": "host_ops_week",
+    "current_package": "cua/harbor/tasks/host_ops_week",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 11208,
+        "sha256": "7989179803b91089eb83b5a6b63ebf46c1214238b4f5f98cc9a4759a83695210"
+      },
+      "tests/verify.py": {
+        "bytes": 8216,
+        "sha256": "5afdb5d48274b514e55370c957ff367420d8dd50f19befb13cbf00709da2785c"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 2981,
+        "sha256": "5caececbd244aeed05359cdc33c95a1939e2caca073a688e8c1bac2a0ffbc6ae"
+      },
+      "environment/Dockerfile": {
+        "bytes": 8636,
+        "sha256": "d20d0bd6e8f30e0340d991c489008bda37e78e548b6c490af25a38b5c7d3d69f"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "assertions",
+      "invariants",
+      "initial_task_progress"
+    ],
+    "assertions": 24,
+    "invariants": 8,
+    "oracle_sudo_in_dockerfile": true,
+    "existing_probe_modules": []
+  },
+  {
+    "task": "guest_trip_construction",
+    "current_package": "cua/harbor/tasks/guest_trip_construction",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 8218,
+        "sha256": "1d3ed298032fa8a6d9332e0d071e067a41ebb890120f94862c99ef649549f41e"
+      },
+      "tests/verify.py": {
+        "bytes": 8216,
+        "sha256": "5afdb5d48274b514e55370c957ff367420d8dd50f19befb13cbf00709da2785c"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 2981,
+        "sha256": "c5e14698f0893cba2ca2654fd20f0a1fec0e2c8099906508728fab89a908b8ac"
+      },
+      "environment/Dockerfile": {
+        "bytes": 8646,
+        "sha256": "2f5260a332812ac1e1d9c0a3539d223a25604de77c056626797c446942ccb6b9"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "assertions",
+      "invariants",
+      "initial_task_progress"
+    ],
+    "assertions": 13,
+    "invariants": 7,
+    "oracle_sudo_in_dockerfile": true,
+    "existing_probe_modules": []
+  },
+  {
+    "task": "portfolio_onboarding",
+    "current_package": "cua/harbor/tasks/portfolio_onboarding",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 18887,
+        "sha256": "eb12d9550d271489cf8f950bacf210f84ac5d753be3e1e13f0748b8e71f46a6b"
+      },
+      "tests/verify.py": {
+        "bytes": 8216,
+        "sha256": "5afdb5d48274b514e55370c957ff367420d8dd50f19befb13cbf00709da2785c"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 2991,
+        "sha256": "cac7ba9ecba5e5b81869692c1833a32b98c43e109e318adc43f888cc7e00bbbd"
+      },
+      "environment/Dockerfile": {
+        "bytes": 8643,
+        "sha256": "6365c4b9356d7fcc4cf4101117d24f75adda77f86704c6222abb8143fd33cdb9"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "assertions",
+      "invariants",
+      "initial_task_progress"
+    ],
+    "assertions": 48,
+    "invariants": 5,
+    "oracle_sudo_in_dockerfile": true,
+    "existing_probe_modules": []
+  },
+  {
+    "task": "guest_handoff",
+    "current_package": "cua/harbor/tasks/guest_handoff",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 5532,
+        "sha256": "0357dc5e5e0bf97dfc088faba331c31c9b9450d44cef03318cff0ffc35945285"
+      },
+      "tests/verify.py": {
+        "bytes": 8216,
+        "sha256": "5afdb5d48274b514e55370c957ff367420d8dd50f19befb13cbf00709da2785c"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 2872,
+        "sha256": "759134c6e04f1d08a4cc3fed8d1ba3004cc9d87e90ba21f97d0d9add401d02c6"
+      },
+      "environment/Dockerfile": {
+        "bytes": 8636,
+        "sha256": "1656ce960e77c1f9d44ec7ff0ba4b6b459396601cd0439c7dc8f09c0506128bb"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "assertions",
+      "invariants",
+      "initial_task_progress"
+    ],
+    "assertions": 8,
+    "invariants": 8,
+    "oracle_sudo_in_dockerfile": true,
+    "existing_probe_modules": []
+  },
+  {
+    "task": "games_week_day_2",
+    "current_package": "cua/harbor/tasks/games_week_day_2",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 37976,
+        "sha256": "5cb21de93452ed288ec915b389bfded225f4e88d87ac081148e8b70fbd8303a8"
+      },
+      "tests/verify.py": {
+        "bytes": 8216,
+        "sha256": "5afdb5d48274b514e55370c957ff367420d8dd50f19befb13cbf00709da2785c"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 2910,
+        "sha256": "b8eb0bca59c225254c20ca1328e6af3f801adb5d41983459a5b74c8f5bee8a27"
+      },
+      "environment/Dockerfile": {
+        "bytes": 8639,
+        "sha256": "b19345e3b876be681cd823ce7639d3e32472a8a79855df8fc3991216f88a620f"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "assertions",
+      "invariants",
+      "initial_task_progress"
+    ],
+    "assertions": 28,
+    "invariants": 5,
+    "oracle_sudo_in_dockerfile": true,
+    "existing_probe_modules": []
+  },
+  {
+    "task": "task3_lmms_arrangement",
+    "current_package": "cua/harbor/tasks-desktop/task3_lmms_arrangement",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 10936,
+        "sha256": "9524d9b3fed647f7c239f9947f0866b44cf2cf4772383c3adfba04f4e61aecbb"
+      },
+      "tests/verify.py": {
+        "bytes": 10373,
+        "sha256": "11a5bc0cc8ea4cbbc4dd0ff83693ce7852805c5f312cc9e043e4888ce092b0bd"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 9522,
+        "sha256": "56c3bde9a7756883bc107715289196e89e1f84c08cda89fa1d3f225bb873281f"
+      },
+      "environment/Dockerfile": {
+        "bytes": 20756,
+        "sha256": "513347493b022b3ee975291f1240408beee92e82d16399b45fc1c09766cdd8b9"
+      }
+    },
+    "contract_keys": [
+      "$comment",
+      "saved_project_stem",
+      "original_project",
+      "render_dir",
+      "initial_task_progress",
+      "assertions",
+      "invariants"
+    ],
+    "assertions": 13,
+    "invariants": 3,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "preflight.py"
+    ]
+  },
+  {
+    "task": "task4_tour_video",
+    "current_package": "cua/harbor/tasks-desktop/task4_tour_video",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 39763,
+        "sha256": "a1b81bcf5f4cc8690d6523b9629d84e524cf412ce24dc1c4765f94967826f405"
+      },
+      "tests/verify.py": {
+        "bytes": 113970,
+        "sha256": "eb411b6ad8b5961827cd10af83ce6dd64c283e35c7f09d67982bcbaede50a4df"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 33467,
+        "sha256": "869e13c25035659d8748051d9b3271432834e98e6f5d59bef3978539e71cbf94"
+      },
+      "environment/Dockerfile": {
+        "bytes": 23979,
+        "sha256": "e9f974456e3deb995b0a87bb22ce975b54bd20af72adbfa7bdd15cc84e872570"
+      }
+    },
+    "contract_keys": [
+      "$comment",
+      "schema_version",
+      "family",
+      "fps",
+      "totals",
+      "project",
+      "judge",
+      "seeded",
+      "checks",
+      "invariants"
+    ],
+    "assertions": 34,
+    "invariants": 7,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "preflight.py"
+    ]
+  },
+  {
+    "task": "shop_course_term",
+    "current_package": "cua/harbor/tasks-shop-course/shop_course_term",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 24563,
+        "sha256": "1a6c279a03d3c4cc1cd335352e61d7646e08da6c5ec03507cd3767b9acbcf4e0"
+      },
+      "tests/verify.py": {
+        "bytes": 11890,
+        "sha256": "b20660e8cd4d0d5422532f6d11cb8f8724db47bae927cb04a67626877d19223f"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 4674,
+        "sha256": "f72899856f02071db89b57f81bce59b054711b56db105d8159af56ecbf3f7fa2"
+      },
+      "environment/Dockerfile": {
+        "bytes": 16841,
+        "sha256": "b10c7e8b7c6744891a135bc04ae2b9f2905d2acee25d783ad866e95bd61d3e00"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "frozen_now",
+      "notes",
+      "assertions",
+      "invariants",
+      "reported",
+      "initial_task_progress"
+    ],
+    "assertions": 30,
+    "invariants": 5,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "date-probes.py",
+      "preflight.py"
+    ]
+  },
+  {
+    "task": "task16_store_management_workflows",
+    "current_package": "cua/harbor/tasks-shop-course/task16_store_management_workflows",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 150662,
+        "sha256": "7758126068b63b98fd6b00873eaf9af997b2e8e4d517b1681ef3a587afc34705"
+      },
+      "tests/verify.py": {
+        "bytes": 23669,
+        "sha256": "b59d2943ec9f66da47f486823a9736fbbc6d03d598879f2c17e65356b7948439"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 5195,
+        "sha256": "f38175cf7c55a99915e0b653a812b79b269330b9b44a4c177ac0c74b5d1d5d38"
+      },
+      "environment/Dockerfile": {
+        "bytes": 16991,
+        "sha256": "fee89405fd5a66645e7fb405f8f8e037822faf2e505f08b23e29bee157f1d04e"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "seed",
+      "frozen_now",
+      "notes",
+      "assertions",
+      "invariants",
+      "reported",
+      "initial_task_progress",
+      "capture",
+      "group_weights"
+    ],
+    "assertions": 153,
+    "invariants": 14,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "handin_probes.py",
+      "adversarial.py",
+      "contract_probes.py",
+      "evidence_probes.py",
+      "preflight.py"
+    ]
+  },
+  {
+    "task": "task18_freelance_design_delivery",
+    "current_package": "cua/harbor/tasks-desktop/task18_freelance_design_delivery",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 131545,
+        "sha256": "b069d0d0d9eb3db9a312d856ab932afbae7a22dd639749e4b176f15cc177bbd1"
+      },
+      "tests/verify.py": {
+        "bytes": 108421,
+        "sha256": "785cef4804aa7bd0ceeda62992cc4f21be6d4bf841021244da1eebbd22b379e9"
+      },
+      "tests/test.sh": {
+        "bytes": 144,
+        "sha256": "660630d054f3774c686f003c30e72ba189163d3117bbadc958d7679f2c53d70c"
+      },
+      "task.toml": {
+        "bytes": 4463,
+        "sha256": "1bcc4eb3f9297f159aeb569e9fb614e34567e002b26fe527a0b11af28ef297e3"
+      },
+      "environment/Dockerfile": {
+        "bytes": 24887,
+        "sha256": "e5b20ac966c81d2badbb3a3fbbaf5d5eabac3998becf7ed2450682971599a368"
+      }
+    },
+    "contract_keys": [
+      "$comment",
+      "schema_version",
+      "family",
+      "totals",
+      "sources",
+      "spec_sha256",
+      "facts",
+      "scoring",
+      "controller",
+      "seeded",
+      "checks",
+      "invariants",
+      "integration_notes"
+    ],
+    "assertions": 34,
+    "invariants": 8,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "test_native_delivery_grading.py",
+      "test_cross_service_collection.py",
+      "test_collected_cut_resources.py",
+      "test_native_family_integration.py",
+      "test_native_field_grading.py",
+      "test_scoring_round4.py",
+      "test_cut_source_visibility.py",
+      "test_collection_clock.py",
+      "test_stage7_native_readers.py",
+      "test_units_round4.py",
+      "test_seed_inventory_generation.py",
+      "test_caption_visibility.py",
+      "test_native_logo.py",
+      "test_native_visible.py",
+      "test_handoff_claims.py",
+      "test_stage7_video_readers.py",
+      "test_runtime_roundtrip.py",
+      "test_delivered_logo.py",
+      "test_contract_round4.py",
+      "test_verifier.py",
+      "test_native_hierarchy.py",
+      "test_native_style_pixels.py",
+      "test_video_family_integration.py",
+      "test_saved_document.py",
+      "preflight.py"
+    ]
+  },
+  {
+    "task": "task17_hospitality_design_practicum",
+    "current_package": "cua/harbor/tasks-desktop/task17_hospitality_design_practicum",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 55972,
+        "sha256": "95524b6ac930bad99b9f05834053c69750ac23f57833f8877550b3bec61662c4"
+      },
+      "tests/verify.py": {
+        "bytes": 3233,
+        "sha256": "7a4aef55002db5a65b2a49dce5a4b3cf03a4d64dc2c99d717cc276660f29bd22"
+      },
+      "tests/test.sh": {
+        "bytes": 98,
+        "sha256": "fc6d395a4aa4dbf82029e3852eb345e1b864b66c6998730d0ce74d9d97f15337"
+      },
+      "task.toml": {
+        "bytes": 7790,
+        "sha256": "81fdb0fd3f61fb71bfddcf2ae2c3e97ffd5058f3c2324951297914c73692c9df"
+      },
+      "environment/Dockerfile": {
+        "bytes": 26669,
+        "sha256": "cb056b0591beb06426020bf68cc55b77958802f148a840afc61d0ffc2b174878"
+      }
+    },
+    "contract_keys": [
+      "schema_version",
+      "family",
+      "status",
+      "reward_enabled",
+      "bindings_sha256",
+      "totals",
+      "checks",
+      "invariants",
+      "quality_families",
+      "adaptation_extra_weight",
+      "properties",
+      "host_id",
+      "recipient_id",
+      "guest_authority",
+      "event_body_sha256",
+      "feedback",
+      "frame",
+      "source_sha256",
+      "metrics",
+      "release_blockers",
+      "coverage_limits",
+      "release_review"
+    ],
+    "assertions": 31,
+    "invariants": 6,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "test_business_evidence.py",
+      "test_visual_pair.py",
+      "test_semantic_boundaries.py",
+      "test_episode_clock.py",
+      "test_audit_regression.py",
+      "test_business_routes.py",
+      "test_business_videos.py",
+      "test_section_content.py",
+      "test_observer_lifecycle.py",
+      "test_trial_r6_regressions.py",
+      "test_disclosure_concurrency.py",
+      "legacy_test_verifier.py",
+      "test_collection.py",
+      "test_pdf_paint.py",
+      "test_final_handoff.py",
+      "test_privacy_inventory.py",
+      "test_video_decode_budget.py",
+      "test_business_entrypoint.py",
+      "test_video_visibility.py",
+      "test_business_claims.py",
+      "test_collection_pause.py",
+      "test_business_guides.py",
+      "test_capture_packaging.py",
+      "test_design_quality.py",
+      "test_security_frames.py",
+      "test_capture_evidence.py",
+      "test_producer_time.py",
+      "test_header_measurement.py",
+      "test_review_offer.py",
+      "test_runtime_packaging.py",
+      "test_business_grader.py",
+      "test_renderer_identity.py",
+      "test_native_pair.py",
+      "preflight.py",
+      "test_semantics.py"
+    ]
+  },
+  {
+    "task": "task14_beat_making_tutorial",
+    "current_package": "cua/harbor/tasks-desktop/task14_beat_making_tutorial",
+    "files": {
+      "tests/contract.json": {
+        "bytes": 17072,
+        "sha256": "30e1daa275cb9cefebe287495aad8a640aa814f9d9eb6be6a18a5793775e6ab7"
+      },
+      "tests/verify.py": {
+        "bytes": 12126,
+        "sha256": "b9e7bed4154a75d2fbb79be7a6cd1602981253b1f61b8cd4a262ae5f8ad60478"
+      },
+      "tests/test.sh": {
+        "bytes": 48,
+        "sha256": "a98b87aa91d0067790cbb2c1238f5d1be12c971cd1616aba45d9999774727ff1"
+      },
+      "task.toml": {
+        "bytes": 10235,
+        "sha256": "49c04aa4c21bd2ade8336772939ddf147caa3112faf2b7f418f12da15520994c"
+      },
+      "environment/Dockerfile": {
+        "bytes": 9848,
+        "sha256": "f14af96194e9dd3607cae8e188e16778a6229694293feb0d8f3e5605a432f4f5"
+      }
+    },
+    "contract_keys": [
+      "$comment",
+      "saved_project_stem",
+      "original_project",
+      "render_dir",
+      "initial_task_progress",
+      "assertions",
+      "invariants"
+    ],
+    "assertions": 27,
+    "invariants": 0,
+    "oracle_sudo_in_dockerfile": false,
+    "existing_probe_modules": [
+      "preflight.py"
+    ]
+  }
+]

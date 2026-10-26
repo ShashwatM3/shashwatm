@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { SocialIcon } from 'react-social-icons'
 import {
   Accordion,
@@ -223,6 +224,12 @@ function LandingPage4() {
           <div className='w-8 h-8 sm:w-10 sm:h-10'>
             <SocialIcon borderRadius="30%" network="spotify" style={{ width: '100%', height: '100%' }} />
           </div>
+          <Link
+            href="/blogs/"
+            className="ml-2 text-sm text-neutral-500 underline underline-offset-2 hover:text-black transition-colors"
+          >
+            Blogs
+          </Link>
         </div>
         <br/>
         <h1 className='text-3xl instrument mb-4'><b>My Different Hats</b></h1>

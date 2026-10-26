@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "family": "portfolio_onboarding",
+  "seed": 26090103,
+  "assertions": [
+    {
+      "id": "exactly_eight_properties_live",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published'",
+      "expected": 8,
+      "weight": 0.06
+    },
+    {
+      "id": "the_saved_draft_was_finished_not_restarted",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listing_drafts WHERE id = 'host-1-active'",
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_published_exactly_once",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND city = 'Faro'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "booking_request_reached_a_terminal_state",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM reservations WHERE id = 901 AND status IN ('confirmed','cancelled')",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "braga_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Braga'\n         AND title = 'Braga riverside loft' AND guests_max = 4\n         AND bedrooms = 2 AND beds = 2 AND bathrooms = 1",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "braga_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Braga' AND pr.base_nightly = 130",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "braga_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Braga' AND pr.weekend_nightly = 155",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "braga_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Braga' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "braga_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Braga' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "coimbra_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Coimbra'\n         AND title = 'Coimbra garden house' AND guests_max = 4\n         AND bedrooms = 3 AND beds = 3 AND bathrooms = 2",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "coimbra_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Coimbra' AND pr.base_nightly = 140",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "coimbra_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Coimbra' AND pr.weekend_nightly = 165",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "coimbra_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Coimbra' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "coimbra_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Coimbra' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "faro_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Faro'\n         AND title = 'Faro courtyard flat' AND guests_max = 3\n         AND bedrooms = 1 AND beds = 2 AND bathrooms = 1",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "faro_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Faro' AND pr.base_nightly = 125",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Faro' AND pr.weekend_nightly = 150",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Faro' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "faro_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Faro' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "porto_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Porto'\n         AND title = 'Porto azulejo studio' AND guests_max = 2\n         AND bedrooms = 1 AND beds = 1 AND bathrooms = 1",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "porto_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Porto' AND pr.base_nightly = 95",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "porto_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Porto' AND pr.weekend_nightly = 120",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "porto_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Porto' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "porto_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Porto' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "lisbon_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Lisbon'\n         AND title = 'Lisbon Alfama terrace' AND guests_max = 4\n         AND bedrooms = 2 AND beds = 2 AND bathrooms = 1",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "lisbon_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Lisbon' AND pr.base_nightly = 150",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "lisbon_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Lisbon' AND pr.weekend_nightly = 175",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "lisbon_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Lisbon' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "lisbon_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Lisbon' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "aveiro_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Aveiro'\n         AND title = 'Aveiro canal apartment' AND guests_max = 5\n         AND bedrooms = 2 AND beds = 3 AND bathrooms = 2",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "aveiro_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Aveiro' AND pr.base_nightly = 120",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "aveiro_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Aveiro' AND pr.weekend_nightly = 145",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "aveiro_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Aveiro' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "aveiro_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Aveiro' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "guimaraes_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Guimaraes'\n         AND title = 'Guimaraes old town flat' AND guests_max = 6\n         AND bedrooms = 4 AND beds = 4 AND bathrooms = 2",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "guimaraes_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Guimaraes' AND pr.base_nightly = 175",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Guimaraes' AND pr.weekend_nightly = 200",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Guimaraes' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "guimaraes_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Guimaraes' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "sintra_matches_its_packet",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND status = 'published' AND city = 'Sintra'\n         AND title = 'Sintra hillside cottage' AND guests_max = 6\n         AND bedrooms = 3 AND beds = 3 AND bathrooms = 2",
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "sintra_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Sintra' AND pr.base_nightly = 200",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "sintra_weekend_priced",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM pricing_rules pr JOIN listings l ON l.id = pr.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Sintra' AND pr.weekend_nightly = 225",
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "sintra_arrival_configured",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Sintra' AND l.status = 'published'\n         AND a.check_in_time = '15:00' AND a.check_out_time = '11:00'",
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "sintra_house_manual_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM arrival_guides a JOIN listings l ON l.id = a.listing_id\n       WHERE l.host_id = 1 AND l.city = 'Sintra' AND l.status = 'published'\n         AND a.house_manual IS NOT NULL AND length(trim(a.house_manual)) >= 20",
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "coimbra_honoured_the_compliance_cap_over_the_owner",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND city = 'Coimbra' AND guests_max = 6",
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_honoured_the_compliance_cap_over_the_owner",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id = 1 AND city = 'Guimaraes' AND guests_max = 8",
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "every_live_property_has_a_calendar",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings l WHERE l.host_id = 1 AND l.status = 'published'\n       AND NOT EXISTS (SELECT 1 FROM calendar_nights n WHERE n.listing_id = l.id)",
+      "expected": 0,
+      "weight": 0.02
+    },
+    {
+      "id": "noise_decoys_left_unanswered",
+      "database": "gmail",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM message\n       WHERE from_contact_id = (SELECT id FROM contact WHERE lower(email) = 'maya.chen@gmail.com')\n         AND thread_id IN (\n           SELECT DISTINCT thread_id FROM message\n           WHERE from_contact_id IN (\n             SELECT id FROM contact\n             WHERE lower(email) NOT IN (\n               'maya.chen@gmail.com', 'owners@brightstay.example', 'compliance@host-city.example'\n             )\n           )\n         )",
+      "expected": 0,
+      "weight": 0.04
+    }
+  ],
+  "invariants": [
+    {
+      "id": "no_property_published_under_another_host",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listings WHERE host_id <> 1 AND status = 'published' AND city IN ('Braga', 'Coimbra', 'Faro', 'Porto', 'Lisbon', 'Aveiro', 'Guimaraes', 'Sintra')",
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "no_stray_draft_left_behind",
+      "database": "airbnb",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM listing_drafts WHERE host_id <> 1",
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "other_hosts_listings_untouched",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "sql": "SELECT * FROM listings WHERE host_id <> 1 ORDER BY id",
+      "expected": {
+        "count": 28,
+        "sha256": "89e6653581cbac3d6d618c523a875b5d3800e840532213301386fb4dcce24600"
+      },
+      "weight": 1
+    },
+    {
+      "id": "other_reservations_untouched",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "sql": "SELECT * FROM reservations WHERE id <> 901 ORDER BY id",
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_gmail_seed_mail",
+      "database": "gmail",
+      "kind": "rows_digest",
+      "sql": "SELECT id, thread_id, from_contact_id, subject, body_html, body_text, snippet, sent_at, is_draft, in_reply_to FROM message\n           WHERE id LIKE 'm_maya-portfolio-onboarding_%'\n             AND from_contact_id IN (\n               SELECT id FROM contact WHERE lower(email) IN ('owners@brightstay.example', 'compliance@host-city.example')\n             )\n           ORDER BY id",
+      "expected": {
+        "count": 12,
+        "sha256": "ae47bf125345cc3e9070190e2e086f7b1e656277a555ab01bd9867aa428528e8"
+      },
+      "weight": 1
+    }
+  ],
+  "initial_task_progress": 0.09302325581395343
+}

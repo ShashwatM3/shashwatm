@@ -1,0 +1,10 @@
+{
+  "trial": "task16_store_management_workflows__43JYRVP",
+  "trajectory_sha256": "98b150ed5bd34e16d441a815679a389ac8f88a8de60fa806c985e141795cfd35",
+  "result_sha256": "9f47ef9b555d2b1bc13adfa01ff4e113c08e175a16764515b6321364899626b7",
+  "trajectory_path": "cua/harbor/jobs/task16-store-management-workflows-astra-20260918/task16_store_management_workflows__43JYRVP/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/task16-store-management-workflows-astra-20260918/task16_store_management_workflows__43JYRVP/result.json",
+  "reports": [
+    "cua/FILES/SCRATCHPADS/106_task16_store_management_workflows_failure_analysis_2026-09-19.md"
+  ]
+}

@@ -1,0 +1,132 @@
+[
+  {
+    "task": "host_ops_week",
+    "file": "cua/harbor/jobs/hostops-xl-opus5-20260907/host_ops_xl__sio6CEa/verifier/details.json",
+    "sha256": "536963526345068180efb52484cff3eb19b388d82069ee06d30cf8f7eb33d020"
+  },
+  {
+    "task": "host_ops_week",
+    "file": "cua/harbor/jobs/hostops-xl-opus5-20260907/host_ops_xl__sio6CEa/verifier/reward.json",
+    "sha256": "72d08cbb36b50ea351f15f5ff468987162221bb1f3c6afeb4f7f1b08de70b3e2"
+  },
+  {
+    "task": "portfolio_onboarding",
+    "file": "cua/harbor/jobs/portfolio-8prop-opus5-resilient-2/portfolio_onboarding__GpjVX7K/verifier/details.json",
+    "sha256": "f31a242f3f9f53f427e3f4b4f53a5ab930fda6cd9a6ca8c88323942f2347ad6f"
+  },
+  {
+    "task": "portfolio_onboarding",
+    "file": "cua/harbor/jobs/portfolio-8prop-opus5-resilient-2/portfolio_onboarding__GpjVX7K/verifier/reward.json",
+    "sha256": "56600a3288fea17b57daeb54e84bc91b22ff4b2c948c4ef9ccb23d7961ded8e9"
+  },
+  {
+    "task": "guest_trip_construction",
+    "file": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_trip_construction__EXnFd8S/verifier/details.json",
+    "sha256": "862d78ec279417acb4805bcb715f23514deb2894e7b36568c64d61038c18c6c7"
+  },
+  {
+    "task": "guest_trip_construction",
+    "file": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_trip_construction__EXnFd8S/verifier/reward.json",
+    "sha256": "c4ba86c6f0441aee66c0f648f5138d3ca82d8f03d6a37a06dd4d37d64bd60140"
+  },
+  {
+    "task": "guest_handoff",
+    "file": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_handoff__u2hQfX7/verifier/details.json",
+    "sha256": "a1cd35aaa68c289241058a30db0f9e58be0953c00e900c07d6f1423ce460861c"
+  },
+  {
+    "task": "guest_handoff",
+    "file": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_handoff__u2hQfX7/verifier/reward.json",
+    "sha256": "9d1f38ed4059d979c8fdc83def13be4a19822c88bc4ad0bd3862efd0c0fdd981"
+  },
+  {
+    "task": "games_week_day_2",
+    "file": "cua/harbor/jobs/games-xl4-opus5-20260907/games_xl__ZKzuKYm/verifier/details.json",
+    "sha256": "c66fc1fc6da9098a5a99882edf911823de4204ece4d3c2e9d854fd620b363c4b"
+  },
+  {
+    "task": "games_week_day_2",
+    "file": "cua/harbor/jobs/games-xl4-opus5-20260907/games_xl__ZKzuKYm/verifier/reward.json",
+    "sha256": "e8e4554dd3bec98d89bd5cd46137be098149093bd102f081a5d74cd26c230161"
+  },
+  {
+    "task": "task3_lmms_arrangement",
+    "file": "cua/harbor/jobs-task3/task3-lmms-sonnet5-bedrock-20260914-141633/task3_lmms_arrangement__tbYjADC/verifier/details.json",
+    "sha256": "d4165e0fb9f818c60589d4417a76776d8b76a95d6e4904eec32f00061f60b986"
+  },
+  {
+    "task": "task3_lmms_arrangement",
+    "file": "cua/harbor/jobs-task3/task3-lmms-sonnet5-bedrock-20260914-141633/task3_lmms_arrangement__tbYjADC/verifier/reward.json",
+    "sha256": "53e010f627590c7306f3f9fbf4730269c8517027f882c742a482077929435809"
+  },
+  {
+    "task": "task4_tour_video",
+    "file": "cua/harbor/jobs/task4-tour-video-astra-20260916-r3/task4_tour_video__eH2nwgR/verifier/details.json",
+    "sha256": "ab330b187266573327d2b9fed0416fe815ae314c8225ccc058a1bea8ec6f142a"
+  },
+  {
+    "task": "task4_tour_video",
+    "file": "cua/harbor/jobs/task4-tour-video-astra-20260916-r3/task4_tour_video__eH2nwgR/verifier/reward.json",
+    "sha256": "fac6ec48e7864c1a3617a33080e0d482d6ed933713155732296a58c37583f531"
+  },
+  {
+    "task": "shop_course_term",
+    "file": "cua/harbor/jobs/shop-course-term-astra-20260918a/shop_course_term__dcF2xjs/verifier/details.json",
+    "sha256": "7d12eb23fb2a832e8760fe91fa1203012d5370f5e8c90c01d16cd5ad0564a8a9"
+  },
+  {
+    "task": "shop_course_term",
+    "file": "cua/harbor/jobs/shop-course-term-astra-20260918a/shop_course_term__dcF2xjs/verifier/reward.json",
+    "sha256": "c2631e6018271264505fb0c1e075f00303352ef7bb196ebaaf63c6dd10bc65b5"
+  },
+  {
+    "task": "task16_store_management_workflows",
+    "file": "cua/harbor/jobs/task16-store-management-workflows-astra-20260918/task16_store_management_workflows__43JYRVP/verifier/details.json",
+    "sha256": "a046b4519bdff348e671010ef5b6691a5961968be954790f715e59d7f7036f99"
+  },
+  {
+    "task": "task16_store_management_workflows",
+    "file": "cua/harbor/jobs/task16-store-management-workflows-astra-20260918/task16_store_management_workflows__43JYRVP/verifier/reward.json",
+    "sha256": "202860f437c15c6fa5163afee27eb5115acf9421a7bc54e999908dbea360740f"
+  },
+  {
+    "task": "task16_store_management_workflows",
+    "file": "cua/harbor/jobs/task16-store-management-workflows-astra-20260918/task16_store_management_workflows__43JYRVP/verifier/contract.json",
+    "sha256": "6bb4bd049138cf1722979da996bf9681a25578fc744edafe7d880481360a13de"
+  },
+  {
+    "task": "task18_freelance_design_delivery",
+    "file": "cua/harbor/jobs/task18-freelance-kimi-20260925-kimi-k2.6-sail-20260929T201615297Z/task18_freelance_design_delivery__yn4Aqoh/verifier/details.json",
+    "sha256": "87bd4fcab048de6198671d13f353ca76d1a1670d52acdbccb01925a5bb725630"
+  },
+  {
+    "task": "task18_freelance_design_delivery",
+    "file": "cua/harbor/jobs/task18-freelance-kimi-20260925-kimi-k2.6-sail-20260929T201615297Z/task18_freelance_design_delivery__yn4Aqoh/verifier/reward.json",
+    "sha256": "f7e53f0e3a1b68584f1784715cf8e84a3f725c0b27a1bd3191a3ecde205a5e0b"
+  },
+  {
+    "task": "task17_hospitality_design_practicum",
+    "file": "cua/harbor/jobs/task17-hospitality-kimi-20260925-r7-kimi-k2.6-sail-20260925T213032098Z/task17_hospitality_design_practi__ZYnHKyt/verifier/details.json",
+    "sha256": "8f3505304d673cb9d45760854d30289421059ebc30aac2eeee2f0f3b2ad4d403"
+  },
+  {
+    "task": "task17_hospitality_design_practicum",
+    "file": "cua/harbor/jobs/task17-hospitality-kimi-20260925-r7-kimi-k2.6-sail-20260925T213032098Z/task17_hospitality_design_practi__ZYnHKyt/verifier/reward.json",
+    "sha256": "91a76d4eb9e0261a864862d321e6199e26211342c060d804e750ebc641c5e490"
+  },
+  {
+    "task": "task17_hospitality_design_practicum",
+    "file": "cua/harbor/jobs/task17-hospitality-kimi-20260925-r7-kimi-k2.6-sail-20260925T213032098Z/task17_hospitality_design_practi__ZYnHKyt/verifier/grading-contract.json",
+    "sha256": "95524b6ac930bad99b9f05834053c69750ac23f57833f8877550b3bec61662c4"
+  },
+  {
+    "task": "task14_beat_making_tutorial",
+    "file": "cua/harbor/jobs/task14-beat-making-tutorial-sonnet5-bedrock-20260914-r2/task14_beat_making_tutorial__ddDiiM9/verifier/details.json",
+    "sha256": "9e4b5a41db4d3fa7bf2de2522a9a3d3983b1a900690a113056548a646c958bea"
+  },
+  {
+    "task": "task14_beat_making_tutorial",
+    "file": "cua/harbor/jobs/task14-beat-making-tutorial-sonnet5-bedrock-20260914-r2/task14_beat_making_tutorial__ddDiiM9/verifier/reward.json",
+    "sha256": "909743dc1b12dc95c55fe88a1bfc0d230d72aebef761bd2bddb4f564960ee9cf"
+  }
+]

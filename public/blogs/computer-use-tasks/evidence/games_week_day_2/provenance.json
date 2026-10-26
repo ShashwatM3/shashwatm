@@ -1,0 +1,10 @@
+{
+  "trial": "games_xl__ZKzuKYm",
+  "trajectory_sha256": "d6ec24a95c95decf7e3e85461405a99ae9fca0c44d05241a5dff3d2ee160b32a",
+  "result_sha256": "b1bd487397b5ae41a84adcff03028d2bf82ae1361066591254d3678bc7e03daa",
+  "trajectory_path": "cua/harbor/jobs/games-xl4-opus5-20260907/games_xl__ZKzuKYm/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/games-xl4-opus5-20260907/games_xl__ZKzuKYm/result.json",
+  "reports": [
+    "cua/FILES/SCRATCHPADS/78_xl_trajectory_failure_analysis_2026-09-10.md"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "trial": "portfolio_onboarding__GpjVX7K",
+  "trajectory_sha256": "eb4ca868d4ce8a2efa3e8a2818723b2355fcd1ade335d03cc3e82c6319adc1d9",
+  "result_sha256": "1209d75b488498e239c1ac58b41f14243a776ce2ea1ec8c29ecebf9c0ff8f6ed",
+  "trajectory_path": "cua/harbor/jobs/portfolio-8prop-opus5-resilient-2/portfolio_onboarding__GpjVX7K/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/portfolio-8prop-opus5-resilient-2/portfolio_onboarding__GpjVX7K/result.json",
+  "reports": [
+    "cua/FILES/SCRATCHPADS/76_portfolio_onboarding_two_trial_set_2026-09-07.md"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "reward": 0.0,
+  "task_progress": 0.0,
+  "protected_state": 1,
+  "controller_liveness": 1,
+  "gates_fired": 0,
+  "gates_total": 3
+}

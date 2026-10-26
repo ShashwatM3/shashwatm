@@ -1,0 +1,23 @@
+{
+  "reward": 0.5538,
+  "task_progress": 0.5538,
+  "protected_state": 1,
+  "checks": {
+    "tempo_is_target": true,
+    "bass_line_complete_and_transposed": false,
+    "chord_pad_complete_and_transposed": false,
+    "the_break_bar_is_not_the_pattern": false,
+    "the_cue_runs_to_the_last_bar": true,
+    "drums_under_every_section_that_asks_for_them": false,
+    "every_graded_track_is_audible": true,
+    "automation_lane_exists_on_the_named_parameter": true,
+    "the_fade_goes_the_right_way": true,
+    "render_exists": true,
+    "render_is_not_silent": true,
+    "render_is_the_whole_cue": true,
+    "saved_under_the_new_name": true,
+    "original_tempo_untouched": true,
+    "original_still_incomplete": true,
+    "notes_were_rewritten_not_knob_transposed": true
+  }
+}

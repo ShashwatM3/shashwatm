@@ -1,0 +1,10 @@
+{
+  "trial": "task14_beat_making_tutorial__ddDiiM9",
+  "trajectory_sha256": "9b795ce3f2aca3b0f3405a20f5c2d1c53a46729c0e14cd1636452f00f209758f",
+  "result_sha256": "0b43ac7491b9fed5b446533febeaba2388d643f790e6dcfb408c32fee03875ef",
+  "trajectory_path": "cua/harbor/jobs/task14-beat-making-tutorial-sonnet5-bedrock-20260914-r2/task14_beat_making_tutorial__ddDiiM9/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/task14-beat-making-tutorial-sonnet5-bedrock-20260914-r2/task14_beat_making_tutorial__ddDiiM9/result.json",
+  "reports": [
+    "outputs/cua-task-catalog-20261006/catalog-entries.json"
+  ]
+}

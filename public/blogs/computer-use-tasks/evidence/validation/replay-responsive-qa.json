@@ -1,0 +1,47 @@
+{
+  "browser": "Orca embedded tab",
+  "method": "Real iframe viewports for responsive rendering; live DOM input for replay controls",
+  "checks": [
+    {
+      "check": "390px real iframe viewport and no page overflow",
+      "passed": true
+    },
+    {
+      "check": "1440px real iframe viewport and no page overflow",
+      "passed": true
+    },
+    {
+      "check": "Twelve exact selected runs have checkpoint frames",
+      "passed": true
+    },
+    {
+      "check": "Next checkpoint updates image and accessible position",
+      "passed": true
+    },
+    {
+      "check": "Previous checkpoint restores initial frame",
+      "passed": true
+    },
+    {
+      "check": "Missing URL uses exact local checkpoints",
+      "passed": true
+    },
+    {
+      "check": "Case replay button selects its own run",
+      "passed": true
+    },
+    {
+      "check": "Native iframe uses exact selected URL and has title",
+      "passed": true
+    },
+    {
+      "check": "Returning to checkpoints removes the remote iframe",
+      "passed": true
+    },
+    {
+      "check": "Hosted portfolio viewer accessibility tree contains exact trial, 547 steps, 0.9658 reward and playback controls",
+      "passed": true
+    }
+  ],
+  "limits": "Cross-origin iframe screenshot capture was blank/inconsistent in this Orca client; loaded UI confirmed by accessibility tree. Native input limitations are in browser-qa.json."
+}

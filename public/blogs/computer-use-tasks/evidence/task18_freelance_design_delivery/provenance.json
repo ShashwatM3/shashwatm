@@ -1,0 +1,11 @@
+{
+  "trial": "task18_freelance_design_delivery__yn4Aqoh",
+  "trajectory_sha256": "c92e32e04a6ba6ba77930daa29213f767d87a1d2602142bcfae06e536d35275d",
+  "result_sha256": "81be6176fe9bde1fff8926be429ac02e61a31a989ec2450b5b1a8422b2ab044b",
+  "trajectory_path": "cua/harbor/jobs/task18-freelance-kimi-20260925-kimi-k2.6-sail-20260929T201615297Z/task18_freelance_design_delivery__yn4Aqoh/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/task18-freelance-kimi-20260925-kimi-k2.6-sail-20260929T201615297Z/task18_freelance_design_delivery__yn4Aqoh/result.json",
+  "reports": [
+    "outputs/task18-build-round2/collection-fix-20260929/REPORT.md",
+    "outputs/cua-task-catalog-20261006/task18-relaunch-review-evidence.json"
+  ]
+}

@@ -1,0 +1,1542 @@
+{
+  "task_success": false,
+  "training_reward": 0.92,
+  "controller": {
+    "heartbeat_age_sec": 0,
+    "fatal": 0,
+    "gates_fired": 1,
+    "restarts": 0,
+    "ticks": 3108,
+    "stood_down": 0,
+    "captured_at": "2026-09-19T06:18:47.543883+00:00",
+    "db_heartbeat": "2026-09-19T06:18:41.068Z",
+    "stalled": 0,
+    "evidence": "trusted_capture_and_database"
+  },
+  "capture": {
+    "schema_version": 1,
+    "complete": true,
+    "family": "shop_course_media",
+    "seed": 26091802,
+    "frozen_now": "2026-11-04T10:15:00-08:00",
+    "captured_at": "2026-09-19T06:18:47.543883+00:00",
+    "source_episode_sha256": "ce3ab92cf6f412ff8bf115ebfae535709e8efc0e0b607b4d52d4a273a274ba93",
+    "files": {
+      "browser-discovery.json": {
+        "sha256": "47d418493827aa5319d4aca5e3a6e34677282cfb86922328f20632445422f01d",
+        "size_bytes": 340
+      },
+      "canvas.db": {
+        "sha256": "2c226b9f2d3f22ca325d1776a9bc1c08eccb2a6840b0918240b6a7359a9090aa",
+        "size_bytes": 421888
+      },
+      "controller-status.json": {
+        "sha256": "bb5243cf419cf3fefae1a16bcc18901c5e075a0e1084da6ac99aa74e8b7addfb",
+        "size_bytes": 169
+      },
+      "google.db": {
+        "sha256": "26f752ae12c0a8cf02720e5372ace04467d5df6f9d640a55e2e0d1910da51245",
+        "size_bytes": 5328896
+      },
+      "shopify.db": {
+        "sha256": "ef79cb70d2a7d514b81f8525f7d8fe8618d6607679e61db6b28bb32dafb9d69b",
+        "size_bytes": 380928
+      }
+    }
+  },
+  "contract_sha256": "cbeaadc691d6b4660984c83a6e43f7019c03506845378ccbfb117a09be6cfa70",
+  "browser_discovery": {
+    "schema_version": 1,
+    "complete": true,
+    "required_hosts": [
+      "canvas.ucdavis.edu",
+      "admin.shopify.com",
+      "mail.google.com"
+    ],
+    "observed_hosts": [
+      "mail.google.com",
+      "admin.shopify.com",
+      "canvas.ucdavis.edu"
+    ],
+    "canvas_activated": true,
+    "captured_at": "2026-09-19T05:44:07.274Z",
+    "mode": "browser"
+  },
+  "source": {
+    "schema_version": 1,
+    "complete": true,
+    "contract_sha256": "cbeaadc691d6b4660984c83a6e43f7019c03506845378ccbfb117a09be6cfa70",
+    "files": {
+      "verify.py": {
+        "sha256": "cae694d750f01364f2fb2e68475e6628a1b70e06cf716a985cb7094eee8082ea",
+        "size_bytes": 23653
+      },
+      "handin.py": {
+        "sha256": "3613150b1e712d8e0e12584401e1da8e8165c6ff461eec4cd25957adbfc13ca3",
+        "size_bytes": 10191
+      }
+    },
+    "runtime": {
+      "python": {
+        "implementation": "cpython",
+        "version": "3.12.14 (main, Sep 17 2026, 21:48:54) [GCC 15.2.0]"
+      },
+      "sqlite": {
+        "version": "3.53.4"
+      }
+    }
+  },
+  "protected_invariant_ratio": 1.0,
+  "groups": {
+    "catalogue": {
+      "earned": 0.3,
+      "possible": 0.3,
+      "passed": 126,
+      "total": 126,
+      "score": 1.0
+    },
+    "stock": {
+      "earned": 0.25,
+      "possible": 0.25,
+      "passed": 7,
+      "total": 7,
+      "score": 1.0
+    },
+    "promotion": {
+      "earned": 0.23,
+      "possible": 0.3,
+      "passed": 12,
+      "total": 13,
+      "score": 0.7667
+    },
+    "hand-ins": {
+      "earned": 0.14,
+      "possible": 0.15,
+      "passed": 6,
+      "total": 7,
+      "score": 0.9333
+    }
+  },
+  "reported": {
+    "shortcut_taken": 0,
+    "free_shipping_offer_present": 1,
+    "discount_change_was_announced": 1,
+    "promotion_checks_unreachable_from_a_failed_catalogue": 0,
+    "discount_percentage_basis_points_actual": 2000,
+    "units_handed_in": 3,
+    "handin_facts_31": "{\"collection\":\"fall drop\",\"sellable_lines\":36,\"styles\":6}",
+    "handin_facts_32": "{\"classic tee\":{\"accepted\":8,\"arrived\":10,\"outstanding\":0,\"rejected\":2},\"fleece crew\":{\"accepted\":12,\"arrived\":12,\"outstanding\":0,\"rejected\":0},\"ripstop windbreaker\":{\"accepted\":6,\"arrived\":6,\"outstanding\":2,\"rejected\":0}}",
+    "handin_facts_33": "{\"automatic_free_shipping\":true,\"code\":\"FALLDROP20\",\"percentage\":20,\"start_date\":\"2026-11-09\"}"
+  },
+  "assertions": [
+    {
+      "id": "a1_flc_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_s_hea_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_s_hea_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_s_hea_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_s_nav_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_s_nav_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_s_nav_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_m_hea_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_m_hea_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_m_hea_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_m_nav_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_m_nav_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_m_nav_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_l_hea_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_l_hea_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_l_hea_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_flc_l_nav_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_flc_l_nav_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_flc_l_nav_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_flc_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.004,
+      "group": "catalogue"
+    },
+    {
+      "id": "a1_wnd_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_s_sla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_s_sla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_s_sla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_s_emb_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_s_emb_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_s_emb_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_m_sla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_m_sla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_m_sla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_m_emb_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_m_emb_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_m_emb_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_l_sla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_l_sla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_l_sla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_wnd_l_emb_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_wnd_l_emb_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_wnd_l_emb_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_wnd_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.004,
+      "group": "catalogue"
+    },
+    {
+      "id": "a1_bea_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_bea_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_bea_os_oat_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_bea_os_oat_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_bea_os_oat_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_bea_os_cha_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_bea_os_cha_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_bea_os_cha_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a1_cor_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_s_rus_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_s_rus_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_s_rus_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_s_oli_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_s_oli_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_s_oli_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_m_rus_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_m_rus_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_m_rus_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_m_oli_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_m_oli_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_m_oli_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_l_rus_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_l_rus_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_l_rus_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_l_oli_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_l_oli_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_l_oli_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_xl_rus_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_xl_rus_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_xl_rus_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_cor_xl_oli_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_cor_xl_oli_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_cor_xl_oli_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_cor_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.004,
+      "group": "catalogue"
+    },
+    {
+      "id": "a1_car_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_s_cam_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_s_cam_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_s_cam_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_s_cha_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_s_cha_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_s_cha_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_m_cam_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_m_cam_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_m_cam_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_m_cha_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_m_cha_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_m_cha_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_l_cam_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_l_cam_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_l_cam_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_l_cha_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_l_cha_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_l_cha_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_xl_cam_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_xl_cam_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_xl_cam_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_car_xl_cha_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_car_xl_cha_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_car_xl_cha_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_car_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.004,
+      "group": "catalogue"
+    },
+    {
+      "id": "a1_gil_one_product",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_option_definitions",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_s_bla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_s_bla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_s_bla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_s_for_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_s_for_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_s_for_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_m_bla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_m_bla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_m_bla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_m_for_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_m_for_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_m_for_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_l_bla_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_l_bla_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_l_bla_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_gil_l_for_combination",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4_gil_l_for_price",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5_gil_l_for_sku",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_gil_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.004,
+      "group": "catalogue"
+    },
+    {
+      "id": "a7_collection_exact_six",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "b1_supplier_on_file",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "stock"
+    },
+    {
+      "id": "b2_purchase_order_lines_as_ordered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04,
+      "group": "stock"
+    },
+    {
+      "id": "b3_order_open_with_shortfall",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02,
+      "group": "stock"
+    },
+    {
+      "id": "b4_linked_delivery_matches_the_order",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "stock"
+    },
+    {
+      "id": "b5_receipt_matches_both_records",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "b6_damage_and_outstanding_balance",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "b7_all_sellable_stock_counts",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "c1_discount_code_exists",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c2_percentage_is_the_announced_one",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 0.07,
+      "group": "promotion"
+    },
+    {
+      "id": "c3_exact_collection_scope",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04,
+      "group": "promotion"
+    },
+    {
+      "id": "c4_minimum_eligible_subtotal",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c5_total_cap_and_all_customers",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c6_full_campaign_window",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.05,
+      "group": "promotion"
+    },
+    {
+      "id": "c7a_separate_automatic_shipping",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "promotion"
+    },
+    {
+      "id": "c7b_shipping_scope",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "promotion"
+    },
+    {
+      "id": "c7c_shipping_minimum",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "promotion"
+    },
+    {
+      "id": "c7d_shipping_has_no_caps",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.005,
+      "group": "promotion"
+    },
+    {
+      "id": "c7e_shipping_campaign_window",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "promotion"
+    },
+    {
+      "id": "c7f_offers_can_combine",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "promotion"
+    },
+    {
+      "id": "c8_the_beanie_ends_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "promotion"
+    },
+    {
+      "id": "d1_unit_31_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d1_unit_32_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d1_unit_33_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d2_all_three_submitted",
+      "pass": true,
+      "actual": 3,
+      "expected": 3,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d3_unit_31_factual_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d3_unit_32_factual_record",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d3_unit_33_factual_record",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "hand-ins"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "i1_seeded_products_untouched",
+      "pass": true,
+      "actual": {
+        "count": 8,
+        "sha256": "1f873aa2fbc95ad107623583bc99b4147531d52f927e6936bf6c00f201186846"
+      },
+      "expected": {
+        "count": 8,
+        "sha256": "1f873aa2fbc95ad107623583bc99b4147531d52f927e6936bf6c00f201186846"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i2_seeded_variants_untouched",
+      "pass": true,
+      "actual": {
+        "count": 9,
+        "sha256": "a4fe291b879c505e523b7c9511adee0b03e7bcbbe311dca021bde30943160787"
+      },
+      "expected": {
+        "count": 9,
+        "sha256": "a4fe291b879c505e523b7c9511adee0b03e7bcbbe311dca021bde30943160787"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i3_seeded_discounts_untouched",
+      "pass": true,
+      "actual": {
+        "count": 2,
+        "sha256": "7815a2c4e8169b7eefa400b74bd4839bb583e7f407a4bfbc1958d543dc8bf0c7"
+      },
+      "expected": {
+        "count": 2,
+        "sha256": "7815a2c4e8169b7eefa400b74bd4839bb583e7f407a4bfbc1958d543dc8bf0c7"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i4_existing_order_business_state",
+      "pass": true,
+      "actual": {
+        "count": 5,
+        "sha256": "acb6df782aa0186ee6290f3c39a0a63c641d8cf172b830931f63663584a6f550"
+      },
+      "expected": {
+        "count": 5,
+        "sha256": "acb6df782aa0186ee6290f3c39a0a63c641d8cf172b830931f63663584a6f550"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i5_seeded_course_content_untouched",
+      "pass": true,
+      "actual": {
+        "count": 5,
+        "sha256": "37016408f060f064151df3646271234040578c42b821ebf7a5666927eebcd892"
+      },
+      "expected": {
+        "count": 5,
+        "sha256": "37016408f060f064151df3646271234040578c42b821ebf7a5666927eebcd892"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i6_existing_option_definitions",
+      "pass": true,
+      "actual": {
+        "count": 2,
+        "sha256": "da2bc3a4b3df4d87c518d22ce87f6534cde6929d8c6742ebe6388822d63bf830"
+      },
+      "expected": {
+        "count": 2,
+        "sha256": "da2bc3a4b3df4d87c518d22ce87f6534cde6929d8c6742ebe6388822d63bf830"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i7_other_existing_stock_untouched",
+      "pass": true,
+      "actual": {
+        "count": 8,
+        "sha256": "da45e5df1fb6748b2d2089e0531f5a0bd82f56507f5c1ebd8a6dbdd7253cfae5"
+      },
+      "expected": {
+        "count": 8,
+        "sha256": "da45e5df1fb6748b2d2089e0531f5a0bd82f56507f5c1ebd8a6dbdd7253cfae5"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i8_existing_order_lines",
+      "pass": true,
+      "actual": {
+        "count": 6,
+        "sha256": "dd7eb0ae81af217ca46886409ee6175f56afbdc41094feec01e36784e8a83c19"
+      },
+      "expected": {
+        "count": 6,
+        "sha256": "dd7eb0ae81af217ca46886409ee6175f56afbdc41094feec01e36784e8a83c19"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i9_existing_fulfillments",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "sha256": "4cde6158e74feecd4325db71fa2b9270e6c4e86e586606ebaad8b3f2ea30c5d5"
+      },
+      "expected": {
+        "count": 1,
+        "sha256": "4cde6158e74feecd4325db71fa2b9270e6c4e86e586606ebaad8b3f2ea30c5d5"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i10_existing_fulfillment_lines",
+      "pass": true,
+      "actual": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i11_existing_refunds",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "sha256": "13e305cc31d48d138ce7f2219e2d6260e8825ccc5500d75428e30347d036e54f"
+      },
+      "expected": {
+        "count": 1,
+        "sha256": "13e305cc31d48d138ce7f2219e2d6260e8825ccc5500d75428e30347d036e54f"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i12_existing_refund_lines",
+      "pass": true,
+      "actual": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i13_existing_collection_definitions",
+      "pass": true,
+      "actual": {
+        "count": 2,
+        "sha256": "47f234d6bf12808d2af32dbb808ed5381a5f949c1c5bb0423623d2a465f6966b"
+      },
+      "expected": {
+        "count": 2,
+        "sha256": "47f234d6bf12808d2af32dbb808ed5381a5f949c1c5bb0423623d2a465f6966b"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i14_existing_manual_collection_membership",
+      "pass": true,
+      "actual": {
+        "count": 2,
+        "sha256": "42d2dfd02ac368f5f365def7f8fb5e277a3358ad3a63c8d36284fee476b77af1"
+      },
+      "expected": {
+        "count": 2,
+        "sha256": "42d2dfd02ac368f5f365def7f8fb5e277a3358ad3a63c8d36284fee476b77af1"
+      },
+      "weight": 1
+    }
+  ],
+  "graded": true
+}

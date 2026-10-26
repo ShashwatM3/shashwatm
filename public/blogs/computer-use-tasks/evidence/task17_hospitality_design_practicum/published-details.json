@@ -1,0 +1,2900 @@
+{
+  "schema_version": 2,
+  "reward_enabled": true,
+  "capture_id": "a2e03986-117e-4f0c-90de-8a50bf4d3519",
+  "contract_sha256": "95145697c244bed9b6d9aaf56d4c4c817e18bca4dc8fcd5eb55584d36ffd2757",
+  "task_progress": 0.03,
+  "supported_surviving_fraction": 0.0,
+  "reward": 0.0,
+  "protected_state": 1,
+  "controller_liveness": 1,
+  "controller": {
+    "status": "supported",
+    "reason": "controller_runtime_health",
+    "refuse": false,
+    "ticks": 10094,
+    "heartbeat_age_ms": 1167,
+    "consecutive_failures": 0,
+    "fatal_present": false
+  },
+  "gates_fired": 0,
+  "events": {
+    "manager.feedback": {
+      "status": "unknown",
+      "reason": "event_not_delivered",
+      "fired": false,
+      "rendered": false
+    },
+    "guest.closure": {
+      "status": "unknown",
+      "reason": "event_not_delivered",
+      "fired": false,
+      "rendered": false
+    }
+  },
+  "checks": [
+    {
+      "id": "A1",
+      "weight": 6,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Correct the designated listing facts and P3 washer amenity, preserving correct amenities.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "designated_listing_correction",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "explicit_conflicting_fact",
+              "facts": [
+                {
+                  "slot": "checkin",
+                  "value": "14:00"
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "superseded_affirmative_claim_removed"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "correct_accommodation_fields_preserved"
+            }
+          ]
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "designated_listing_correction",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "explicit_conflicting_fact",
+              "facts": [
+                {
+                  "slot": "entrance",
+                  "value": "P2_wrong"
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "superseded_affirmative_claim_removed"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "correct_accommodation_fields_preserved"
+            }
+          ]
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "designated_listing_correction",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "explicit_conflicting_fact",
+              "facts": [
+                {
+                  "slot": "washer",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "superseded_affirmative_claim_removed"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "correct_accommodation_fields_preserved"
+            },
+            {
+              "status": "contradicted",
+              "reason": "washer_selection_and_correct_amenities"
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "A2",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Remove affirmative superseded claims; a negated warning about the old claim is allowed.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "superseded_affirmative_claim_removed"
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "superseded_affirmative_claim_removed"
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "superseded_affirmative_claim_removed"
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "A3",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Keep private arrival methods, directions, times and parking accurate and complete.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "supported",
+          "reason": "complete_current_private_arrival_facts",
+          "components": [
+            {
+              "status": "supported",
+              "reason": "private_entry_method"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_in_time"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_out_time"
+            }
+          ]
+        },
+        "P2": {
+          "status": "supported",
+          "reason": "complete_current_private_arrival_facts",
+          "components": [
+            {
+              "status": "supported",
+              "reason": "private_entry_method"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_in_time"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_out_time"
+            }
+          ]
+        },
+        "P3": {
+          "status": "supported",
+          "reason": "complete_current_private_arrival_facts",
+          "components": [
+            {
+              "status": "supported",
+              "reason": "private_entry_method"
+            },
+            {
+              "status": "supported",
+              "reason": "required_facts_established"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_in_time"
+            },
+            {
+              "status": "supported",
+              "reason": "private_check_out_time"
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 1.0,
+        "P2": 1.0,
+        "P3": 1.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "A5",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Reply to the outstanding guest questions; P2 includes the exact private section for entry instructions.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "sent_direct_reply_after_guest_question",
+          "components": []
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "sent_direct_reply_after_guest_question",
+          "components": []
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "sent_direct_reply_after_guest_question",
+          "components": []
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "B1",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Send property-organized findings to Lucia in the project conversation.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "sent_findings_cover_three_properties"
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "B2",
+      "weight": 4,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Explain the repeated entrance confusion shared by P1 and P2, grounded in their conversations.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "recurring_entrance_confusion_across_properties"
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "B3",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Identify P3 parking-charge confusion and explain the correct information.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "p3_parking_finding_and_correction",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "p3_parking_confusion_identified"
+            },
+            {
+              "status": "contradicted",
+              "reason": "required_facts_not_established"
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "B4",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Distinguish recurring confusion from one-off questions without inventing a recurrence.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "recurring_and_one_off_distinction"
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "C1",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Maintain three distinct property-correct editable guides corresponding to the delivered exports.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "distinct_saved_current_guide",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "unknown",
+              "reason": "current_board_identity_not_established"
+            }
+          ]
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "distinct_saved_current_guide",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "unknown",
+              "reason": "current_board_identity_not_established"
+            }
+          ]
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "distinct_saved_current_guide",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "unknown",
+              "reason": "current_board_identity_not_established"
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "C2",
+      "weight": 5,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Show the complete compact arrival facts taught by the brief and current property notes.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        },
+        "P2": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        },
+        "P3": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "C3",
+      "weight": 6,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Make the 390 by 844 guide readable at phone size without clipped, hidden or overlapping required text.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "current_guide_readability",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "current_guide_readability",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "current_guide_readability",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "C4",
+      "weight": 1,
+      "properties": [
+        "P2"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Clearly distinguish the private bedroom from the shared kitchen and bathroom.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P2": {
+          "status": "unknown",
+          "reason": "private_shared_room_content_not_measured"
+        }
+      },
+      "awards_before": {
+        "P2": 0.0
+      },
+      "awards": {
+        "P2": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "C5",
+      "weight": 3,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send a working handoff of six unambiguous current, accessible PDF/image exports with matching content.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "six_current_guide_delivery",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            },
+            {
+              "status": "contradicted",
+              "reason": "sent_current_guide_offer"
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "all",
+          "offending_properties": [
+            "P1",
+            "P2",
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "D1",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The walkthroughs",
+      "correct_when": "Keep a saved editable walkthrough project with active property media for each property.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "saved_editable_property_timeline",
+          "paths": []
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "saved_editable_property_timeline",
+          "paths": []
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "saved_editable_property_timeline",
+          "paths": []
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "D2",
+      "weight": 5,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The walkthroughs",
+      "correct_when": "Use the correct property photographs, current entrance start and current guide overlay in the delivered walkthrough.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "delivered_current_timeline_unavailable"
+        },
+        "P2": {
+          "status": "unknown",
+          "reason": "delivered_current_timeline_unavailable"
+        },
+        "P3": {
+          "status": "unknown",
+          "reason": "delivered_current_timeline_unavailable"
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "D3",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Keep every caption and guide-overlay exposure visible for the delivered manager minimum.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P2": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P3": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "D4",
+      "weight": 2,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Show the approved alternative entrance in the current P1 walkthrough after the closure.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "D5",
+      "weight": 3,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver three accessible MP4/MOV files tied to completed native renders and current saved projects.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "three_completed_current_video_deliveries",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "unknown",
+              "reason": "current_native_video_unavailable",
+              "receipts": []
+            },
+            {
+              "status": "unknown",
+              "reason": "delivered_native_video_not_established",
+              "projects": []
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "unknown",
+              "reason": "current_native_video_unavailable",
+              "receipts": []
+            },
+            {
+              "status": "unknown",
+              "reason": "delivered_native_video_not_established",
+              "projects": []
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "unknown",
+              "reason": "current_native_video_unavailable",
+              "receipts": []
+            },
+            {
+              "status": "unknown",
+              "reason": "delivered_native_video_not_established",
+              "projects": []
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "E1",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send Emilia the complete approved alternative route after her closure report.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "E2",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Update P1 public directions to the full alternative route without recommending the closed entrance.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "E3",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Update P1 private directions to the full alternative route while preserving private access details.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "E4",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver current P1 guide PDF/image exports completed after the closure and containing the updated route.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "E5",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Replace the original entrance sequence and align current P1 imagery, captions and guide overlay with the alternative route.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0
+      },
+      "awards": {
+        "P1": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "F1",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "The three arrival guides",
+      "correct_when": "Make every current guide header panel at least as tall as the delivered manager instruction.",
+      "aggregation": "all_properties",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P2": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P3": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "F2",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Export every current PDF/image again after the review; a new receipt for identical bytes is legitimate.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "P1": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P2": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        },
+        "P3": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "F3",
+      "weight": 2,
+      "properties": [],
+      "gated_on": "manager.feedback",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver the required current revisions and final handoff while preserving recipient-accessible review history.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": false,
+      "evidence": {
+        "all": {
+          "status": "unknown",
+          "reason": "required_event_not_established",
+          "reachable": false
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "G1",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send Lucia a final handoff whose links resolve to the current six guides and three videos.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "final_sent_current_delivery_links",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "sent_current_offer"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_slot_absent_in_complete_store",
+              "candidates": [],
+              "selected": null
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "G2",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Describe completed corrections and feedback changes truthfully; separate unresolved work and preserve actual event order.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "complete_final_account_matches_evidence",
+          "components": [
+            {
+              "status": "contradicted",
+              "reason": "final_handoff_coverage_and_truth",
+              "coverage": [],
+              "required": [
+                "listing_corrections"
+              ],
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "required_handoff_account_not_established",
+                  "missing": [
+                    "listing_corrections"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0.0
+      },
+      "destroyed_by": [],
+      "withheld_by": []
+    },
+    {
+      "id": "Q1",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Distinguish the property title, section headings and body text through visible emphasis.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "current_guide_hierarchy",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "current_guide_hierarchy",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "current_guide_hierarchy",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "Q2",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Group the required content into recognizable, usable sections.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "P1": {
+          "status": "contradicted",
+          "reason": "current_guide_organization",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P2": {
+          "status": "contradicted",
+          "reason": "current_guide_organization",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        },
+        "P3": {
+          "status": "contradicted",
+          "reason": "current_guide_organization",
+          "components": [
+            {
+              "status": "unknown",
+              "reason": "quality_not_measured"
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_guide_delivery_and_saved_work",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "P1": 0.0,
+        "P2": 0.0,
+        "P3": 0.0
+      },
+      "awards": {
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "P1",
+          "offending_properties": [
+            "P1"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P2",
+          "offending_properties": [
+            "P2"
+          ]
+        },
+        {
+          "invariant": "I3",
+          "unit": "P3",
+          "offending_properties": [
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    },
+    {
+      "id": "Q4",
+      "weight": 4,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Use a coherent visual treatment across all three guides while allowing content-specific wrapping and placement.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      },
+      "reachable": true,
+      "evidence": {
+        "all": {
+          "status": "contradicted",
+          "reason": "integrated_consistency",
+          "components": [
+            {
+              "status": "not_verifiable",
+              "reason": "All named conditions must pass.",
+              "evidence": {
+                "conditions": [
+                  {
+                    "status": "not_verifiable",
+                    "reason": "All three guides need identifiable visible role styles.",
+                    "evidence": {}
+                  }
+                ]
+              }
+            },
+            {
+              "status": "contradicted",
+              "reason": "current_delivery_pair_and_native_requirements",
+              "components": [
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "contradicted",
+                  "reason": "current_slot_absent_in_complete_store"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "pair_unavailable"
+                },
+                {
+                  "status": "unknown",
+                  "reason": "current_native_unavailable"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "awards_before": {
+        "all": 0.0
+      },
+      "awards": {
+        "all": 0
+      },
+      "destroyed_by": [
+        {
+          "invariant": "I3",
+          "unit": "all",
+          "offending_properties": [
+            "P1",
+            "P2",
+            "P3"
+          ]
+        }
+      ],
+      "withheld_by": []
+    }
+  ],
+  "invariants": {
+    "I1": {
+      "all": {
+        "status": "supported",
+        "reason": "finite_disclosure_scan",
+        "limitations": "OCR can miss text; exact distinct frames are scanned within an explicit budget.",
+        "incomplete": [],
+        "files_scanned": 0
+      }
+    },
+    "I2": {
+      "all": {
+        "status": "supported",
+        "reason": "p1_closure_remains_property_specific",
+        "properties": []
+      }
+    },
+    "I3": {
+      "P1": {
+        "status": "contradicted",
+        "reason": "property_fact_grounding",
+        "contradictions": [
+          {
+            "slot": "checkin",
+            "value": "14:00"
+          }
+        ],
+        "unclassified_count": 0
+      },
+      "P2": {
+        "status": "contradicted",
+        "reason": "property_fact_grounding",
+        "contradictions": [
+          {
+            "slot": "entrance",
+            "value": "P2_wrong"
+          }
+        ],
+        "unclassified_count": 0
+      },
+      "P3": {
+        "status": "contradicted",
+        "reason": "property_fact_grounding",
+        "contradictions": [
+          {
+            "slot": "washer",
+            "value": true
+          }
+        ],
+        "unclassified_count": 0
+      }
+    },
+    "I4": {
+      "P1": {
+        "status": "supported",
+        "reason": "no_export_correspondence_claim_yet"
+      },
+      "P2": {
+        "status": "supported",
+        "reason": "no_export_correspondence_claim_yet"
+      },
+      "P3": {
+        "status": "supported",
+        "reason": "no_export_correspondence_claim_yet"
+      }
+    },
+    "I5": {
+      "P1": {
+        "status": "supported",
+        "reason": "private_details_and_credentials_preserved"
+      },
+      "P2": {
+        "status": "supported",
+        "reason": "private_details_and_credentials_preserved"
+      },
+      "P3": {
+        "status": "supported",
+        "reason": "private_details_and_credentials_preserved"
+      }
+    },
+    "I6": {
+      "all": {
+        "status": "supported",
+        "reason": "no_review_history_yet_required",
+        "files": []
+      }
+    }
+  },
+  "unscored": [
+    "C2",
+    "C4",
+    "D2"
+  ],
+  "unknown_invariants": [],
+  "complete": false,
+  "refused": false,
+  "collection_issues": [],
+  "design_quality": {
+    "schema_version": 1,
+    "reward_enabled": false,
+    "properties": {
+      "P1": {
+        "delivery": {
+          "guide_pdf": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          },
+          "guide_image": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          }
+        },
+        "content": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        }
+      },
+      "P2": {
+        "delivery": {
+          "guide_pdf": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          },
+          "guide_image": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          }
+        },
+        "content": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        }
+      },
+      "P3": {
+        "delivery": {
+          "guide_pdf": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          },
+          "guide_image": {
+            "status": "contradicted",
+            "reason": "current_slot_absent_in_complete_store"
+          }
+        },
+        "content": {
+          "status": "unknown",
+          "reason": "current_accessible_property_pdf_not_established"
+        }
+      }
+    },
+    "policy_sha256": "cd6abff1bf0b1552d92526346d049a6df5137fb6b8de3df146ccb29114f7d424",
+    "scope": "Diagnostic integrated current-file measurement; no production reward enabled.",
+    "pdf_quality": {
+      "schema_version": 1,
+      "mode": "calibration",
+      "reward_enabled": false,
+      "scope": "Submitted PDF only; raster exports and native editability are not established here.",
+      "all_deliverables_verified": false,
+      "properties": {},
+      "metrics": {
+        "hierarchy": {
+          "status": "not_verifiable",
+          "reason": "All named conditions must pass.",
+          "evidence": {
+            "conditions": []
+          }
+        },
+        "organization": {
+          "status": "not_verifiable",
+          "reason": "All named conditions must pass.",
+          "evidence": {
+            "conditions": []
+          }
+        },
+        "readability": {
+          "status": "not_verifiable",
+          "reason": "All named conditions must pass.",
+          "evidence": {
+            "conditions": []
+          }
+        },
+        "adaptation": {
+          "status": "not_verifiable",
+          "reason": "All named conditions must pass.",
+          "evidence": {
+            "conditions": []
+          }
+        },
+        "consistency": {
+          "status": "not_verifiable",
+          "reason": "All named conditions must pass.",
+          "evidence": {
+            "conditions": [
+              {
+                "status": "not_verifiable",
+                "reason": "All three guides need identifiable visible role styles.",
+                "evidence": {}
+              }
+            ]
+          }
+        }
+      },
+      "consistency_role_departures": {},
+      "measured_conditions_status": "not_verifiable"
+    },
+    "verification_dependencies": {
+      "status": "contradicted",
+      "reason": "current_delivery_pair_and_native_requirements",
+      "components": [
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "unknown",
+          "reason": "pair_unavailable"
+        },
+        {
+          "status": "unknown",
+          "reason": "current_native_unavailable"
+        },
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "unknown",
+          "reason": "pair_unavailable"
+        },
+        {
+          "status": "unknown",
+          "reason": "current_native_unavailable"
+        },
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "contradicted",
+          "reason": "current_slot_absent_in_complete_store"
+        },
+        {
+          "status": "unknown",
+          "reason": "pair_unavailable"
+        },
+        {
+          "status": "unknown",
+          "reason": "current_native_unavailable"
+        }
+      ]
+    },
+    "metrics": {
+      "hierarchy": {
+        "status": "contradicted",
+        "reason": "integrated_hierarchy",
+        "components": [
+          {
+            "status": "not_verifiable",
+            "reason": "All named conditions must pass.",
+            "evidence": {
+              "conditions": []
+            }
+          },
+          {
+            "status": "contradicted",
+            "reason": "current_delivery_pair_and_native_requirements",
+            "components": [
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              }
+            ]
+          }
+        ]
+      },
+      "organization": {
+        "status": "contradicted",
+        "reason": "integrated_organization",
+        "components": [
+          {
+            "status": "not_verifiable",
+            "reason": "All named conditions must pass.",
+            "evidence": {
+              "conditions": []
+            }
+          },
+          {
+            "status": "contradicted",
+            "reason": "current_delivery_pair_and_native_requirements",
+            "components": [
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              }
+            ]
+          }
+        ]
+      },
+      "readability": {
+        "status": "contradicted",
+        "reason": "integrated_readability",
+        "components": [
+          {
+            "status": "not_verifiable",
+            "reason": "All named conditions must pass.",
+            "evidence": {
+              "conditions": []
+            }
+          },
+          {
+            "status": "contradicted",
+            "reason": "current_delivery_pair_and_native_requirements",
+            "components": [
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              }
+            ]
+          }
+        ]
+      },
+      "consistency": {
+        "status": "contradicted",
+        "reason": "integrated_consistency",
+        "components": [
+          {
+            "status": "not_verifiable",
+            "reason": "All named conditions must pass.",
+            "evidence": {
+              "conditions": [
+                {
+                  "status": "not_verifiable",
+                  "reason": "All three guides need identifiable visible role styles.",
+                  "evidence": {}
+                }
+              ]
+            }
+          },
+          {
+            "status": "contradicted",
+            "reason": "current_delivery_pair_and_native_requirements",
+            "components": [
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              }
+            ]
+          }
+        ]
+      },
+      "adaptation": {
+        "status": "contradicted",
+        "reason": "integrated_adaptation",
+        "components": [
+          {
+            "status": "not_verifiable",
+            "reason": "All named conditions must pass.",
+            "evidence": {
+              "conditions": []
+            }
+          },
+          {
+            "status": "contradicted",
+            "reason": "current_delivery_pair_and_native_requirements",
+            "components": [
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "contradicted",
+                "reason": "current_slot_absent_in_complete_store"
+              },
+              {
+                "status": "unknown",
+                "reason": "pair_unavailable"
+              },
+              {
+                "status": "unknown",
+                "reason": "current_native_unavailable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "current_artifact_correspondence_established": false,
+    "all_deliverables_verified": false
+  },
+  "video_evidence": {
+    "P1": {
+      "delivery": {
+        "status": "contradicted",
+        "reason": "current_slot_absent_in_complete_store",
+        "candidates": [],
+        "selected": null
+      },
+      "native": {
+        "status": "unknown",
+        "reason": "current_native_video_unavailable",
+        "receipts": []
+      },
+      "current": {
+        "status": "unknown",
+        "reason": "delivered_native_video_not_established",
+        "projects": []
+      },
+      "timeline": null,
+      "rendered": null
+    },
+    "P2": {
+      "delivery": {
+        "status": "contradicted",
+        "reason": "current_slot_absent_in_complete_store",
+        "candidates": [],
+        "selected": null
+      },
+      "native": {
+        "status": "unknown",
+        "reason": "current_native_video_unavailable",
+        "receipts": []
+      },
+      "current": {
+        "status": "unknown",
+        "reason": "delivered_native_video_not_established",
+        "projects": []
+      },
+      "timeline": null,
+      "rendered": null
+    },
+    "P3": {
+      "delivery": {
+        "status": "contradicted",
+        "reason": "current_slot_absent_in_complete_store",
+        "candidates": [],
+        "selected": null
+      },
+      "native": {
+        "status": "unknown",
+        "reason": "current_native_video_unavailable",
+        "receipts": []
+      },
+      "current": {
+        "status": "unknown",
+        "reason": "delivered_native_video_not_established",
+        "projects": []
+      },
+      "timeline": null,
+      "rendered": null
+    }
+  },
+  "status": "graded",
+  "refusal_reasons": [],
+  "graded": true
+}

@@ -1,0 +1,471 @@
+{
+  "task_success": false,
+  "training_reward": 0.9821,
+  "controller": {
+    "heartbeat_age_sec": 1,
+    "fatal": 0,
+    "restarts": 0,
+    "ticks": 7999,
+    "stood_down": 0,
+    "db_heartbeat": "2026-09-07T08:53:36.408Z",
+    "gates_fired": 7,
+    "stalled": 0,
+    "evidence": "database"
+  },
+  "protected_invariant_ratio": 1.0,
+  "assertions": [
+    {
+      "id": "marina_original_cancelled",
+      "pass": true,
+      "actual": "cancelled",
+      "expected": "cancelled",
+      "weight": 1
+    },
+    {
+      "id": "stadium_request_accepted",
+      "pass": true,
+      "actual": "confirmed",
+      "expected": "confirmed",
+      "weight": 1
+    },
+    {
+      "id": "marina_replacement_accepted",
+      "pass": true,
+      "actual": "confirmed",
+      "expected": "confirmed",
+      "weight": 1
+    },
+    {
+      "id": "marina_nights_reowned",
+      "pass": true,
+      "actual": 2,
+      "expected": 2,
+      "weight": 1
+    },
+    {
+      "id": "stadium_guest_moved_to_four",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "extra_bed_approval_requested",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "extra_bed_guest_agreed",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "schedule_answer_grounded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "ambiguous_date_clarified",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "late_checkout_resolved",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "noise_delivered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "noise_left_unanswered",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_summoned_conflict",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "athletics_reschedule_delivered_midrun",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marketing_noise_delivered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marketing_noise_left_unanswered",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "no_early_extra_bed_forward",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_initial",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_initial",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_0902",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "wharf_clean_0903",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_0905",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_0906",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_0906",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "wharf_clean_0907",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_0908",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "riverside_clean_0908",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "riverside_clean_0911",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_0909",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_0910",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "wharf_clean_0910",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_0911",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "riverside_clean_0914",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_0912",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_0913",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_0913",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "wharf_clean_0913",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "riverside_clean_0917",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "stadium_clean_revised",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "riverside_clean_moved",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_cancelled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_rebooked",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "marina_clean_retraction_order",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "oldtown_clean_cancelled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_rebooked",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "oldtown_clean_retraction_order",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "oldtown_replacement_accepted",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "checkin_time_answered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "swimming_heats_answered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "closing_ceremony_answered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "athletics_final_answered",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "crib_forwarded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "extra_bed_forwarded_after_approval",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    },
+    {
+      "id": "final_ops_recap_matches_final_state",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "recap_sent_last",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    }
+  ],
+  "invariants": [
+    {
+      "id": "protected_reservations",
+      "pass": true,
+      "actual": {
+        "count": 21,
+        "sha256": "bf41a07eddd3f2aa2c82fe1c29e9277640fe8c6d47c1c18b9e9dce61a0f52ad9"
+      },
+      "expected": {
+        "count": 21,
+        "sha256": "bf41a07eddd3f2aa2c82fe1c29e9277640fe8c6d47c1c18b9e9dce61a0f52ad9"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_seed_messages",
+      "pass": true,
+      "actual": {
+        "count": 5,
+        "sha256": "2e8c3c66573f26c30e8b8311732b32fad50829ac2eeb84658c13d79b51a41e21"
+      },
+      "expected": {
+        "count": 5,
+        "sha256": "2e8c3c66573f26c30e8b8311732b32fad50829ac2eeb84658c13d79b51a41e21"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_listings",
+      "pass": true,
+      "actual": {
+        "count": 31,
+        "sha256": "db2382059395d9440efa1ac2eae08889b7ce00c3b2e09840f7c700f3a1fbade3"
+      },
+      "expected": {
+        "count": 31,
+        "sha256": "db2382059395d9440efa1ac2eae08889b7ce00c3b2e09840f7c700f3a1fbade3"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_calendar",
+      "pass": true,
+      "actual": {
+        "count": 1343,
+        "sha256": "0eb9381c442b7970fbd72c2a55aad971c58ba09d0c3e91c39b977efc8be60e1c"
+      },
+      "expected": {
+        "count": 1343,
+        "sha256": "0eb9381c442b7970fbd72c2a55aad971c58ba09d0c3e91c39b977efc8be60e1c"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_gmail_seed_mail",
+      "pass": true,
+      "actual": {
+        "count": 3,
+        "sha256": "c01f789b4f8f650f31fbf3885c42ee1e52ea63a445d729a5ce7518a003839c7c"
+      },
+      "expected": {
+        "count": 3,
+        "sha256": "c01f789b4f8f650f31fbf3885c42ee1e52ea63a445d729a5ce7518a003839c7c"
+      },
+      "weight": 1
+    }
+  ],
+  "graded": true
+}

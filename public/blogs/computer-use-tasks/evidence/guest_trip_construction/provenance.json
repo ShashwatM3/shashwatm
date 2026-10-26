@@ -1,0 +1,10 @@
+{
+  "trial": "guest_trip_construction__EXnFd8S",
+  "trajectory_sha256": "8863d00f106244d64e8b4a63137cec4b8a7c1190e3e4ad72961ea43a044affc0",
+  "result_sha256": "1820a7f23568402d294129710064292005d6a544dbfb9c1bfa7a336a2be692c0",
+  "trajectory_path": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_trip_construction__EXnFd8S/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_trip_construction__EXnFd8S/result.json",
+  "reports": [
+    "cua/FILES/SCRATCHPADS/58_airbnb_task_repair_log_2026-09-05.md"
+  ]
+}

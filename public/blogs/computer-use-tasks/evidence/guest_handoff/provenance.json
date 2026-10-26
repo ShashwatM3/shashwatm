@@ -1,0 +1,11 @@
+{
+  "trial": "guest_handoff__u2hQfX7",
+  "trajectory_sha256": "45746f83bab998dd77a942195d914111f02862f4cb5f8e6691b3127e44950960",
+  "result_sha256": "74cc54e375443324305f8b1351a3a0de1c0424933432e2759847dece3f706d73",
+  "trajectory_path": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_handoff__u2hQfX7/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/kanban-final6-opus5-sonnet5-20260901-r3/guest_handoff__u2hQfX7/result.json",
+  "reports": [
+    "cua/FILES/AIRBNB_HARDENING_LOG_2026-09-05.md",
+    "cua/FILES/SCRATCHPADS/58_airbnb_task_repair_log_2026-09-05.md"
+  ]
+}

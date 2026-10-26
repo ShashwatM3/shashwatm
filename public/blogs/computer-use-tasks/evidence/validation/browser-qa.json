@@ -1,0 +1,84 @@
+{
+  "browser": "Orca embedded tab",
+  "page": "4272035b-8d08-4df8-bed9-ef5a64e28abd",
+  "scenarios": 7,
+  "interaction_method": "Orca live DOM clicks and keyboard-event handler checks; native ref clicks and keypress were not reliable for buttons in this client. Responsive iframe checks recorded separately.",
+  "results": [
+    {
+      "check": "Scope: eleven built families plus separate hold",
+      "pass": true
+    },
+    {
+      "check": "Search isolates LMMS arrangement",
+      "pass": true
+    },
+    {
+      "check": "Search has a useful empty state",
+      "pass": true
+    },
+    {
+      "check": "Search reset restores all cases",
+      "pass": true
+    },
+    {
+      "check": "Task disclosure opens",
+      "pass": true
+    },
+    {
+      "check": "Creative chart filter contains two runs",
+      "pass": true
+    },
+    {
+      "check": "Chart reset contains eleven runs",
+      "pass": true
+    },
+    {
+      "check": "Bar link expands its exact case",
+      "pass": true
+    },
+    {
+      "check": "Image dialog opens",
+      "pass": true
+    },
+    {
+      "check": "Close control dismisses image dialog",
+      "pass": true
+    },
+    {
+      "check": "Menu opens",
+      "pass": true
+    },
+    {
+      "check": "Escape handler closes menu",
+      "pass": true
+    },
+    {
+      "check": "research page renders",
+      "pass": true
+    },
+    {
+      "check": "validity page renders",
+      "pass": true
+    },
+    {
+      "check": "claims page renders",
+      "pass": true
+    },
+    {
+      "check": "source-index page renders",
+      "pass": true
+    },
+    {
+      "check": "Print includes all task details",
+      "pass": true
+    },
+    {
+      "check": "All article screenshot assets load",
+      "pass": true
+    },
+    {
+      "check": "Native Orca PDF export",
+      "pass": true
+    }
+  ]
+}

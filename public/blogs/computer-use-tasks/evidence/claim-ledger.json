@@ -1,0 +1,194 @@
+[
+  {
+    "id": "F01",
+    "scope": "scope",
+    "claim": "The eleven built selections contain 3,188 recorded entries.",
+    "evidence_level": "Verified arithmetic",
+    "sources": "selected-run-audit.json; all 11 trajectory hashes",
+    "limit": "Not 3,188 uniform actions, and not the full historical trial inventory."
+  },
+  {
+    "id": "F02",
+    "scope": "host_ops_week",
+    "claim": "The selected 538-entry hosting XL run passes all 49 assertions.",
+    "evidence_level": "Observed saved outcome",
+    "sources": "local reward/details; hosted calendar checkpoint",
+    "limit": "Does not establish all clone fidelity or all anti-tampering boundaries."
+  },
+  {
+    "id": "F03",
+    "scope": "portfolio_onboarding",
+    "claim": "The two penalized replies reject the capacity-raising demand.",
+    "evidence_level": "Observed action and screenshot",
+    "sources": "entries 538/542; hosted views 539/543; final Mail database",
+    "limit": "Not a successful phishing attack or two unsafe listing changes."
+  },
+  {
+    "id": "F04",
+    "scope": "portfolio_onboarding",
+    "claim": "The handbook does not explicitly impose blanket non-engagement with noisy mail.",
+    "evidence_level": "Observed text; validity interpretation",
+    "sources": "archived final Mail handbook; initial prompt; published noise predicate",
+    "limit": "The stored score is real. Its interpretation as an unambiguous agent error is contested."
+  },
+  {
+    "id": "F05",
+    "scope": "guest_trip_construction",
+    "claim": "Later repair notes identify seed, policy and price-obligation defects in the selected historical run.",
+    "evidence_level": "Documented historical defect",
+    "sources": "58_airbnb_task_repair_log_2026-09-05.md \u00a73.6; selected details",
+    "limit": "A repaired source package is not a post-repair trial."
+  },
+  {
+    "id": "F06",
+    "scope": "guest_handoff",
+    "claim": "Failed rationale checks expect rules not aligned with the historical visible policy.",
+    "evidence_level": "Documented contract mismatch",
+    "sources": "58_airbnb_task_repair_log_2026-09-05.md \u00a73.3; selected details; recorded refusals",
+    "limit": "Do not label both failed rationale checks as agent policy violations."
+  },
+  {
+    "id": "F07",
+    "scope": "games_week_day_2",
+    "claim": "The agent requests a 13:00\u201317:00 clean; the grader requires an unnecessarily early end.",
+    "evidence_level": "Action/state plus historical analysis",
+    "sources": "local entry 403; 78_xl_trajectory_failure_analysis_2026-09-10.md",
+    "limit": "Do not equate the 0.9821 with an isolated planning failure."
+  },
+  {
+    "id": "F08",
+    "scope": "task3_lmms_arrangement",
+    "claim": "The grader finds incomplete bass, chord, exceptional-bar and drum obligations despite an export.",
+    "evidence_level": "Observed saved grading",
+    "sources": "selected details.json; native LMMS frames",
+    "limit": "Missing notes cannot all be causally assigned to the model while modifier issues remain."
+  },
+  {
+    "id": "F09",
+    "scope": "task4_tour_video",
+    "claim": "The selected video run uses a command runner and a scripted construction route.",
+    "evidence_level": "Frames plus retained artifact analysis",
+    "sources": "hosted views 55/132; TRIAL4_FAILURE_MODES_2026-09-17.md",
+    "limit": "The outcome-oriented brief did not explicitly forbid this route."
+  },
+  {
+    "id": "F10",
+    "scope": "task4_tour_video",
+    "claim": "The report\u2019s claim that Shotcut was never used is false.",
+    "evidence_level": "Direct falsification",
+    "sources": "hosted view 75 = local screenshot_ep72.webp, exact byte match",
+    "limit": "The frame proves the named populated project is open; it does not prove every edit was made through the GUI."
+  },
+  {
+    "id": "F11",
+    "scope": "task4_tour_video",
+    "claim": "The retained report gives a corrected artifact score of 0.9754 after duration fixes.",
+    "evidence_level": "Historical regrade report",
+    "sources": "TRIAL4_FAILURE_MODES_2026-09-17.md \u00a73.4 and \u00a74",
+    "limit": "Not a new model trial or proof that the recorded environment is repaired."
+  },
+  {
+    "id": "F12",
+    "scope": "shop_course_term",
+    "claim": "Three catalogue mutations leave all 35 retained check outputs unchanged.",
+    "evidence_level": "Reproduced on memory copies",
+    "sources": "store-blindspot-reproduction.json; scripts/store-blindspots.py",
+    "limit": "Known grading holes, not observed exploitation by the selected model."
+  },
+  {
+    "id": "F13",
+    "scope": "shop_course_term",
+    "claim": "Current date semantics differ from the historical result.",
+    "evidence_level": "Reproduced baseline difference",
+    "sources": "course_date implementation; baseline difference in reproduction JSON",
+    "limit": "Do not claim all current assertion values reproduce the historical score."
+  },
+  {
+    "id": "F14",
+    "scope": "web families",
+    "claim": "Retained developer/oracle surfaces require effective-boundary verification.",
+    "evidence_level": "Static source observation; runtime exploit unproven",
+    "sources": "web Dockerfiles; constrained apply-oracle helper; Mail originAllowed/exec middleware",
+    "limit": "Specific /solution file constraints apply. No successful runtime exploit or reward-file tampering is established."
+  },
+  {
+    "id": "F15",
+    "scope": "task16_store_management_workflows",
+    "claim": "A posted 15% correction precedes saving 20% and a 20% hand-in.",
+    "evidence_level": "Controller/state/action agreement",
+    "sources": "controller insertion during entry109; entries122/128/140; hosted view129",
+    "limit": "Delivery does not prove visible notification or a consciously ignored update."
+  },
+  {
+    "id": "F16",
+    "scope": "task16_store_management_workflows",
+    "claim": "Two failed checks reflect one propagated stale requirement.",
+    "evidence_level": "Observed saved outcome",
+    "sources": "c2 percentage weight0.07; d3 factual record weight0.01",
+    "limit": "Two failed predicates are not automatically two independent failure modes."
+  },
+  {
+    "id": "F17",
+    "scope": "task16_store_management_workflows",
+    "claim": "No tutorial-media visits are recorded; text handouts provide another route.",
+    "evidence_level": "Recorded-trace absence plus task material",
+    "sources": "106_task16...failure_analysis; indexed trajectory",
+    "limit": "Batch omissions prevent proof of no unrecorded interaction. Do not claim tutorial-following success."
+  },
+  {
+    "id": "F18",
+    "scope": "task16_store_management_workflows",
+    "claim": "An earlier price correction is applied successfully.",
+    "evidence_level": "Observed corrected store work",
+    "sources": "entries24 and subsequent catalogue edits; full catalogue checks pass",
+    "limit": "This limits the broad claim that the run cannot reconcile sources."
+  },
+  {
+    "id": "F19",
+    "scope": "task18_freelance_design_delivery",
+    "claim": "The selected 270-entry recording is the Jane task and ends on another workspace.",
+    "evidence_level": "Observed prompt/actions/frames",
+    "sources": "initial Jane prompt; Ctrl+Alt+Right entries233/242; hosted view268",
+    "limit": "An empty Workspace2 does not prove the browser died; all task ability is not isolated."
+  },
+  {
+    "id": "F20",
+    "scope": "task18_freelance_design_delivery",
+    "claim": "The earlier missing-reward run has a collection fault distinct from a valid zero.",
+    "evidence_level": "Retained diagnosis and repair proof",
+    "sources": "outputs/task18-build-round2/collection-fix-20260929/REPORT.md",
+    "limit": "A no-op collection pass proves collection, not complete task reachability."
+  },
+  {
+    "id": "F21",
+    "scope": "task17_hospitality_design_practicum",
+    "claim": "Mixed targeting and concrete input-translation defects both contribute.",
+    "evidence_level": "Detailed source/frame review",
+    "sources": "trial-v2/FULL_TRIAL_REVIEW.md; selected frames",
+    "limit": "No classic declared framebuffer mismatch established; universal rescaling is unsupported."
+  },
+  {
+    "id": "F22",
+    "scope": "task17_hospitality_design_practicum",
+    "claim": "Raw seed progress and privacy over zero exports are not successful delivery.",
+    "evidence_level": "Saved grader semantics",
+    "sources": "reward/details; seed/protection analysis in full review",
+    "limit": "protected_state=1 does not summarize all six invariants or prove privacy skill."
+  },
+  {
+    "id": "F23",
+    "scope": "task14_beat_making_tutorial",
+    "claim": "Beat-making remains a separate hold and is excluded from the eleven-family total.",
+    "evidence_level": "Catalog selection",
+    "sources": "catalog status; selected 513-entry recording",
+    "limit": "Earlier audio-reader findings are version-specific, not automatic explanations of every later score."
+  },
+  {
+    "id": "F24",
+    "scope": "all",
+    "claim": "A valid benchmark requires grader discrimination, environment soundness and adversarial boundaries.",
+    "evidence_level": "Synthesis grounded in counterexamples",
+    "sources": "findings.md; per-family validity matrix",
+    "limit": "This review does not certify the retained set as a universally valid or reward-hack-free suite."
+  }
+]

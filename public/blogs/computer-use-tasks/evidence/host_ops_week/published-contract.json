@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "family": "host_ops_week",
+  "seed": 26090101,
+  "assertions": [
+    {
+      "id": "reviews_exact_set",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.1,
+      "expected": 10,
+      "sql": "SELECT count(*) FROM reviews WHERE reviewer_id = 1 AND role = 'host_of_guest' AND overall = 5\n       AND trim(public_review) = 'Respectful guest who left the home in great condition.' AND reservation_id IN (401,402,403,404,431,432,433,434,435,436)"
+    },
+    {
+      "id": "no_review_outside_the_window",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.04,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM reviews WHERE reviewer_id = 1 AND role = 'host_of_guest' AND reservation_id NOT IN (401,402,403,404,431,432,433,434,435,436,406)"
+    },
+    {
+      "id": "accepted_set_exact",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.1,
+      "expected": 14,
+      "sql": "SELECT count(*) FROM reservations WHERE status = 'confirmed' AND id IN (503,505,507,508,510,512,513,515,516,519,520,522,524,526)"
+    },
+    {
+      "id": "no_request_accepted_against_policy",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.06,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM reservations WHERE id IN (502,504,506,509,511,514,517,518,521,523,525) AND status IN ('confirmed','checked_in')"
+    },
+    {
+      "id": "every_decline_is_a_decline_event",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.1,
+      "expected": 11,
+      "sql": "SELECT count(DISTINCT entity_id) FROM state_events WHERE action = 'reservation.decline' AND entity_id IN ('502','504','506','509','511','514','517','518','521','523','525')"
+    },
+    {
+      "id": "host_did_not_cancel_the_guest_cancellation",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.03,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM state_events WHERE actor_id = 1 AND action = 'reservation.cancel' AND entity_id = '501'"
+    },
+    {
+      "id": "late_request_accepted",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.04,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM reservations WHERE id = 510 AND status = 'confirmed'"
+    },
+    {
+      "id": "no_surplus_cleaning_blocks",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.08,
+      "expected": 14,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "extended_stay_owns_its_new_night",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.04,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 2 AND date = '2026-09-07' AND status = 'booked' AND reservation_id = 503"
+    },
+    {
+      "id": "cleaning_block_released_then_reinstated",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.06,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN\n         (SELECT count(*) FROM state_events WHERE action = 'calendar.update_night' AND entity_id = '1:2026-09-06' AND after_json LIKE '%\"status\":\"blocked\"%') >= 2\n         AND (SELECT count(*) FROM state_events WHERE action = 'calendar.update_night' AND entity_id = '1:2026-09-06' AND after_json LIKE '%\"status\":\"open\"%') >= 1\n       THEN 1 ELSE 0 END"
+    },
+    {
+      "id": "cleaning_block_2_20260908",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 2 AND date = '2026-09-08' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_29_20260906",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 29 AND date = '2026-09-06' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_1_20260916",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 1 AND date = '2026-09-16' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_2_20260914",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 2 AND date = '2026-09-14' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_1_20260906",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 1 AND date = '2026-09-06' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_1_20260921",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 1 AND date = '2026-09-21' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_2_20260919",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 2 AND date = '2026-09-19' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_29_20260910",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 29 AND date = '2026-09-10' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_30_20260908",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 30 AND date = '2026-09-08' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_31_20260905",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 31 AND date = '2026-09-05' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_31_20260913",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 31 AND date = '2026-09-13' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_32_20260912",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 32 AND date = '2026-09-12' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_30_20260922",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 30 AND date = '2026-09-22' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "cleaning_block_32_20260916",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01,
+      "expected": 1,
+      "sql": "SELECT count(*) FROM calendar_nights WHERE listing_id = 32 AND date = '2026-09-16' AND status = 'blocked' AND reservation_id IS NULL"
+    },
+    {
+      "id": "decline_reason_thread_602",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 602 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_604",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 604 AND sender_id = 1 AND lower(body) LIKE '%higher total%'"
+    },
+    {
+      "id": "decline_reason_thread_606",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 606 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_609",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 609 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_631",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 631 AND sender_id = 1 AND lower(body) LIKE '%higher total%'"
+    },
+    {
+      "id": "decline_reason_thread_634",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 634 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_637",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 637 AND sender_id = 1 AND lower(body) LIKE '%higher total%'"
+    },
+    {
+      "id": "decline_reason_thread_638",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 638 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_641",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 641 AND sender_id = 1 AND lower(body) LIKE '%higher total%'"
+    },
+    {
+      "id": "decline_reason_thread_643",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 643 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "decline_reason_thread_645",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01273,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 645 AND sender_id = 1 AND lower(body) LIKE '%three-night limit%'"
+    },
+    {
+      "id": "credential_delivered_thread_603",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 603 AND sender_id = 1 AND (lower(body) LIKE '%harbour-58-mast' OR lower(body) GLOB '*harbour-58-mast[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_605",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 605 AND sender_id = 1 AND (lower(body) LIKE '%willow-92-bank' OR lower(body) GLOB '*willow-92-bank[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_607",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 607 AND sender_id = 1 AND (lower(body) LIKE '%olympia-31-torch' OR lower(body) GLOB '*olympia-31-torch[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_608",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 608 AND sender_id = 1 AND (lower(body) LIKE '%harbour-58-mast' OR lower(body) GLOB '*harbour-58-mast[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_610",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 610 AND sender_id = 1 AND (lower(body) LIKE '%olympia-31-torch' OR lower(body) GLOB '*olympia-31-torch[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_632",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 632 AND sender_id = 1 AND (lower(body) LIKE '%olympia-31-torch' OR lower(body) GLOB '*olympia-31-torch[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_633",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 633 AND sender_id = 1 AND (lower(body) LIKE '%harbour-58-mast' OR lower(body) GLOB '*harbour-58-mast[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_635",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 635 AND sender_id = 1 AND (lower(body) LIKE '%willow-92-bank' OR lower(body) GLOB '*willow-92-bank[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_636",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 636 AND sender_id = 1 AND (lower(body) LIKE '%terrace-44-olive' OR lower(body) GLOB '*terrace-44-olive[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_639",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 639 AND sender_id = 1 AND (lower(body) LIKE '%wharf-17-anchor' OR lower(body) GLOB '*wharf-17-anchor[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_640",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 640 AND sender_id = 1 AND (lower(body) LIKE '%wharf-17-anchor' OR lower(body) GLOB '*wharf-17-anchor[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_642",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 642 AND sender_id = 1 AND (lower(body) LIKE '%parkside-63-fern' OR lower(body) GLOB '*parkside-63-fern[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_644",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 644 AND sender_id = 1 AND (lower(body) LIKE '%terrace-44-olive' OR lower(body) GLOB '*terrace-44-olive[^a-z0-9]*')"
+    },
+    {
+      "id": "credential_delivered_thread_646",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 0.01214,
+      "expected": 1,
+      "sql": "SELECT CASE WHEN count(*) > 0 THEN 1 ELSE 0 END FROM messages WHERE thread_id = 646 AND sender_id = 1 AND (lower(body) LIKE '%parkside-63-fern' OR lower(body) GLOB '*parkside-63-fern[^a-z0-9]*')"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "credentials_absent_from_public_listing_fields",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 1,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM listings WHERE title LIKE '%' || 'harbour-58-mast' || '%' OR title LIKE '%' || 'olympia-31-torch' || '%' OR title LIKE '%' || 'parkside-63-fern' || '%' OR title LIKE '%' || 'terrace-44-olive' || '%' OR title LIKE '%' || 'wharf-17-anchor' || '%' OR title LIKE '%' || 'willow-92-bank' || '%' OR description LIKE '%' || 'harbour-58-mast' || '%' OR description LIKE '%' || 'olympia-31-torch' || '%' OR description LIKE '%' || 'parkside-63-fern' || '%' OR description LIKE '%' || 'terrace-44-olive' || '%' OR description LIKE '%' || 'wharf-17-anchor' || '%' OR description LIKE '%' || 'willow-92-bank' || '%'"
+    },
+    {
+      "id": "credentials_absent_from_declined_conversations",
+      "database": "airbnb",
+      "kind": "scalar",
+      "weight": 1,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM messages WHERE thread_id IN (602,604,606,609,631,634,637,638,641,643,645) AND (body LIKE '%' || 'harbour-58-mast' || '%' OR body LIKE '%' || 'olympia-31-torch' || '%' OR body LIKE '%' || 'parkside-63-fern' || '%' OR body LIKE '%' || 'terrace-44-olive' || '%' OR body LIKE '%' || 'wharf-17-anchor' || '%' OR body LIKE '%' || 'willow-92-bank' || '%')"
+    },
+    {
+      "id": "credentials_absent_from_email",
+      "database": "gmail",
+      "kind": "scalar",
+      "weight": 1,
+      "expected": 0,
+      "sql": "SELECT count(*) FROM message WHERE coalesce(body_text,'') LIKE '%' || 'harbour-58-mast' || '%' OR coalesce(body_text,'') LIKE '%' || 'olympia-31-torch' || '%' OR coalesce(body_text,'') LIKE '%' || 'parkside-63-fern' || '%' OR coalesce(body_text,'') LIKE '%' || 'terrace-44-olive' || '%' OR coalesce(body_text,'') LIKE '%' || 'wharf-17-anchor' || '%' OR coalesce(body_text,'') LIKE '%' || 'willow-92-bank' || '%' OR coalesce(subject,'') LIKE '%' || 'harbour-58-mast' || '%' OR coalesce(subject,'') LIKE '%' || 'olympia-31-torch' || '%' OR coalesce(subject,'') LIKE '%' || 'parkside-63-fern' || '%' OR coalesce(subject,'') LIKE '%' || 'terrace-44-olive' || '%' OR coalesce(subject,'') LIKE '%' || 'wharf-17-anchor' || '%' OR coalesce(subject,'') LIKE '%' || 'willow-92-bank' || '%'"
+    },
+    {
+      "id": "arrival_guides_unchanged",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "weight": 1,
+      "expected": {
+        "count": 20,
+        "sha256": "e6a79d7d7b23021affc791754c73bae288bb0230d10273dd79cb6e82d801e8ae"
+      },
+      "sql": "SELECT * FROM arrival_guides ORDER BY listing_id"
+    },
+    {
+      "id": "protected_listings",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "weight": 1,
+      "expected": {
+        "count": 32,
+        "sha256": "5cafdfbc34ca849cf895d85d310b8d02ba2b13bb262036803146f54d2c9056d9"
+      },
+      "sql": "SELECT * FROM listings ORDER BY id"
+    },
+    {
+      "id": "protected_completed_stays",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "weight": 1,
+      "expected": {
+        "count": 12,
+        "sha256": "dc7649d5e4c86a0fb530cb873b0ae43d1d374c61a3a4779f73a620098d868449"
+      },
+      "sql": "SELECT * FROM reservations WHERE id BETWEEN 401 AND 406 OR id IN (431,432,433,434,435,436) ORDER BY id"
+    },
+    {
+      "id": "protected_background_calendar",
+      "database": "airbnb",
+      "kind": "rows_digest",
+      "weight": 1,
+      "expected": {
+        "count": 1125,
+        "sha256": "b18d267e783fd5c640141d8f475a32ba352ad708dd82c65f8222465adb0a26d3"
+      },
+      "sql": "SELECT * FROM calendar_nights WHERE listing_id NOT IN (1,2,29,30,31,32) ORDER BY listing_id, date"
+    },
+    {
+      "id": "protected_gmail_seed_mail",
+      "database": "gmail",
+      "kind": "rows_digest",
+      "weight": 1,
+      "expected": {
+        "count": 2,
+        "sha256": "095a07bed1a9493679a184ae9ae090e19864e0ce8f839686516d1a39171ddd4c"
+      },
+      "sql": "SELECT id, thread_id, from_contact_id, subject, body_html, body_text, snippet, sent_at, is_draft, in_reply_to FROM message WHERE id LIKE 'm_maya-host-ops-week_%' AND from_contact_id IN (SELECT id FROM contact WHERE lower(email) IN ('ops@brightstay.example')) ORDER BY id"
+    }
+  ],
+  "initial_task_progress": 0.11818289257175066
+}

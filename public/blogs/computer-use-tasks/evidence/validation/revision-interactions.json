@@ -1,0 +1,108 @@
+{
+  "scenarios": 6,
+  "native_variant_link_click_worked": false,
+  "full_hosted_viewer_in_snapshot": true,
+  "method": "Orca embedded browser; observed-ref link click plus live DOM interactions and handler checks",
+  "checks": [
+    {
+      "check": "Dark default and separate paper variant exist",
+      "passed": true
+    },
+    {
+      "check": "Paper switch applies the paper stylesheet",
+      "passed": true
+    },
+    {
+      "check": "Supporting pages preserve paper appearance",
+      "passed": true
+    },
+    {
+      "check": "Supporting page can switch back to dark",
+      "passed": true
+    },
+    {
+      "check": "Task search isolates its matching case",
+      "passed": true
+    },
+    {
+      "check": "Empty search is explained",
+      "passed": true
+    },
+    {
+      "check": "Task disclosure reveals settings and evidence",
+      "passed": true
+    },
+    {
+      "check": "Creative filter keeps two chart rows",
+      "passed": true
+    },
+    {
+      "check": "All chart restores eleven runs",
+      "passed": true
+    },
+    {
+      "check": "Chart anchor expands selected case",
+      "passed": true
+    },
+    {
+      "check": "Screenshot lightbox opens",
+      "passed": true
+    },
+    {
+      "check": "Lightbox closes",
+      "passed": true
+    },
+    {
+      "check": "Navigation menu opens",
+      "passed": true
+    },
+    {
+      "check": "Menu Escape handler restores its accessible name",
+      "passed": true
+    },
+    {
+      "check": "Checkpoint next advances",
+      "passed": true
+    },
+    {
+      "check": "Checkpoint previous restores",
+      "passed": true
+    },
+    {
+      "check": "Checkpoint scrubbing updates the image label",
+      "passed": true
+    },
+    {
+      "check": "Exact local replay remains available without hosted URL",
+      "passed": true
+    },
+    {
+      "check": "Full player embeds the selected hosted trajectory",
+      "passed": true
+    },
+    {
+      "check": "Return to checkpoints removes full iframe",
+      "passed": true
+    },
+    {
+      "check": "Print expands all cases",
+      "passed": true
+    },
+    {
+      "check": "research.html renders in dark with no overflow",
+      "passed": true
+    },
+    {
+      "check": "validity.html renders in dark with no overflow",
+      "passed": true
+    },
+    {
+      "check": "claims.html renders in dark with no overflow",
+      "passed": true
+    },
+    {
+      "check": "source-index.html renders in dark with no overflow",
+      "passed": true
+    }
+  ]
+}

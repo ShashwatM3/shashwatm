@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "HTML structure and image alt attributes",
+    "All internal links/assets and anchors resolve",
+    "Eleven built families and 3188 selected entries",
+    "Twelve verifier bundles contain provenance READMEs and local rewards"
+  ],
+  "errors": [],
+  "passed": true
+}

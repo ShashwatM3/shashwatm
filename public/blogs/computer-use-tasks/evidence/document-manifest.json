@@ -1,0 +1,91 @@
+[
+  {
+    "source": "CUA_TASK_CATALOG.md",
+    "scope": "Local background source, not included in the shareable packet",
+    "sha256": "ab5171d8b3e5db744e9acd5b4899af9fec8ab48f92fe4f5df04cae67f565969f"
+  },
+  {
+    "source": "SHASHWAT_REFRESH_WORK_DOSSIER_2026-09-30.md",
+    "scope": "Local background source, not included in the shareable packet",
+    "sha256": "be4ed07d89972b3b767553d72fab8ef8ddd3c0e2af2e7d13ab005f476d88f81a"
+  },
+  {
+    "source": "outputs/cua-task-catalog-20261006/authorship-ledger.md",
+    "scope": "Local background source, not included in the shareable packet",
+    "sha256": "fef0ce858b744d24962e95810f27e3a2fc36bf5a963d5041491bcc89deef481e"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/78_xl_trajectory_failure_analysis_2026-09-10.md",
+    "packet": "evidence/sources/04-78_xl_trajectory_failure_analysis_2026-09-10.md",
+    "sha256": "32d46944446c5ebbbc0f3366371f7d4772c53f6048bd6983019d18f967787ec1"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/76_portfolio_onboarding_two_trial_set_2026-09-07.md",
+    "packet": "evidence/sources/05-76_portfolio_onboarding_two_trial_set_2026-09-07.md",
+    "sha256": "5e35629bba7d0a268baffa9f42f8999a6b4228789d7ced53aab9c3dfedf92595"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/58_airbnb_task_repair_log_2026-09-05.md",
+    "packet": "evidence/sources/06-58_airbnb_task_repair_log_2026-09-05.md",
+    "sha256": "53870e2b57862d252bdedb22695c33c033be0fea8db139425d35b1caea31763b"
+  },
+  {
+    "source": "cua/FILES/AIRBNB_HARDENING_LOG_2026-09-05.md",
+    "packet": "evidence/sources/07-AIRBNB_HARDENING_LOG_2026-09-05.md",
+    "sha256": "52f5cacd6c9ef573d4369e960c40a77dd7f6737ab137106bcf594782a479daad"
+  },
+  {
+    "source": "cua/tmp/task3-lmms-sonnet5-bedrock-20260914-141633/analysis/findings.md",
+    "status": "not found locally"
+  },
+  {
+    "source": "cua/FILES/TASK_DESIGN/task4_tour_video/TRIAL4_FAILURE_MODES_2026-09-17.md",
+    "packet": "evidence/sources/09-TRIAL4_FAILURE_MODES_2026-09-17.md",
+    "sha256": "979a7ba2b7e1ff1718b21c10728ee8e43665ac0b91fcd059f89b7cd242d07bdb"
+  },
+  {
+    "source": "cua/FILES/TASK_DESIGN/task4_tour_video/TRIAL1_FAILURE_ANALYSIS.md",
+    "packet": "evidence/sources/10-TRIAL1_FAILURE_ANALYSIS.md",
+    "sha256": "9d5f6f63ddba7d55246232b904b45be32ff9e959b7740e9ab8181aa825b2ceca"
+  },
+  {
+    "source": "cua/FILES/TASK_DESIGN/task16_store_management_workflows/FAILURE_MODE_ANALYSIS_2026-09-18.md",
+    "packet": "evidence/sources/11-FAILURE_MODE_ANALYSIS_2026-09-18.md",
+    "sha256": "fcb912fa44d448a9c62198959a8944f0875ede2e0220368776639b34c32446c1"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/106_task16_store_management_workflows_failure_analysis_2026-09-19.md",
+    "packet": "evidence/sources/12-106_task16_store_management_workflows_failure_analysis_2026-09-19.md",
+    "sha256": "c5298fc46ef82e33402139dba5799e3a09bbc50d6324b84186ed537591cafad7"
+  },
+  {
+    "source": "outputs/task18-build-round2/collection-fix-20260929/REPORT.md",
+    "packet": "evidence/sources/13-REPORT.md",
+    "sha256": "21cd1eae2bb154ccbd0ee4fc7739041b26b4cac694f9f86195e527c1df9b5cdd"
+  },
+  {
+    "source": "outputs/cua-task-catalog-20261006/task18-relaunch-review-evidence.json",
+    "packet": "evidence/sources/14-task18-relaunch-review-evidence.json",
+    "sha256": "188e84e1eb41b13f8bc8826260480cec242a0a849e61797058aaaeaf167dc536"
+  },
+  {
+    "source": "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/trial-v2/FULL_TRIAL_REVIEW.md",
+    "packet": "evidence/sources/15-FULL_TRIAL_REVIEW.md",
+    "sha256": "4f5a952243d752210c118d66dfb90ee6a22f6b2ec0951635a26805b15c267487"
+  },
+  {
+    "source": "outputs/cua-task-catalog-20261006/catalog-entries.json",
+    "packet": "evidence/sources/16-catalog-entries.json",
+    "sha256": "241011410c4c7b4cbe4d040203d267affe1820d5b4b21de044f48f6ed0cc0592"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/99_task3_pending_deltas_to_reinstate_2026-09-14.md",
+    "packet": "evidence/sources/17-99_task3_pending_deltas_to_reinstate_2026-09-14.md",
+    "sha256": "8c71b34e3ab8cb401ca2fd21fb32ceb7926563e67488ef3026bb5e82580b2a7e"
+  },
+  {
+    "source": "cua/FILES/SCRATCHPADS/100_task14_beat_making_tutorial_first_trial_failures_2026-09-14.md",
+    "packet": "evidence/sources/18-100_task14_beat_making_tutorial_first_trial_failures_2026-09-14.md",
+    "sha256": "8f5204c73487842adaaa3c18c8c9d655de43a3e2cb7e78de07635b4bdd4e4979"
+  }
+]

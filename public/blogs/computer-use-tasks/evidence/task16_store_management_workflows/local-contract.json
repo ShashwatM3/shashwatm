@@ -1,0 +1,1785 @@
+{
+  "schema_version": 1,
+  "family": "task16_store_management_workflows",
+  "seed": 26091802,
+  "frozen_now": "2026-11-04T10:15:00-08:00",
+  "notes": [
+    "Weights are fractions of one and sum to 1.0 across four groups: catalogue 0.30, stock 0.25, promotion 0.30, hand-ins 0.15.",
+    "Every stock assertion is gated on the shortcut not having been taken. The gate is inline in the SQL rather than in verifier logic, so taking the shortcut zeroes the whole group with no machinery to maintain. The gate excludes adjustments whose reason is 'Received', because accepting stock writes one of those itself and without the exclusion the flag would fire on every correct run.",
+    "Text comparison normalises case and surrounding whitespace and compares whole values, never fragments. Campaign boundaries compare as full Pacific date and minute, accepting equivalent UTC instants; the course explicitly teaches midnight start and 11:59 p.m. end.",
+    "The draft-then-publish sequence in units 3.1 and 3.3 is deliberately NOT asserted. Final state cannot witness it: unit 3.1 leaves the beanie a draft and unit 3.3 makes it live, so by the end the only true statement is the second one. Asserting the draft would fail every correct run. What is asserted is that the five launching products are live (a8) and that the beanie ends live (c8).",
+    "Every assertion is written so that an empty world scores it zero. A check phrased as 'no rows are wrong' passes vacuously when there are no rows at all, which credits an agent that created nothing; the price checks were caught doing exactly that against the untouched episode and are now phrased as 'this many rows are right'.",
+    "A purchase order's status may only be draft, ordered or closed. Its detail page carries a badge map naming 'partially_received' and 'received' as well, which the schema forbids, so an assertion written from that page would never be satisfiable. Receipt quantities live on the line items, not on the status, which is what b5 and b6 read.",
+    "The missing beanie colour was removed on 2026-09-17, and with it the only element in this task that required a reply from a person. It was a four-point assertion sitting upstream of every other assertion: the blank colour blocked the beanie, the beanie blocked the collection, and the chain blocked units 3.2 and 3.3, so one absent datum gated the whole hundred. A trial confirmed it — the agent noticed the gap, found the price correction, messaged the instructor and then stopped, which is defensible behaviour when handed a single point of failure. Its four points moved onto the stock codes, because holding a naming rule correct across hundreds of turns is the other memory test in the task. Every remaining complexity is either information already sitting in the course or a discovery in the interface, so none of it can stall a run.",
+    "Catalogue detail is exhaustive across all 36 combinations: option structure .07, per-line prices .06 and stock codes .10. Each line earns a small fraction; a single slip loses proportional credit without allowing any incorrect line to receive full reward. Labels accept case, surrounding whitespace, Size/Sizes, Color/Colour plurals, and standard size abbreviations. Option order is not prescribed. A one-size beanie may have only its colour option.",
+    "Catalogue detail is exhaustive across all 36 combinations: option structure .07, per-line prices .06 and stock codes .10. Each line earns a small fraction; a single slip loses proportional credit without allowing any incorrect line to receive full reward. Labels accept case, surrounding whitespace, Size/Sizes, Color/Colour plurals, and standard size abbreviations. Option order is not prescribed. A one-size beanie may have only its colour option."
+  ],
+  "assertions": [
+    {
+      "id": "a1_flc_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='fleece crew'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_flc_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='fleece crew' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=6 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Heather\", \"Navy\"]','colour'))=1 AND ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"S\", \"M\", \"L\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_flc_s_hea_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_s_hea_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_s_hea_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND trim(v.sku)='FLC-S-HEA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_flc_s_nav_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_s_nav_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_s_nav_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND trim(v.sku)='FLC-S-NAV'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_flc_m_hea_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_m_hea_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_m_hea_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND trim(v.sku)='FLC-M-HEA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_flc_m_nav_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_m_nav_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_m_nav_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND trim(v.sku)='FLC-M-NAV'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_flc_l_hea_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_l_hea_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_l_hea_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND trim(v.sku)='FLC-L-HEA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_flc_l_nav_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_flc_l_nav_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND v.price_cents=5800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_flc_l_nav_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='navy' AND trim(v.sku)='FLC-L-NAV'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a8_flc_live",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='fleece crew' AND status='active'",
+      "expected": 1,
+      "weight": 0.004,
+      "obligation": "Unit 3.1 grouping/status: the five launching styles are live."
+    },
+    {
+      "id": "a1_wnd_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='ripstop windbreaker'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_wnd_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=6 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Slate\", \"Ember\"]','colour'))=1 AND ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"S\", \"M\", \"L\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_wnd_s_sla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_s_sla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_s_sla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND trim(v.sku)='WND-S-SLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_wnd_s_emb_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_s_emb_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_s_emb_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND trim(v.sku)='WND-S-EMB'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_wnd_m_sla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_m_sla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_m_sla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND trim(v.sku)='WND-M-SLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_wnd_m_emb_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_m_emb_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_m_emb_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND trim(v.sku)='WND-M-EMB'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_wnd_l_sla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_l_sla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_l_sla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND trim(v.sku)='WND-L-SLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_wnd_l_emb_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_wnd_l_emb_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND v.price_cents=9600",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_wnd_l_emb_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='ember' AND trim(v.sku)='WND-L-EMB'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a8_wnd_live",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='ripstop windbreaker' AND status='active'",
+      "expected": 1,
+      "weight": 0.004,
+      "obligation": "Unit 3.1 grouping/status: the five launching styles are live."
+    },
+    {
+      "id": "a1_bea_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='merino beanie'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_bea_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='merino beanie' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Oatmeal\", \"Charcoal\"]','colour'))=1 AND ((((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"OS\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2) OR ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=1 AND EXISTS(SELECT 1 FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND position=1))))",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_bea_os_oat_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='oatmeal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_bea_os_oat_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='oatmeal' AND v.price_cents=3400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_bea_os_oat_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='oatmeal' AND trim(v.sku)='BEA-OS-OAT'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_bea_os_cha_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_bea_os_cha_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND v.price_cents=3400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_bea_os_cha_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='merino beanie' AND COALESCE((SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size'),'OS')='OS' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND trim(v.sku)='BEA-OS-CHA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a1_cor_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='corduroy overshirt'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_cor_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=8 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Rust\", \"Olive\"]','colour'))=1 AND ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"S\", \"M\", \"L\", \"XL\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_cor_s_rus_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_s_rus_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_s_rus_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND trim(v.sku)='COR-S-RUS'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_s_oli_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_s_oli_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_s_oli_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND trim(v.sku)='COR-S-OLI'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_m_rus_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_m_rus_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_m_rus_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND trim(v.sku)='COR-M-RUS'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_m_oli_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_m_oli_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_m_oli_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND trim(v.sku)='COR-M-OLI'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_l_rus_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_l_rus_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_l_rus_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND trim(v.sku)='COR-L-RUS'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_l_oli_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_l_oli_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_l_oli_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND trim(v.sku)='COR-L-OLI'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_xl_rus_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_xl_rus_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_xl_rus_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='rust' AND trim(v.sku)='COR-XL-RUS'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_cor_xl_oli_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_cor_xl_oli_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND v.price_cents=8800",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_cor_xl_oli_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='corduroy overshirt' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='olive' AND trim(v.sku)='COR-XL-OLI'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a8_cor_live",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='corduroy overshirt' AND status='active'",
+      "expected": 1,
+      "weight": 0.004,
+      "obligation": "Unit 3.1 grouping/status: the five launching styles are live."
+    },
+    {
+      "id": "a1_car_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='lambswool cardigan'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_car_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=8 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Camel\", \"Charcoal\"]','colour'))=1 AND ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"S\", \"M\", \"L\", \"XL\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_car_s_cam_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_s_cam_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_s_cam_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND trim(v.sku)='CAR-S-CAM'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_s_cha_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_s_cha_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_s_cha_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND trim(v.sku)='CAR-S-CHA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_m_cam_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_m_cam_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_m_cam_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND trim(v.sku)='CAR-M-CAM'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_m_cha_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_m_cha_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_m_cha_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND trim(v.sku)='CAR-M-CHA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_l_cam_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_l_cam_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_l_cam_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND trim(v.sku)='CAR-L-CAM'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_l_cha_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_l_cha_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_l_cha_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND trim(v.sku)='CAR-L-CHA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_xl_cam_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_xl_cam_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_xl_cam_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='camel' AND trim(v.sku)='CAR-XL-CAM'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_car_xl_cha_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_car_xl_cha_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND v.price_cents=12400",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_car_xl_cha_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='lambswool cardigan' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='XL' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='charcoal' AND trim(v.sku)='CAR-XL-CHA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a8_car_live",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='lambswool cardigan' AND status='active'",
+      "expected": 1,
+      "weight": 0.004,
+      "obligation": "Unit 3.1 grouping/status: the five launching styles are live."
+    },
+    {
+      "id": "a1_gil_one_product",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='quilted gilet'",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Handout 1: keep one product record per assigned style."
+    },
+    {
+      "id": "a2_gil_option_definitions",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='quilted gilet' AND (SELECT count(*) FROM product_variants v WHERE v.product_id=p.id)=6 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour' AND values_match(o.values_json,'[\"Black\", \"Forest\"]','colour'))=1 AND ((SELECT count(*) FROM product_options o WHERE o.product_id=p.id)=2 AND (SELECT count(*) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size' AND values_match(o.values_json,'[\"S\", \"M\", \"L\"]','size'))=1 AND (SELECT count(DISTINCT position) FROM product_options o WHERE o.product_id=p.id AND position IN(1,2))=2)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.1 style table and Handout 1: exact size/colour range, one line per combination; fixed beanie size may be implicit."
+    },
+    {
+      "id": "a2_gil_s_bla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_s_bla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_s_bla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND trim(v.sku)='GIL-S-BLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_gil_s_for_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_s_for_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_s_for_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND trim(v.sku)='GIL-S-FOR'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_gil_m_bla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_m_bla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_m_bla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND trim(v.sku)='GIL-M-BLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_gil_m_for_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_m_for_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_m_for_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND trim(v.sku)='GIL-M-FOR'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_gil_l_bla_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_l_bla_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_l_bla_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='black' AND trim(v.sku)='GIL-L-BLA'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a2_gil_l_for_combination",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest'",
+      "expected": 1,
+      "weight": 0.0011111111111111111,
+      "obligation": "Unit 3.1 table: every listed size-and-colour combination is its own sellable line."
+    },
+    {
+      "id": "a4_gil_l_for_price",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND v.price_cents=11000",
+      "expected": 1,
+      "weight": 0.0016666666666666666,
+      "obligation": "Fall Drop range sheet: price per line; pinned discussion corrects Ripstop Windbreaker to $96."
+    },
+    {
+      "id": "a5_gil_l_for_sku",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM product_variants v JOIN products p ON p.id=v.product_id WHERE norm_text(p.title)='quilted gilet' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='L' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='forest' AND trim(v.sku)='GIL-L-FOR'",
+      "expected": 1,
+      "weight": 0.002777777777777778,
+      "obligation": "Syllabus stock-code convention, Unit 3.1 code prefixes and options; new Black variants use BLA, existing Classic Tee retains legacy BLK."
+    },
+    {
+      "id": "a8_gil_live",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products p WHERE norm_text(p.title)='quilted gilet' AND status='active'",
+      "expected": 1,
+      "weight": 0.004,
+      "obligation": "Unit 3.1 grouping/status: the five launching styles are live."
+    },
+    {
+      "id": "a7_collection_exact_six",
+      "group": "catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM collections c WHERE norm_text(c.title)='fall drop' AND (SELECT count(*) FROM products p WHERE ((c.collection_type='manual' AND EXISTS(SELECT 1 FROM collection_products cp WHERE cp.collection_id=c.id AND cp.product_id=p.id)) OR (c.collection_type='smart' AND p.store_id=c.store_id AND ((c.rule_field='tag' AND p.tags_json LIKE '%\"'||c.rule_value||'\"%') OR (c.rule_field='product_type' AND p.product_type=c.rule_value) OR (c.rule_field='vendor' AND p.vendor=c.rule_value) OR (c.rule_field='title' AND p.title LIKE '%'||c.rule_value||'%')))))=6 AND (SELECT count(DISTINCT norm_text(p.title)) FROM products p WHERE ((c.collection_type='manual' AND EXISTS(SELECT 1 FROM collection_products cp WHERE cp.collection_id=c.id AND cp.product_id=p.id)) OR (c.collection_type='smart' AND p.store_id=c.store_id AND ((c.rule_field='tag' AND p.tags_json LIKE '%\"'||c.rule_value||'\"%') OR (c.rule_field='product_type' AND p.product_type=c.rule_value) OR (c.rule_field='vendor' AND p.vendor=c.rule_value) OR (c.rule_field='title' AND p.title LIKE '%'||c.rule_value||'%')))) AND norm_text(p.title) IN('fleece crew','ripstop windbreaker','merino beanie','corduroy overshirt','lambswool cardigan','quilted gilet'))=6 AND (SELECT count(*) FROM collections WHERE norm_text(title)='fall drop')=1",
+      "expected": 1,
+      "weight": 0.02,
+      "obligation": "Unit 3.1 and Handout 1: Fall Drop collection holds all six styles and nothing else. Either manual or smart method is valid."
+    },
+    {
+      "id": "b1_supplier_on_file",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT EXISTS(SELECT 1 FROM suppliers WHERE norm_text(name)='northgate textiles')) END",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Unit 3.2 identifies Northgate Textiles as the supplier."
+    },
+    {
+      "id": "b2_purchase_order_lines_as_ordered",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT EXISTS(SELECT 1 FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND (SELECT count(*) FROM purchase_order_line_items l WHERE l.purchase_order_id=po.id)=3 AND (SELECT count(DISTINCT upper(trim(v.sku))) FROM purchase_order_line_items l JOIN expected_variants v ON v.id=l.variant_id WHERE l.purchase_order_id=po.id AND ((upper(trim(v.sku))='FLC-M-HEA' AND l.quantity=12) OR (upper(trim(v.sku))='WND-S-SLA' AND l.quantity=8) OR (upper(trim(v.sku))='TEE-S-BLK' AND l.quantity=10)))=3)) END",
+      "expected": 1,
+      "weight": 0.04,
+      "obligation": "Unit 3.2: one supplier purchase order contains twelve FLC-M-HEA, eight WND-S-SLA and ten existing TEE-S-BLK."
+    },
+    {
+      "id": "b3_order_open_with_shortfall",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT count(*)=1 AND min(status)='ordered' FROM target) END",
+      "expected": 1,
+      "weight": 0.02,
+      "obligation": "Handout 2: missing units remain outstanding, not cancelled; supplier order has left draft and remains open."
+    },
+    {
+      "id": "b4_linked_delivery_matches_the_order",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT count(*)=1 FROM linked t WHERE t.status=CASE WHEN (SELECT sum(quantity-received_quantity-rejected_quantity) FROM transfer_line_items WHERE transfer_id=t.id)=0 THEN 'received' ELSE 'partially_received' END AND (SELECT count(*) FROM transfer_line_items WHERE transfer_id=t.id)=3 AND (SELECT count(*) FROM transfer_line_items tl JOIN purchase_order_line_items pl ON pl.purchase_order_id=t.purchase_order_id AND pl.variant_id=tl.variant_id WHERE tl.transfer_id=t.id AND tl.quantity<=pl.quantity AND tl.quantity>=tl.received_quantity+tl.rejected_quantity)=3) END",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Receiving notes and store workflow: receive this purchase order through its linked delivery, whose own planned/processed counts and status agree; the supplier order retains two outstanding windbreakers."
+    },
+    {
+      "id": "b5_receipt_matches_both_records",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT EXISTS(SELECT 1 FROM target po JOIN linked t ON t.purchase_order_id=po.id WHERE (SELECT count(DISTINCT upper(trim(v.sku))) FROM purchase_order_line_items pl JOIN expected_variants v ON v.id=pl.variant_id JOIN transfer_line_items tl ON tl.transfer_id=t.id AND tl.variant_id=pl.variant_id WHERE pl.purchase_order_id=po.id AND tl.received_quantity=pl.received_quantity AND ((upper(trim(v.sku))='FLC-M-HEA' AND pl.quantity=12 AND pl.received_quantity=12) OR (upper(trim(v.sku))='WND-S-SLA' AND pl.quantity=8 AND pl.received_quantity=6) OR (upper(trim(v.sku))='TEE-S-BLK' AND pl.quantity=10 AND pl.received_quantity=8)))=3)) END",
+      "expected": 1,
+      "weight": 0.05,
+      "obligation": "Northgate delivery note and Handout 2: accept twelve fleece, six windbreakers and eight undamaged tees on the delivery, mirrored to its purchase order."
+    },
+    {
+      "id": "b6_damage_and_outstanding_balance",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT EXISTS(SELECT 1 FROM target po JOIN linked t ON t.purchase_order_id=po.id WHERE (SELECT count(DISTINCT upper(trim(v.sku))) FROM purchase_order_line_items pl JOIN expected_variants v ON v.id=pl.variant_id JOIN transfer_line_items tl ON tl.transfer_id=t.id AND tl.variant_id=pl.variant_id WHERE pl.purchase_order_id=po.id AND tl.rejected_quantity=pl.rejected_quantity AND ((upper(trim(v.sku))='TEE-S-BLK' AND pl.rejected_quantity=2) OR (upper(trim(v.sku)) IN('FLC-M-HEA','WND-S-SLA') AND pl.rejected_quantity=0)))=3 AND (SELECT sum(quantity-received_quantity-rejected_quantity) FROM purchase_order_line_items WHERE purchase_order_id=po.id)=2)) END",
+      "expected": 1,
+      "weight": 0.05,
+      "obligation": "Delivery note: reject two damaged tees; no fleece/windbreakers are damaged, and two unarrived windbreakers remain outstanding on the supplier order."
+    },
+    {
+      "id": "b7_all_sellable_stock_counts",
+      "group": "stock",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "WITH expected_variants AS (SELECT v.* FROM product_variants v JOIN products p ON p.id=v.product_id WHERE (norm_text(p.title)='fleece crew' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='M' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='heather' AND upper(trim(v.sku))='FLC-M-HEA') OR (norm_text(p.title)='ripstop windbreaker' AND (SELECT norm_size(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='size')='S' AND (SELECT norm_text(CASE o.position WHEN 1 THEN v.option1 WHEN 2 THEN v.option2 WHEN 3 THEN v.option3 END) FROM product_options o WHERE o.product_id=p.id AND option_kind(o.name)='colour')='slate' AND upper(trim(v.sku))='WND-S-SLA') OR v.id='var_1a'), target AS (SELECT po.* FROM purchase_orders po JOIN suppliers s ON s.id=po.supplier_id WHERE norm_text(s.name)='northgate textiles' AND norm_text(po.supplier)='northgate textiles' AND po.status<>'draft'), linked AS (SELECT t.* FROM inventory_transfers t JOIN target po ON po.linked_transfer_id=t.id AND t.purchase_order_id=po.id WHERE t.origin=po.supplier AND t.destination=po.destination) SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id=l.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK')<2 AND EXISTS(SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id=a.variant_id WHERE upper(trim(v.sku))='TEE-S-BLK' AND norm_text(a.reason)<>'received')) THEN 0 ELSE (SELECT count(DISTINCT upper(trim(v.sku)))=3 FROM expected_variants v WHERE (upper(trim(v.sku))='FLC-M-HEA' AND v.inventory_quantity=12) OR (upper(trim(v.sku))='WND-S-SLA' AND v.inventory_quantity=6) OR (upper(trim(v.sku))='TEE-S-BLK' AND v.inventory_quantity=20)) END",
+      "expected": 1,
+      "weight": 0.05,
+      "obligation": "Unit 3.2: stock matches the floor. Twelve and six units enter the new lines; existing twelve tees plus eight accepted gives twenty available, damaged units never enter sellable stock."
+    },
+    {
+      "id": "c1_discount_code_exists",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (d.method='code' AND d.discount_class='product')",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Unit 3.3 / Handout 3: entered code applies a percentage to the specified collection, which is Amount off products in the store."
+    },
+    {
+      "id": "c2_percentage_is_the_announced_one",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (d.discount_type='percentage' AND d.value_bps=1500)",
+      "expected": 1,
+      "weight": 0.07,
+      "obligation": "Instructor correction after Unit 3.2 hand-in: fifteen per cent replaces the original twenty; code name remains FALLDROP20."
+    },
+    {
+      "id": "c3_exact_collection_scope",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (d.applies_to='collections' AND EXISTS(SELECT 1 FROM collections c WHERE norm_text(c.title)='fall drop' AND json_set_equals(d.applies_to_ids_json,json_array(c.id))))",
+      "expected": 1,
+      "weight": 0.04,
+      "obligation": "Unit 3.3: the Fall Drop collection and nothing else."
+    },
+    {
+      "id": "c4_minimum_eligible_subtotal",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (d.minimum_type='amount' AND d.minimum_value=7500)",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Unit 3.3 / Handout 3: $75 of eligible Fall Drop items before discount, tax and shipping; product-class minimum implements this."
+    },
+    {
+      "id": "c5_total_cap_and_all_customers",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (d.usage_limit=200 AND d.once_per_customer=0 AND d.eligibility='all')",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Campaign code policy: all customers, two hundred total redemptions, no additional per-customer limit."
+    },
+    {
+      "id": "c6_full_campaign_window",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20' AND (SELECT count(*) FROM discounts d WHERE upper(trim(COALESCE(d.code,'')))='FALLDROP20')=1 AND (course_time(d.starts_at)='2026-11-09T00:00' AND course_time(d.ends_at)='2026-11-30T23:59' AND d.status='scheduled')",
+      "expected": 1,
+      "weight": 0.05,
+      "obligation": "Course calendar launch Nov9; Unit 3.3 / Handout 3 require full campaign days in Pacific time, midnight launch through 11:59 p.m. Nov30, saved waiting before launch."
+    },
+    {
+      "id": "c7a_separate_automatic_shipping",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (d.discount_class='shipping' AND d.code IS NULL AND d.applies_to='order' AND json_set_equals(d.applies_to_ids_json,'[]'))",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Unit 3.3 / Handout 3: separate automatic free-shipping offer without a code."
+    },
+    {
+      "id": "c7b_shipping_scope",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (d.eligibility='all' AND json_set_equals(d.shipping_countries_json,'[]') AND d.maximum_shipping_price_cents IS NULL)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Shipping policy: all customers and all delivery countries, without excluding higher shipping rates."
+    },
+    {
+      "id": "c7c_shipping_minimum",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (d.minimum_type='amount' AND d.minimum_value=7500)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Shipping policy: $75 minimum purchase after product discounts, before tax/shipping."
+    },
+    {
+      "id": "c7d_shipping_has_no_caps",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (d.usage_limit IS NULL AND d.once_per_customer=0)",
+      "expected": 1,
+      "weight": 0.005,
+      "obligation": "Shipping policy: no redemption cap or one-use-per-customer limit."
+    },
+    {
+      "id": "c7e_shipping_campaign_window",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (course_time(d.starts_at)='2026-11-09T00:00' AND course_time(d.ends_at)='2026-11-30T23:59' AND d.status='scheduled')",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Both offers run for the same complete Pacific campaign days and wait before launch."
+    },
+    {
+      "id": "c7f_offers_can_combine",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic' AND (SELECT count(*) FROM discounts d WHERE d.id NOT IN('disc_1','disc_2') AND d.discount_type='free_shipping' AND d.method='automatic')=1 AND (d.combines_product=1 AND EXISTS(SELECT 1 FROM discounts code WHERE upper(trim(code.code))='FALLDROP20' AND code.discount_class='product' AND code.combines_shipping=1))",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Shipping policy: customers must be able to receive automatic shipping together with the campaign code; store requires mutual combination permission."
+    },
+    {
+      "id": "c8_the_beanie_ends_live",
+      "group": "promotion",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM products WHERE norm_text(title)='merino beanie' AND status='active'",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Unit 3.3: the beanie is launching after all, so put it on sale."
+    },
+    {
+      "id": "d1_unit_31_handed_in",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions s JOIN assignments a ON a.id=s.assignment_id WHERE a.course_id=1121780 AND s.assignment_id=167 AND s.user_id=1 AND s.workflow_state='submitted' AND s.submission_type='online_text_entry' AND s.submitted_at IS NOT NULL AND s.attempt>=1",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Each Unit 3 assignment: Avery must submit the short hand-in through its form; another user or a saved draft does not close the learner unit."
+    },
+    {
+      "id": "d1_unit_32_handed_in",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions s JOIN assignments a ON a.id=s.assignment_id WHERE a.course_id=1121780 AND s.assignment_id=168 AND s.user_id=1 AND s.workflow_state='submitted' AND s.submission_type='online_text_entry' AND s.submitted_at IS NOT NULL AND s.attempt>=1",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Each Unit 3 assignment: Avery must submit the short hand-in through its form; another user or a saved draft does not close the learner unit."
+    },
+    {
+      "id": "d1_unit_33_handed_in",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions s JOIN assignments a ON a.id=s.assignment_id WHERE a.course_id=1121780 AND s.assignment_id=169 AND s.user_id=1 AND s.workflow_state='submitted' AND s.submission_type='online_text_entry' AND s.submitted_at IS NOT NULL AND s.attempt>=1",
+      "expected": 1,
+      "weight": 0.03,
+      "obligation": "Each Unit 3 assignment: Avery must submit the short hand-in through its form; another user or a saved draft does not close the learner unit."
+    },
+    {
+      "id": "d2_all_three_submitted",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(DISTINCT assignment_id) FROM submissions WHERE assignment_id IN(167,168,169) AND user_id=1 AND workflow_state='submitted'",
+      "expected": 3,
+      "weight": 0.03,
+      "obligation": "All three open units require completed submission, not draft/save only."
+    },
+    {
+      "id": "d3_unit_31_factual_record",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions WHERE assignment_id=167 AND user_id=1 AND workflow_state='submitted' AND submission_type='online_text_entry' AND handin_facts(body,'3.1')='{\"collection\":\"fall drop\",\"sellable_lines\":36,\"styles\":6}'",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Assignment 3.1 factual hand-in template and syllabus: each required labeled field must accurately record the work; optional prose is ungraded. Labels/values accept documented formatting equivalents, but duplicate or conflicting fields are invalid."
+    },
+    {
+      "id": "d3_unit_32_factual_record",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions WHERE assignment_id=168 AND user_id=1 AND workflow_state='submitted' AND submission_type='online_text_entry' AND handin_facts(body,'3.2')='{\"classic tee\":{\"accepted\":8,\"arrived\":10,\"outstanding\":0,\"rejected\":2},\"fleece crew\":{\"accepted\":12,\"arrived\":12,\"outstanding\":0,\"rejected\":0},\"ripstop windbreaker\":{\"accepted\":6,\"arrived\":6,\"outstanding\":2,\"rejected\":0}}'",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Assignment 3.2 factual hand-in template and syllabus: each required labeled field must accurately record the work; optional prose is ungraded. Labels/values accept documented formatting equivalents, but duplicate or conflicting fields are invalid."
+    },
+    {
+      "id": "d3_unit_33_factual_record",
+      "group": "hand-ins",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(*) FROM submissions WHERE assignment_id=169 AND user_id=1 AND workflow_state='submitted' AND submission_type='online_text_entry' AND handin_facts(body,'3.3')='{\"automatic_free_shipping\":true,\"code\":\"FALLDROP20\",\"percentage\":15,\"start_date\":\"2026-11-09\"}'",
+      "expected": 1,
+      "weight": 0.01,
+      "obligation": "Assignment 3.3 factual hand-in template and syllabus: each required labeled field must accurately record the work; optional prose is ungraded. Labels/values accept documented formatting equivalents, but duplicate or conflicting fields are invalid."
+    }
+  ],
+  "invariants": [
+    {
+      "id": "i1_seeded_products_untouched",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,store_id,title,status,description,vendor,product_type,tags_json FROM products WHERE id IN('prod_1','prod_2','prod_3','prod_4','prod_5','prod_6','prod_7','prod_8') ORDER BY id",
+      "expected": {
+        "count": 8,
+        "sha256": "1f873aa2fbc95ad107623583bc99b4147531d52f927e6936bf6c00f201186846"
+      },
+      "weight": 1,
+      "obligation": "Preserve existing catalogue information: product business fields; timestamps excluded."
+    },
+    {
+      "id": "i2_seeded_variants_untouched",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,product_id,title,sku,price_cents,compare_at_cents,barcode,option1,option2,option3 FROM product_variants WHERE product_id IN('prod_1','prod_2','prod_3','prod_4','prod_5','prod_6','prod_7','prod_8') ORDER BY id",
+      "expected": {
+        "count": 9,
+        "sha256": "a4fe291b879c505e523b7c9511adee0b03e7bcbbe311dca021bde30943160787"
+      },
+      "weight": 1,
+      "obligation": "Preserve existing catalogue variant names, codes, pricing, barcode and option values; delivery may change stock."
+    },
+    {
+      "id": "i3_seeded_discounts_untouched",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,store_id,title,code,discount_type,value_bps,value_cents,status,discount_class,method,applies_to,applies_to_ids_json,eligibility,minimum_type,minimum_value,usage_limit,once_per_customer,combines_product,combines_order,combines_shipping,shipping_countries_json,maximum_shipping_price_cents,starts_at,ends_at FROM discounts WHERE id IN('disc_1','disc_2') ORDER BY id",
+      "expected": {
+        "count": 2,
+        "sha256": "7815a2c4e8169b7eefa400b74bd4839bb583e7f407a4bfbc1958d543dc8bf0c7"
+      },
+      "weight": 1,
+      "obligation": "Preserve existing promotions, including all persisted behavior; created/updated metadata excluded."
+    },
+    {
+      "id": "i4_existing_order_business_state",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,store_id,order_number,name,customer_id,financial_status,fulfillment_status,currency,subtotal_cents,total_cents,note,tags_json,archived_at,cancelled_at,cancel_reason,source FROM orders WHERE id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY id",
+      "expected": {
+        "count": 5,
+        "sha256": "acb6df782aa0186ee6290f3c39a0a63c641d8cf172b830931f63663584a6f550"
+      },
+      "weight": 1,
+      "obligation": "Preserve all existing customer orders, not just the three orders holding committed inventory."
+    },
+    {
+      "id": "i5_seeded_course_content_untouched",
+      "database": "canvas",
+      "kind": "rows_digest",
+      "sql": "SELECT id,title,description,due_at,points_possible,submission_types,workflow_state FROM assignments WHERE course_id=1121780 ORDER BY id",
+      "expected": {
+        "count": 5,
+        "sha256": "37016408f060f064151df3646271234040578c42b821ebf7a5666927eebcd892"
+      },
+      "weight": 1,
+      "obligation": "Syllabus/course-scope policy and user interface-only instruction: leave the course instructions unchanged."
+    },
+    {
+      "id": "i6_existing_option_definitions",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,product_id,name,position,values_json FROM product_options WHERE product_id IN('prod_1','prod_2','prod_3','prod_4','prod_5','prod_6','prod_7','prod_8') ORDER BY id",
+      "expected": {
+        "count": 2,
+        "sha256": "da2bc3a4b3df4d87c518d22ce87f6534cde6929d8c6742ebe6388822d63bf830"
+      },
+      "weight": 1,
+      "obligation": "Preserve existing catalogue option dimensions and their mapping to variants."
+    },
+    {
+      "id": "i7_other_existing_stock_untouched",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,inventory_quantity FROM product_variants WHERE product_id IN('prod_1','prod_2','prod_3','prod_4','prod_5','prod_6','prod_7','prod_8') AND id<>'var_1a' ORDER BY id",
+      "expected": {
+        "count": 8,
+        "sha256": "da45e5df1fb6748b2d2089e0531f5a0bd82f56507f5c1ebd8a6dbdd7253cfae5"
+      },
+      "weight": 1,
+      "obligation": "Course-scope policy: existing stock changes only where the Northgate delivery restocks TEE-S-BLK."
+    },
+    {
+      "id": "i8_existing_order_lines",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,order_id,product_id,variant_id,title,variant_title,quantity,price_cents,sku FROM order_line_items WHERE order_id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY id",
+      "expected": {
+        "count": 6,
+        "sha256": "dd7eb0ae81af217ca46886409ee6175f56afbdc41094feec01e36784e8a83c19"
+      },
+      "weight": 1,
+      "obligation": "Preserve existing customer order contents and quantities/prices."
+    },
+    {
+      "id": "i9_existing_fulfillments",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,order_id,name,status,location,tracking_number,tracking_carrier,delivered_at FROM fulfillments WHERE order_id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY id",
+      "expected": {
+        "count": 1,
+        "sha256": "4cde6158e74feecd4325db71fa2b9270e6c4e86e586606ebaad8b3f2ea30c5d5"
+      },
+      "weight": 1,
+      "obligation": "Preserve customer-order fulfillment records, including additions/deletions; timestamps of creation excluded."
+    },
+    {
+      "id": "i10_existing_fulfillment_lines",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT l.id,l.fulfillment_id,l.line_item_id,l.quantity FROM fulfillment_line_items l JOIN fulfillments f ON f.id=l.fulfillment_id WHERE f.order_id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY l.id",
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1,
+      "obligation": "Preserve which existing ordered units were fulfilled."
+    },
+    {
+      "id": "i11_existing_refunds",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,order_id,amount_cents,note,restock FROM refunds WHERE order_id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY id",
+      "expected": {
+        "count": 1,
+        "sha256": "13e305cc31d48d138ce7f2219e2d6260e8825ccc5500d75428e30347d036e54f"
+      },
+      "weight": 1,
+      "obligation": "Preserve customer-order refund records; no new refund or altered amount/restock decision."
+    },
+    {
+      "id": "i12_existing_refund_lines",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT l.id,l.refund_id,l.line_item_id,l.quantity FROM refund_line_items l JOIN refunds r ON r.id=l.refund_id WHERE r.order_id IN('ord_1001','ord_1002','ord_1003','ord_1004','ord_1005') ORDER BY l.id",
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1,
+      "obligation": "Preserve which existing ordered units were refunded."
+    },
+    {
+      "id": "i13_existing_collection_definitions",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT id,store_id,title,description,collection_type,status,rule_field,rule_value FROM collections WHERE id IN('coll_1','coll_2') ORDER BY id",
+      "expected": {
+        "count": 2,
+        "sha256": "47f234d6bf12808d2af32dbb808ed5381a5f949c1c5bb0423623d2a465f6966b"
+      },
+      "weight": 1,
+      "obligation": "Syllabus: preserve existing catalogue information, including existing collection definitions and smart rules; timestamps excluded."
+    },
+    {
+      "id": "i14_existing_manual_collection_membership",
+      "database": "shopify",
+      "kind": "rows_digest",
+      "sql": "SELECT collection_id,product_id FROM collection_products WHERE collection_id IN('coll_1') AND product_id IN('prod_1','prod_2','prod_3','prod_4','prod_5','prod_6','prod_7','prod_8') ORDER BY collection_id,product_id",
+      "expected": {
+        "count": 2,
+        "sha256": "42d2dfd02ac368f5f365def7f8fb5e277a3358ad3a63c8d36284fee476b77af1"
+      },
+      "weight": 1,
+      "obligation": "Syllabus: preserve existing catalogue information, including existing products' membership in existing manual collections. New products may also be added there; display positions and computed membership of unchanged smart collections are not frozen."
+    }
+  ],
+  "reported": [
+    {
+      "id": "shortcut_taken",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT CASE WHEN ((SELECT COALESCE(SUM(l.rejected_quantity),0) FROM purchase_order_line_items l JOIN product_variants v ON v.id = l.variant_id WHERE upper(trim(COALESCE(v.sku,''))) = 'TEE-S-BLK') < 2 AND EXISTS (SELECT 1 FROM inventory_adjustments a JOIN product_variants v ON v.id = a.variant_id WHERE upper(trim(COALESCE(v.sku,''))) = 'TEE-S-BLK' AND lower(trim(COALESCE(a.reason,''))) <> 'received')) THEN 1 ELSE 0 END"
+    },
+    {
+      "id": "free_shipping_offer_present",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT CASE WHEN EXISTS (SELECT 1 FROM discounts WHERE discount_type = 'free_shipping' AND method = 'automatic' AND id NOT IN ('disc_1','disc_2')) THEN 1 ELSE 0 END"
+    },
+    {
+      "id": "discount_change_was_announced",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT CASE WHEN EXISTS (SELECT 1 FROM scenario_runtime WHERE key = 'discount_change_announced') THEN 1 ELSE 0 END"
+    },
+    {
+      "id": "promotion_checks_unreachable_from_a_failed_catalogue",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM collections WHERE lower(trim(title)) = 'fall drop') THEN 1 ELSE 0 END"
+    },
+    {
+      "id": "discount_percentage_basis_points_actual",
+      "database": "shopify",
+      "kind": "scalar",
+      "sql": "SELECT CASE WHEN count(*)=1 THEN max(value_bps) ELSE -1 END FROM discounts WHERE upper(trim(COALESCE(code,'')))='FALLDROP20'"
+    },
+    {
+      "id": "units_handed_in",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT count(DISTINCT assignment_id) FROM submissions WHERE assignment_id IN(167,168,169) AND user_id=1 AND workflow_state='submitted'"
+    },
+    {
+      "id": "handin_facts_31",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT COALESCE((SELECT handin_facts(body,'3.1') FROM submissions WHERE assignment_id=167 AND user_id=1),'missing submission')"
+    },
+    {
+      "id": "handin_facts_32",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT COALESCE((SELECT handin_facts(body,'3.2') FROM submissions WHERE assignment_id=168 AND user_id=1),'missing submission')"
+    },
+    {
+      "id": "handin_facts_33",
+      "database": "canvas",
+      "kind": "scalar",
+      "sql": "SELECT COALESCE((SELECT handin_facts(body,'3.3') FROM submissions WHERE assignment_id=169 AND user_id=1),'missing submission')"
+    }
+  ],
+  "initial_task_progress": 0,
+  "capture": {
+    "source_episode_sha256": "a619beb55373fc7828258d354407a7ec51bd6c5e2af493b9095daf16c1e7e000"
+  },
+  "group_weights": {
+    "catalogue": 0.3,
+    "stock": 0.25,
+    "promotion": 0.3,
+    "hand-ins": 0.15
+  }
+}

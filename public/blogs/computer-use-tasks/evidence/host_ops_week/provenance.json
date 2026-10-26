@@ -1,0 +1,10 @@
+{
+  "trial": "host_ops_xl__sio6CEa",
+  "trajectory_sha256": "71140726e35c1c4861a3b62678fb23a1b4855d55ec3397d7ed0c34d15a5af1d7",
+  "result_sha256": "1d99e3cedcf19036978999c58e12e41b2ec06970222c2ae4f95fa09e506ef280",
+  "trajectory_path": "cua/harbor/jobs/hostops-xl-opus5-20260907/host_ops_xl__sio6CEa/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/hostops-xl-opus5-20260907/host_ops_xl__sio6CEa/result.json",
+  "reports": [
+    "cua/FILES/SCRATCHPADS/78_xl_trajectory_failure_analysis_2026-09-10.md"
+  ]
+}

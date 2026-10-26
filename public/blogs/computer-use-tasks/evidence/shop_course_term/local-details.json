@@ -1,0 +1,364 @@
+{
+  "task_success": false,
+  "training_reward": 0.93,
+  "controller": {
+    "heartbeat_age_sec": 0,
+    "fatal": 0,
+    "gates_fired": 1,
+    "restarts": 0,
+    "ticks": 2335,
+    "stood_down": 0,
+    "db_heartbeat": "2026-09-18T03:45:51.958Z",
+    "stalled": 0,
+    "evidence": "database"
+  },
+  "protected_invariant_ratio": 1.0,
+  "groups": {
+    "catalogue": {
+      "earned": 0.3,
+      "possible": 0.3,
+      "passed": 10,
+      "total": 10,
+      "score": 1.0
+    },
+    "stock": {
+      "earned": 0.25,
+      "possible": 0.25,
+      "passed": 7,
+      "total": 7,
+      "score": 1.0
+    },
+    "promotion": {
+      "earned": 0.23,
+      "possible": 0.3,
+      "passed": 7,
+      "total": 8,
+      "score": 0.7667
+    },
+    "hand-ins": {
+      "earned": 0.15,
+      "possible": 0.15,
+      "passed": 5,
+      "total": 5,
+      "score": 1.0
+    }
+  },
+  "reported": {
+    "shortcut_taken": 0,
+    "free_shipping_offer_present": 1,
+    "discount_change_was_announced": 1,
+    "promotion_checks_unreachable_from_a_failed_catalogue": 0,
+    "discount_percentage_basis_points_actual": 2000,
+    "units_handed_in": 3
+  },
+  "assertions": [
+    {
+      "id": "a1_all_six_styles_exist",
+      "pass": true,
+      "actual": 6,
+      "expected": 6,
+      "weight": 0.03,
+      "group": "catalogue"
+    },
+    {
+      "id": "a2_options_named_and_valued",
+      "pass": true,
+      "actual": 6,
+      "expected": 6,
+      "weight": 0.07,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4a_cardigan_prices",
+      "pass": true,
+      "actual": 8,
+      "expected": 8,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4b_windbreaker_price_is_the_corrected_one",
+      "pass": true,
+      "actual": 6,
+      "expected": 6,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "a4c_beanie_prices",
+      "pass": true,
+      "actual": 2,
+      "expected": 2,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5a_cardigan_stock_codes",
+      "pass": true,
+      "actual": 8,
+      "expected": 8,
+      "weight": 0.033,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5b_windbreaker_stock_codes",
+      "pass": true,
+      "actual": 6,
+      "expected": 6,
+      "weight": 0.034,
+      "group": "catalogue"
+    },
+    {
+      "id": "a5c_beanie_stock_codes",
+      "pass": true,
+      "actual": 2,
+      "expected": 2,
+      "weight": 0.033,
+      "group": "catalogue"
+    },
+    {
+      "id": "a7_collection_holds_exactly_the_six",
+      "pass": true,
+      "actual": 6,
+      "expected": 6,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "a8_the_five_launching_styles_are_live",
+      "pass": true,
+      "actual": 5,
+      "expected": 5,
+      "weight": 0.02,
+      "group": "catalogue"
+    },
+    {
+      "id": "b1_supplier_on_file",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "stock"
+    },
+    {
+      "id": "b2_purchase_order_lines_as_ordered",
+      "pass": true,
+      "actual": 3,
+      "expected": 3,
+      "weight": 0.04,
+      "group": "stock"
+    },
+    {
+      "id": "b3_purchase_order_left_draft",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02,
+      "group": "stock"
+    },
+    {
+      "id": "b4_shipment_created_from_the_purchase_order",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "stock"
+    },
+    {
+      "id": "b5_received_what_actually_arrived",
+      "pass": true,
+      "actual": 3,
+      "expected": 3,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "b6_damage_recorded_as_rejected_on_the_delivery",
+      "pass": true,
+      "actual": 2,
+      "expected": 2,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "b7_sellable_count_after_the_delivery",
+      "pass": true,
+      "actual": 20,
+      "expected": 20,
+      "weight": 0.05,
+      "group": "stock"
+    },
+    {
+      "id": "c1_discount_code_exists",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c2_percentage_is_the_announced_one",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 0.07,
+      "group": "promotion"
+    },
+    {
+      "id": "c3_scoped_to_the_fall_drop_collection",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04,
+      "group": "promotion"
+    },
+    {
+      "id": "c4_minimum_spend",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c5_usage_limit",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "promotion"
+    },
+    {
+      "id": "c6_dates_from_the_calendar_and_still_scheduled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.05,
+      "group": "promotion"
+    },
+    {
+      "id": "c7_second_offer_is_automatic_free_shipping",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04,
+      "group": "promotion"
+    },
+    {
+      "id": "c8_the_beanie_ends_live",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01,
+      "group": "promotion"
+    },
+    {
+      "id": "d1a_unit_31_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d1b_unit_32_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d1c_unit_33_handed_in",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d2_all_three_left_submitted_not_saved",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 0.03,
+      "group": "hand-ins"
+    },
+    {
+      "id": "d3_each_hand_in_carries_text",
+      "pass": true,
+      "actual": 3,
+      "expected": 3,
+      "weight": 0.03,
+      "group": "hand-ins"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "i1_seeded_products_untouched",
+      "pass": true,
+      "actual": {
+        "count": 8,
+        "sha256": "c0e692b987e7eb251e8aacb1c50549d2e6063f21755734a8c596f992ff936381"
+      },
+      "expected": {
+        "count": 8,
+        "sha256": "c0e692b987e7eb251e8aacb1c50549d2e6063f21755734a8c596f992ff936381"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i2_seeded_variants_untouched",
+      "pass": true,
+      "actual": {
+        "count": 9,
+        "sha256": "6563835c0e3b3bc42d43cdc1f14580dbe9142b00152e65f2879fead30b211b57"
+      },
+      "expected": {
+        "count": 9,
+        "sha256": "6563835c0e3b3bc42d43cdc1f14580dbe9142b00152e65f2879fead30b211b57"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i3_seeded_discounts_untouched",
+      "pass": true,
+      "actual": {
+        "count": 2,
+        "sha256": "5f76f8daa95b52b28182a658c7bd5b3aad764b22fa2ad0aa48fb3bbfc9431ac0"
+      },
+      "expected": {
+        "count": 2,
+        "sha256": "5f76f8daa95b52b28182a658c7bd5b3aad764b22fa2ad0aa48fb3bbfc9431ac0"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i4_the_open_order_holding_committed_stock_survives",
+      "pass": true,
+      "actual": {
+        "count": 4,
+        "sha256": "fca405a0f8b7a5e181e7cf6f853d62ecb98957cf7390d3c8ce3ceeaa64440650"
+      },
+      "expected": {
+        "count": 4,
+        "sha256": "fca405a0f8b7a5e181e7cf6f853d62ecb98957cf7390d3c8ce3ceeaa64440650"
+      },
+      "weight": 1
+    },
+    {
+      "id": "i5_seeded_course_content_untouched",
+      "pass": true,
+      "actual": {
+        "count": 5,
+        "sha256": "7273eaad39616e3cf06fc9d8419643e3678f22b1aa1e9a1642541b06a20a5b19"
+      },
+      "expected": {
+        "count": 5,
+        "sha256": "7273eaad39616e3cf06fc9d8419643e3678f22b1aa1e9a1642541b06a20a5b19"
+      },
+      "weight": 1
+    }
+  ],
+  "graded": true
+}

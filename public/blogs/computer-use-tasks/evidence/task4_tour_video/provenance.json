@@ -1,0 +1,11 @@
+{
+  "trial": "task4_tour_video__eH2nwgR",
+  "trajectory_sha256": "a41c3e3b1f4e102fd96f965192de8a3b86f63f8aa43350864870a88e64082f75",
+  "result_sha256": "ef52fad76a631dc9d0c04e27949087dfa15860f3576091fbdb0a718434b0e6d2",
+  "trajectory_path": "cua/harbor/jobs/task4-tour-video-astra-20260916-r3/task4_tour_video__eH2nwgR/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/task4-tour-video-astra-20260916-r3/task4_tour_video__eH2nwgR/result.json",
+  "reports": [
+    "cua/FILES/TASK_DESIGN/task4_tour_video/TRIAL4_FAILURE_MODES_2026-09-17.md",
+    "cua/FILES/TASK_DESIGN/task4_tour_video/TRIAL1_FAILURE_ANALYSIS.md"
+  ]
+}

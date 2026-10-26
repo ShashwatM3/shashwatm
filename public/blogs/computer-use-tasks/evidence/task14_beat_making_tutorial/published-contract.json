@@ -1,0 +1,294 @@
+{
+  "$comment": [
+    "The weighted contract for lmms_video_tutorial. REVISED after the first trial.",
+    "",
+    "SHAPE. Named atomic checks with small weights, grouped in the recording's own order, so the",
+    "score reads as how far through the tutorial the agent got. That is the model the Blender",
+    "rigging rubric uses (FILES/RESOURCES/t19rig-cu-astra-v04-regrade-20260910/.../RUBRIC-v04.md).",
+    "",
+    "WHAT THE FIRST TRIAL CHANGED. Sonnet 5 scored 0.1923 while having correctly identified and",
+    "loaded AnalogBell, Muffled Bells, BinaryPiano1 and GhostBoy, found the staged 808 pack, set the",
+    "tempo to 100, and added three effects. It earned almost nothing for any of it, because every",
+    "instrument check was gated behind a note count sized for a FINISHED thirty-bar arrangement: the",
+    "melody needed 60 notes and had 8, the hi-hat needed 100 and had 16. That is a false negative on",
+    "the exact skill this task exists to measure, so every instrument check is now split in two:",
+    "  * instruments_loaded  - the right preset or sample is on a track with at least one note. This",
+    "    is the identification skill, and it is worth 28% of the score on its own.",
+    "  * instruments_filled  - the part is actually written out across the arrangement.",
+    "An agent that identifies everything and finishes nothing now lands near 0.44 rather than 0.19,",
+    "which is a fair description of what it did.",
+    "",
+    "TWO OTHER FALSE NEGATIVES FIXED. The drum checks demanded exact stock filenames, so an 808",
+    "snare from the pack this package itself stages scored zero; they now accept any snare, any",
+    "hi-hat, and either a kick sample or LMMS's own Kicker instrument. And a check that rewarded",
+    "leaving LMMS's default empty track untouched has been deleted outright: the first trial reused",
+    "that track for its first instrument, which is a perfectly sensible thing to do, and lost points",
+    "for tidiness.",
+    "",
+    "EFFECTS ARE NOW GRADED, and the earlier decision to exclude them was wrong twice over. The",
+    "stated reason was that the recording never applies any effects. It does: at about 15:30 a",
+    "caption reads 'ADDED REVERB, DELAY AND SOME EQ' and the frame shows a Calf Reverb LADSPA loaded",
+    "into a track's own effects chain. The remaining objection was that adding an effect had never",
+    "been verified as drivable by coordinate, and the first trial settled that for free by doing it:",
+    "three LADSPA effects on one track, two enabled. Any effect counts, because requiring the Calf",
+    "plugin by name would fail an agent that reached for the built-in ReverbSC instead.",
+    "",
+    "WHAT IS STILL DELIBERATELY NOT GRADED, and why each would fail a compliant agent:",
+    "  * TEMPO. The caption at 0:00 reads 'BPM-100 OR ANY OF YOUR CHOICE', so any tempo is licensed,",
+    "    including the 140 LMMS starts with.",
+    "  * EXACT PITCHES AND CHORDS. Improvised freehand on camera, never stated, and individual note",
+    "    rows are not reliably readable at the source resolution.",
+    "  * TIMBRE. The third-party packs are absent, so fixtures/samples ships synthesized stand-ins",
+    "    under the same names. Nothing here compares sound, and nothing could: the agent receives",
+    "    screenshots and never audio.",
+    "  * THE FILENAME. Any saved project counts, following the rigging rubric's filename neutrality.",
+    "",
+    "TRACK IDENTITY IS MATCHED ON NAME, tolerantly and case-insensitively, because the extractor has",
+    "no column for which preset was loaded and LMMS names a track after the preset it loads. Matching",
+    "is on a fragment ('%bell%', '%ghost%') because the recording's own Song Editor shows 'Muffed",
+    "Bells' for a preset filed as 'Muffled Bells'.",
+    "",
+    "TWO CHECKS CATCH A MODEL THAT DID NOT WATCH: per-note panning on the hi-hat track, and the drum",
+    "break across bars 13 and 14. Both are arbitrary and unguessable from knowing what a trap beat",
+    "is. The break is counted over notes AND beat/bassline clips, because the first trial built its",
+    "drums in the Beat/Bassline editor while the recording builds them as instrument tracks, and both",
+    "are legitimate.",
+    "",
+    "There are no protected invariants: this episode stages no project, so there is nothing to",
+    "preserve and protected_state is a constant 1.0.",
+    "",
+    "initial_task_progress is 0.0 - the episode's LMMS is empty, so a trial that does nothing has",
+    "nothing to be credited for. Measured by tests/preflight.py, not assumed."
+  ],
+  "saved_project_stem": "",
+  "original_project": "",
+  "render_dir": "/home/agent/Music",
+  "initial_task_progress": 0.0,
+  "assertions": [
+    {
+      "id": "loaded_analogbell",
+      "group": "instruments_loaded",
+      "$note": "0:15 - the TripleOscillator AnalogBell preset, with at least one note in it. Low bar on purpose: identifying the preset off the screen is the skill, and the first trial got this right while scoring zero because every check was gated behind a finished arrangement.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'tripleoscillator' AND LOWER(name) LIKE '%analogbell%' AND note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_bells",
+      "group": "instruments_loaded",
+      "$note": "1:45 - a ZynAddSubFX bell preset layered under the melody.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'zynaddsubfx' AND LOWER(name) LIKE '%bell%' AND note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_binarypiano",
+      "group": "instruments_loaded",
+      "$note": "3:15 - the second ZynAddSubFX preset, BinaryPiano1.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'zynaddsubfx' AND LOWER(name) LIKE '%piano%' AND note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_ghostboy",
+      "group": "instruments_loaded",
+      "$note": "13:30 - the GhostBoy preset, added late.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'tripleoscillator' AND LOWER(name) LIKE '%ghost%' AND note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_snare",
+      "group": "instruments_loaded",
+      "$note": "3:45 - any snare sample. The recording uses stock snare03.ogg; an 808 snare from the staged pack is an equally sensible reading and the first trial was wrongly failed for choosing one.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE (LOWER(s.source_name) LIKE '%snare%') AND t.note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_hihat",
+      "group": "instruments_loaded",
+      "$note": "4:30 - any hi-hat sample, stock or from the 808 pack.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE (LOWER(s.source_name) LIKE '%hihat%') AND t.note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_kick",
+      "group": "instruments_loaded",
+      "$note": "7:00 - a kick, either a kick sample or LMMS's own Kicker instrument. The first trial used Kicker, which is a fair substitute for a kick sample and was wrongly failed.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t LEFT JOIN samples s ON s.track_id = t.id WHERE (LOWER(COALESCE(s.source_name,'')) LIKE '%kick%' OR t.instrument = 'kicker') AND t.note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_soundfont_bass",
+      "group": "instruments_loaded",
+      "$note": "11:15 - a bass loaded into the SF2 Player from the soundfont pack.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'sf2player' AND note_count >= 1",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_vocal_chops",
+      "group": "instruments_loaded",
+      "$note": "14:45 - at least one vocal one-shot on its own track.",
+      "sql": "SELECT COUNT(DISTINCT t.id) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE LOWER(s.source) LIKE '%vocal chops%' OR LOWER(s.source_name) LIKE '%cymatics%'",
+      "expected": 1,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "filled_analogbell",
+      "group": "instruments_filled",
+      "$note": "The melody actually written out across the arrangement rather than sketched for a bar or two.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'tripleoscillator' AND LOWER(name) LIKE '%analogbell%' AND note_count >= 40",
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "filled_bells",
+      "group": "instruments_filled",
+      "$note": "The bell layer written out.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'zynaddsubfx' AND LOWER(name) LIKE '%bell%' AND note_count >= 15",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_binarypiano",
+      "group": "instruments_filled",
+      "$note": "The chord part written out.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'zynaddsubfx' AND LOWER(name) LIKE '%piano%' AND note_count >= 15",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_ghostboy",
+      "group": "instruments_filled",
+      "$note": "The late lead written out.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks WHERE instrument = 'tripleoscillator' AND LOWER(name) LIKE '%ghost%' AND note_count >= 15",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_snare",
+      "group": "instruments_filled",
+      "$note": "A snare pattern rather than a couple of hits.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE (LOWER(s.source_name) LIKE '%snare%') AND t.note_count >= 20",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_hihat",
+      "group": "instruments_filled",
+      "$note": "The hi-hat is the densest part of the recording, with 1/16 and 1/32 rolls, so this floor is the highest of the set.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE (LOWER(s.source_name) LIKE '%hihat%') AND t.note_count >= 60",
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "filled_kick",
+      "group": "instruments_filled",
+      "$note": "A kick pattern across the arrangement.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM tracks t LEFT JOIN samples s ON s.track_id = t.id WHERE (LOWER(COALESCE(s.source_name,'')) LIKE '%kick%' OR t.instrument = 'kicker') AND t.note_count >= 20",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_vocal_chops",
+      "group": "instruments_filled",
+      "$note": "Both vocal one-shots, as the recording ends up with.",
+      "sql": "SELECT COUNT(DISTINCT t.id) FROM tracks t JOIN samples s ON s.track_id = t.id WHERE LOWER(s.source) LIKE '%vocal chops%' OR LOWER(s.source_name) LIKE '%cymatics%'",
+      "expected": 2,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "hihat_notes_are_panned",
+      "group": "detail",
+      "$note": "9:00 - WATCH-DISCRIMINATOR. Panning set one note at a time in the piano roll's Note Panning lane. Nothing about a trap beat implies it; only someone who watched would do it.",
+      "sql": "SELECT COUNT(*) FROM notes n JOIN tracks t ON t.id = n.track_id JOIN samples s ON s.track_id = t.id WHERE LOWER(s.source_name) LIKE '%hihat%' AND n.pan <> 0",
+      "expected": 10,
+      "weight": 3,
+      "compare": "ge"
+    },
+    {
+      "id": "drums_break_at_bar_13",
+      "group": "detail",
+      "$note": "WATCH-DISCRIMINATOR. The drums drop out for bars 13 and 14 and come back. Counted over both representations, because building drums as instrument tracks and building them in the Beat/Bassline editor are both legitimate and the first trial chose the latter. Both halves are required, so a project that merely stops before bar 13 cannot pass.",
+      "sql": "SELECT CASE WHEN ((SELECT COUNT(*) FROM notes n JOIN tracks t ON t.id = n.track_id LEFT JOIN samples s ON s.track_id = t.id WHERE (LOWER(COALESCE(s.source_name,'')) LIKE '%hihat%' OR LOWER(COALESCE(s.source_name,'')) LIKE '%snare%' OR LOWER(COALESCE(s.source_name,'')) LIKE '%kick%' OR t.instrument = 'kicker') AND (n.song_pos_ticks / 192) IN (12, 13)) + (SELECT COUNT(*) FROM bb_clips c WHERE c.pos_ticks < 2688 AND (c.pos_ticks + COALESCE(c.len_ticks, 0)) > 2304)) = 0 AND ((SELECT COUNT(*) FROM notes n JOIN tracks t ON t.id = n.track_id LEFT JOIN samples s ON s.track_id = t.id WHERE (LOWER(COALESCE(s.source_name,'')) LIKE '%hihat%' OR LOWER(COALESCE(s.source_name,'')) LIKE '%snare%' OR LOWER(COALESCE(s.source_name,'')) LIKE '%kick%' OR t.instrument = 'kicker') AND (n.song_pos_ticks / 192) >= 14) + (SELECT COUNT(*) FROM bb_clips c WHERE c.pos_ticks >= 2688)) > 0 THEN 1 ELSE 0 END",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "effect_enabled_on_a_track",
+      "group": "effects",
+      "$note": "15:30 - the caption reads 'ADDED REVERB, DELAY AND SOME EQ' and the frame shows a reverb loaded into a track's own effects chain. Any effect counts: requiring the Calf plugin the recording happens to use would fail an agent that reached for LMMS's built-in ReverbSC, which does the same job.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM effects WHERE owner_kind = 'track' AND enabled = 1",
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "three_effects_added",
+      "group": "effects",
+      "$note": "The caption names three things, so three is the full mark. Graded separately from the first so adding one reverb still earns something.",
+      "sql": "SELECT COUNT(*) FROM effects WHERE owner_kind = 'track'",
+      "expected": 3,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "track_count",
+      "group": "arrangement",
+      "$note": "The finished Song Editor holds eleven tracks. Nine is the floor so a reproduction missing a couple still scores.",
+      "sql": "SELECT COUNT(*) FROM tracks WHERE parent_track_id IS NULL",
+      "expected": 9,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "arrangement_reaches_bar_27",
+      "group": "arrangement",
+      "$note": "15:45 - the arrangement is spread out to about bar 30. 5184 ticks is bar 27, leaving room for a reproduction a few bars short. The first trial reached 576, which is bar 3. Graded as a floor, not an equality: the arrangement only has to REACH bar 27.",
+      "sql": "SELECT length_ticks FROM project WHERE id = 1",
+      "expected": 5184,
+      "weight": 4,
+      "compare": "ge"
+    },
+    {
+      "id": "project_saved",
+      "group": "delivery",
+      "$note": "Any saved project under any name, following the rigging rubric's filename neutrality.",
+      "sql": "SELECT CASE WHEN LOWER(value) LIKE '%.mmp' OR LOWER(value) LIKE '%.mmpz' THEN 1 ELSE 0 END FROM state_meta WHERE key = 'source_name'",
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "render_exists",
+      "group": "delivery",
+      "$note": "Container and codec are checked as well as the extension, so another format renamed .wav does not pass. The instruction asks for this; the recording never exports.",
+      "sql": "SELECT MIN(COUNT(*), 1) FROM renders WHERE probed = 1 AND path LIKE '/home/agent/Music/%' AND LOWER(file_name) LIKE '%.wav' AND sample_rate = 44100 AND channels = 2 AND container LIKE '%wav%' AND codec LIKE 'pcm%'",
+      "expected": 1,
+      "weight": 5
+    },
+    {
+      "id": "render_is_not_silent",
+      "group": "delivery",
+      "$note": "The first trial exported a file of the right format and length whose every sample was zero, and reported success. No ffprobe field distinguishes that from a real render; peak amplitude is the only one that can. Full scale for 16-bit is near 32767. Weighted at 6 rather than 3 because a silent export is a failed delivery rather than a blemish: the client receives nothing usable. At weight 3 a run that built the whole track and shipped silence still scored 0.95.",
+      "sql": "SELECT COALESCE(MAX(peak_amplitude), 0) FROM renders WHERE probed = 1 AND path LIKE '/home/agent/Music/%' AND LOWER(file_name) LIKE '%.wav' AND sample_rate = 44100 AND channels = 2 AND container LIKE '%wav%' AND codec LIKE 'pcm%'",
+      "expected": 1000,
+      "weight": 6,
+      "compare": "ge"
+    },
+    {
+      "id": "render_is_the_whole_track",
+      "group": "delivery",
+      "$note": "Thirty bars is 72s at 100bpm and 51s at 140. The 30s floor rules out an export truncated to a few bars without grading tempo through the back door. The first trial exported 9.6s.",
+      "sql": "SELECT COALESCE(MAX(duration_ms), 0) FROM renders WHERE probed = 1 AND path LIKE '/home/agent/Music/%' AND LOWER(file_name) LIKE '%.wav' AND sample_rate = 44100 AND channels = 2 AND container LIKE '%wav%' AND codec LIKE 'pcm%'",
+      "expected": 30000,
+      "weight": 2,
+      "compare": "ge"
+    }
+  ],
+  "invariants": []
+}

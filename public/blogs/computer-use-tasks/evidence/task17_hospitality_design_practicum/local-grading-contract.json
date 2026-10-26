@@ -1,0 +1,986 @@
+{
+  "schema_version": 2,
+  "family": "task17_hospitality_design_practicum",
+  "status": "bounded_scoring_ready_for_trial",
+  "reward_enabled": true,
+  "bindings_sha256": "bd36382ab2ba9d8303e184958173a6217e76bd5c7b30fa328a92c8282c1afee0",
+  "totals": {
+    "checks": 31,
+    "weight": 100,
+    "invariants": 6
+  },
+  "checks": [
+    {
+      "id": "A1",
+      "weight": 6,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Correct the designated listing facts and P3 washer amenity, preserving correct amenities.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "A2",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Remove affirmative superseded claims; a negated warning about the old claim is allowed.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "A3",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Keep private arrival methods, directions, times and parking accurate and complete.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "A5",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Reply to the outstanding guest questions; P2 includes the exact private section for entry instructions.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "B1",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Send property-organized findings to Lucia in the project conversation.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "B2",
+      "weight": 4,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Explain the repeated entrance confusion shared by P1 and P2, grounded in their conversations.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "B3",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Identify P3 parking-charge confusion and explain the correct information.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "B4",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The guest questions and operational corrections",
+      "correct_when": "Distinguish recurring confusion from one-off questions without inventing a recurrence.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The guest questions and operational corrections",
+        "representative_sentence": "The public listings need their contradicted facts corrected, with the wrong claims removed and correct unrelated details preserved.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "C1",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Maintain three distinct property-correct editable guides corresponding to the delivered exports.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "C2",
+      "weight": 5,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Show the complete compact arrival facts taught by the brief and current property notes.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "C3",
+      "weight": 6,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Make the 390 by 844 guide readable at phone size without clipped, hidden or overlapping required text.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "C4",
+      "weight": 1,
+      "properties": [
+        "P2"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Clearly distinguish the private bedroom from the shared kitchen and bathroom.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "C5",
+      "weight": 3,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send a working handoff of six unambiguous current, accessible PDF/image exports with matching content.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "D1",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The walkthroughs",
+      "correct_when": "Keep a saved editable walkthrough project with active property media for each property.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "D2",
+      "weight": 5,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The walkthroughs",
+      "correct_when": "Use the correct property photographs, current entrance start and current guide overlay in the delivered walkthrough.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "D3",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Keep every caption and guide-overlay exposure visible for the delivered manager minimum.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "D4",
+      "weight": 2,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Show the approved alternative entrance in the current P1 walkthrough after the closure.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "D5",
+      "weight": 3,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver three accessible MP4/MOV files tied to completed native renders and current saved projects.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "E1",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send Emilia the complete approved alternative route after her closure report.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "E2",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Update P1 public directions to the full alternative route without recommending the closed entrance.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "E3",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Update P1 private directions to the full alternative route while preserving private access details.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "E4",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver current P1 guide PDF/image exports completed after the closure and containing the updated route.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "E5",
+      "weight": 3,
+      "properties": [
+        "P1"
+      ],
+      "gated_on": "guest.closure",
+      "authority_section": "The walkthroughs",
+      "correct_when": "Replace the original entrance sequence and align current P1 imagery, captions and guide overlay with the alternative route.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The walkthroughs",
+        "representative_sentence": "If an entrance changes, the video's entrance imagery, captions and guide overlay must all show the current route.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "F1",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "The three arrival guides",
+      "correct_when": "Make every current guide header panel at least as tall as the delivered manager instruction.",
+      "aggregation": "all_properties",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "F2",
+      "weight": 3,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": "manager.feedback",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Export every current PDF/image again after the review; a new receipt for identical bytes is legitimate.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "F3",
+      "weight": 2,
+      "properties": [],
+      "gated_on": "manager.feedback",
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Deliver the required current revisions and final handoff while preserving recipient-accessible review history.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "G1",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Send Lucia a final handoff whose links resolve to the current six guides and three videos.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "G2",
+      "weight": 2,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "Review, revisions and the final handoff",
+      "correct_when": "Describe completed corrections and feedback changes truthfully; separate unresolved work and preserve actual event order.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "Review, revisions and the final handoff",
+        "representative_sentence": "When the work is complete, send Lucia the links to the six current guide files and three current videos, together with an accurate summary of the listing corrections and the changes made after feedback.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "Q1",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Distinguish the property title, section headings and body text through visible emphasis.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "Q2",
+      "weight": 4,
+      "properties": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Group the required content into recognizable, usable sections.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    },
+    {
+      "id": "Q4",
+      "weight": 4,
+      "properties": [],
+      "gated_on": null,
+      "authority_section": "The three arrival guides",
+      "correct_when": "Use a coherent visual treatment across all three guides while allowing content-specific wrapping and placement.",
+      "aggregation": "equal_units",
+      "authority": {
+        "brief_file_id": "f_task17-arrival_008",
+        "brief_sha256": "641417b6480c9e32bbc84c1162437536a5a465cc0f7b2583a303cba3e959c8d5",
+        "section": "The three arrival guides",
+        "representative_sentence": "The examples show the visual approach: a clear property title, distinguishable section headings, comfortable body text, recognizable groups and a consistent treatment across the three guides.",
+        "additional": "Property notes, guest questions and delivered event instructions as specified in OBLIGATION_MAP.md"
+      }
+    }
+  ],
+  "invariants": [
+    {
+      "id": "I1",
+      "destroys": [
+        "*"
+      ],
+      "section": "Private information",
+      "rule": "A demonstrated disclosure of a private Wi-Fi password or entry code in a public listing, exported guide/video, findings or handoff destroys the whole reward. Incomplete evidence is unknown, not a demonstrated disclosure."
+    },
+    {
+      "id": "I2",
+      "destroys": [
+        "E*"
+      ],
+      "section": "Review, revisions and the final handoff",
+      "rule": "Demonstrated propagation of the P1 alternative route into P2/P3 destroys route-revision credit. Their own required corrections remain allowed."
+    },
+    {
+      "id": "I3",
+      "destroys": [
+        "A*",
+        "C*",
+        "Q*"
+      ],
+      "section": "The three arrival guides",
+      "rule": "Demonstrated invented or cross-property facts destroy the offending property's listing/guide/design credit; unclassified wording is unknown, not proof of invention."
+    },
+    {
+      "id": "I4",
+      "destroys": [
+        "C5",
+        "D5",
+        "F2"
+      ],
+      "section": "Review, revisions and the final handoff",
+      "rule": "Demonstrated mismatch of current delivered bytes and saved work destroys the relevant delivery/fresh-export credit. Missing provenance is unknown and cannot establish stale work."
+    },
+    {
+      "id": "I5",
+      "destroys": [
+        "A3",
+        "E3"
+      ],
+      "section": "Private information",
+      "rule": "Deleting, emptying or changing correct private credentials/details destroys private-arrival credit; preserving already-correct information is valid."
+    },
+    {
+      "id": "I6",
+      "destroys": [
+        "F3"
+      ],
+      "section": "Review, revisions and the final handoff",
+      "rule": "Removing the sent review offer or the recipient-accessible six reviewed files destroys revision-handoff credit. Private controller copies alone are insufficient."
+    }
+  ],
+  "quality_families": {
+    "hierarchy": "Q1",
+    "organization": "Q2",
+    "readability": "C3",
+    "consistency": "Q4",
+    "adaptation": [
+      "C2",
+      "C4",
+      "Q2",
+      "C3"
+    ]
+  },
+  "adaptation_extra_weight": 0,
+  "properties": {
+    "P1": {
+      "listing_id": 1,
+      "reply_thread": 2,
+      "outstanding_message_id": 203,
+      "baseline_listing": {
+        "id": 1,
+        "title": "Sunny Alfama loft with river view",
+        "description": "Bright loft in Alfama with a river view, wifi and a kitchen. You have the whole loft to yourselves. Self check-in starts at 14:00. Enter through the red street door at 24 Rua dos Remedios; use the smart lock on that door, not the corner shop entrance.",
+        "place_type": "entire_place",
+        "bedrooms": 1,
+        "guests_max": 3
+      },
+      "baseline_private": {
+        "listing_id": 1,
+        "check_in_method": "smart_lock",
+        "check_in_time": "15:00",
+        "check_out_time": "11:00",
+        "wifi_name": "AlfamaLoft",
+        "parking_info": "No parking on the property. Use the paid garage four minutes away on foot; do not stop in front of the entrance.",
+        "house_manual": "Arrival: Self check-in starts at 15:00, with check-out by 11:00. The current entrance is the red street door at 24 Rua dos Remedios. Use the smart lock on that door, not the corner shop entrance. Your booking-specific access code is shown on the lock screen. The whole loft, kitchen and bathroom are private. Quiet hours start at 22:00. No smoking or parties. Trash goes out Tuesday and Friday."
+      },
+      "private_values": [
+        {
+          "kind": "wifi_password",
+          "length": 9,
+          "sha256": "dce59a26508977d1b6ddd36da987c7b36092220ec21c4f70905011e788c10d57"
+        }
+      ],
+      "baseline_correct_amenities": [
+        "air_conditioning",
+        "carbon_monoxide_alarm",
+        "dedicated_workspace",
+        "kitchen",
+        "self_checkin",
+        "smoke_alarm",
+        "tv",
+        "wifi"
+      ],
+      "notes": "Property 1: Sunny Alfama Loft with River View\nLisbon, Portugal\n\nPROPERTY TYPE\nEntire apartment (whole place)\n\nLOCATION & ENTRANCE\nThe entrance is the red street door on Rua dos Remedios. Use that door's smart lock for entry. This is the current entrance route.\n\nAPPROVED ALTERNATIVE ROUTE\nIf the usual entrance on Rua dos Remedios is unavailable for any reason, use the service entrance accessed via the small courtyard at the rear. Enter through the archway on Rua dos Remedios, cross the courtyard, and take the left stairwell to the third floor. This is the approved alternative and should only be used when the main entrance is inaccessible.\n\nPARKING\nNo parking on the premises. The nearest paid public garage is four minutes away on foot. The garage charges at all hours. Parking is not included or validated.\n\nCHECK-IN & CHECK-OUT\nCheck-in starts at 15:00 (3:00 PM), NOT 14:00 as the public listing states. Check-out is by 11:00 (11:00 AM). Self check-in using the smart lock is available during the check-in window.\n\nNETWORK ACCESS\nWi-Fi network name and password are provided in the private arrival guide. These credentials are private and must never appear in any public-facing or submitted materials.\n\nThese arrival details are what guests rely on to get in. Keep them complete and current, and never leave a property without them.\n\nAMENITIES\n• Full kitchen with dishwasher, oven, stove, refrigerator\n• Washing machine (no dryer)\n• Air conditioning (living room and bedroom)\n• River view from living room balcony\n• One bedroom, one bathroom\n• Maximum occupancy: 3 guests\n\nNOTES\nThe apartment is up three flights of stairs with no elevator. Guests with mobility concerns should be advised in advance.",
+      "notes_sha256": "091029d58b70378651949c59f63c41d871ca32c17fa32bba1080ee1735057dea",
+      "photos": [
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_alt_entrance.jpg",
+          "sha256": "2315bf26542354475b4afcb0989827863b42b7fe3287cbcc4ec8161237017989",
+          "property_id": "P1",
+          "role": "alternative_entrance"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_bedroom_01.jpg",
+          "sha256": "9b9ddcdd40b6fdf6329dd3cdfec7dbf12b8b9f123ac1eb5ff3aa6905f90c5ab7",
+          "property_id": "P1",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_entrance.jpg",
+          "sha256": "a89102a9f657b2b0dd697b393d0fbb3f7270d5efbf33f59dbe3f369d14dd293b",
+          "property_id": "P1",
+          "role": "main_entrance"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_living_room.jpg",
+          "sha256": "0657d7b5b63c1932bf9eb678273d48f932b0fd291773259a739416bb8a275fb1",
+          "property_id": "P1",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_street_01.jpg",
+          "sha256": "c5b4cdcd5feab46f1d8842bc78f3e9a02798cfdf2efe1a700349d96e892422aa",
+          "property_id": "P1",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P1/p1_street_02.jpg",
+          "sha256": "e787de30b4324461e0c2aeab29285a15e5a9cbd83fcaaf8a05784629feaf3e53",
+          "property_id": "P1",
+          "role": "photograph"
+        }
+      ],
+      "required": {
+        "correction": {
+          "checkin": "15:00"
+        },
+        "superseded": {
+          "checkin": "14:00"
+        },
+        "private_method": "smart_lock",
+        "private_facts": {
+          "entrance": "P1_main",
+          "paid_parking": true
+        }
+      }
+    },
+    "P2": {
+      "listing_id": 2,
+      "reply_thread": 5,
+      "outstanding_message_id": 503,
+      "baseline_listing": {
+        "id": 2,
+        "title": "Quiet private room near Bairro Alto",
+        "description": "Private bedroom for one guest in a shared flat near Bairro Alto. The kitchen and bathroom are shared with the resident host. Enter through the street door at 88 Rua da Rosa. Your entry-code instructions are in the arrival information. Wifi and heating are available.",
+        "place_type": "private_room",
+        "bedrooms": 1,
+        "guests_max": 1
+      },
+      "baseline_private": {
+        "listing_id": 2,
+        "check_in_method": "keypad",
+        "check_in_time": "16:00",
+        "check_out_time": "10:00",
+        "wifi_name": "BairroRoomGuest",
+        "parking_info": "No parking on the property. Use a paid public garage nearby; the narrow lane must remain clear.",
+        "house_manual": "Building entry: Use the green door at 12 Travessa dos Inglesinhos, beside the brass number 12. The door at 88 Rua da Rosa belongs to the shop and is not the guest entrance. The building keypad code is [PRIVATE CODE]. This code is in the private arrival guide, in House manual under Building entry. Go up to the first floor and ring Maya. Check-in starts at 16:00 and check-out is by 10:00. Your bedroom is private; the kitchen and bathroom are shared with Maya, who lives here. Quiet hours are 23:00–08:00. No smoking."
+      },
+      "private_values": [
+        {
+          "kind": "wifi_password",
+          "length": 14,
+          "sha256": "6d2cb19fe51389fca54574cc783be402cff759c342b56c46c8b555a966d392da"
+        },
+        {
+          "kind": "entry_code",
+          "length": 4,
+          "sha256": "0a4e3e70597a358b9447fa8a647aadf5b76dde95c8e4ab02e5f8cee6caa1cd28"
+        }
+      ],
+      "baseline_correct_amenities": [
+        "heating",
+        "kitchen",
+        "smoke_alarm",
+        "wifi"
+      ],
+      "notes": "Property 2: Quiet Private Room near Bairro Alto\nLisbon, Portugal\n\nPROPERTY TYPE\nPrivate room in a shared home\n\nLOCATION & ENTRANCE\nEnter through the green door on Travessa dos Inglesinhos. This is the correct entrance. The public listing incorrectly states 88 Rua da Rosa, which is actually the shop entrance and not where guests enter.\n\nEXACT ENTRY CODE LOCATION\nThe public listing states that entry-code instructions are in the arrival information, which is correct but imprecise. The exact location is: **Private arrival guide → House manual → Building entry section**. That section contains the keypad code for the green door. This code is private and must not appear in any public-facing or submitted materials.\n\nPARKING\nNo parking on the premises. This is a central Lisbon neighborhood with very limited street parking. The nearest paid public garage is nearby. The garage charges at all hours. Guests are strongly encouraged to use public transportation or taxis instead of driving.\n\nCHECK-IN & CHECK-OUT\nCheck-in is at 16:00 (4:00 PM). Check-out is at 10:00 (10:00 AM). The host, Maya, is usually present in the evenings. If arriving outside check-in hours, guests must coordinate in advance via the private messaging channel.\n\nNETWORK ACCESS\nWi-Fi network name and password are provided in the private arrival guide. These credentials are private and must never appear in any public-facing or submitted materials.\n\nThese arrival details are what guests rely on to get in. Keep them complete and current, and never leave a property without them.\n\nAMENITIES (PRIVATE ROOM)\n• One private bedroom for one guest\n• Queen bed\n• Private workspace with desk and chair\n• Closet and storage\n• Window overlooking interior courtyard (quiet)\n\nAMENITIES (SHARED WITH RESIDENT HOST)\n• Full kitchen\n• One full bathroom\n• Living room with TV\n• Washing machine (no dryer)\n\nHOUSE RULES\n• Quiet hours: 23:00 (11:00 PM) to 08:00 (8:00 AM)\n• No smoking anywhere in the apartment\n• No guests or visitors in the private room\n• Kitchen cleanup immediately after use\n\nNOTES\nThis is a lived-in home, not a hotel. The host values respectful, considerate guests. The neighborhood is lively in the evenings, but the room itself is quiet due to the interior courtyard placement.",
+      "notes_sha256": "9c5302a5940c1b5347ad07fecf69039349ecef29022a87c27e17650f30ce6fde",
+      "photos": [
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P2/p2_bedroom.jpg",
+          "sha256": "0d9d6211232220d7c7d0afc7dfd44bcf14baed006ea35096cf9a4e94a6b110ce",
+          "property_id": "P2",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P2/p2_entrance.jpg",
+          "sha256": "fd1c44b986c0b27f85aede39790e1dec164d81b1a3f2746977d324263a91d664",
+          "property_id": "P2",
+          "role": "main_entrance"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P2/p2_street_01.jpg",
+          "sha256": "503e54f927a5c07d337ebbb106e6e0f0418cf2537d861a391d0a1d799f58d7ae",
+          "property_id": "P2",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P2/p2_street_02.jpg",
+          "sha256": "2cf3f82f07e52f983ebfed47ee3e12e69403ffa7aefe2a6e6bccfa79167b4a39",
+          "property_id": "P2",
+          "role": "photograph"
+        }
+      ],
+      "required": {
+        "correction": {
+          "entrance": "P2_correct"
+        },
+        "superseded": {
+          "entrance": "P2_wrong"
+        },
+        "private_method": "keypad",
+        "private_facts": {
+          "entrance": "P2_correct",
+          "paid_parking": true
+        }
+      }
+    },
+    "P3": {
+      "listing_id": 35,
+      "reply_thread": 8,
+      "outstanding_message_id": 804,
+      "baseline_listing": {
+        "id": 35,
+        "title": "Garden apartment in Estrela",
+        "description": "An entire one-bedroom apartment in Estrela with a small garden, a private kitchen and bathroom, and wifi. A washing machine is available inside the apartment. Check-in is from 15:00 and check-out is by 11:00. Enter at 18 Rua de Sao Bernardo. Parking is in the paid public garage nearby; there is no parking on the property.",
+        "place_type": "entire_place",
+        "bedrooms": 1,
+        "guests_max": 2
+      },
+      "baseline_private": {
+        "listing_id": 35,
+        "check_in_method": "lockbox",
+        "check_in_time": "15:00",
+        "check_out_time": "11:00",
+        "wifi_name": "EstrelaGardenGuest",
+        "parking_info": "No parking on the property. The public garage on Rua de Sao Bernardo charges at all hours, including after 18:00 and overnight. Take a ticket on entry and pay at the machine before returning to your car. The apartment does not include a parking discount or validation.",
+        "house_manual": "Arrival: Enter at 18 Rua de Sao Bernardo. The lockbox is on the inside face of the gate; its code is [PRIVATE CODE]. The apartment is on the ground floor. Check-in starts at 15:00 and check-out is by 11:00. The apartment, garden, kitchen and bathroom are private. There is no washing machine in the apartment; use the laundrette two streets away. Keep noise down after 22:00. No smoking or parties."
+      },
+      "private_values": [
+        {
+          "kind": "wifi_password",
+          "length": 16,
+          "sha256": "c5a65d7de2a1f8de44b0d9909c218dbc7111d0726dc49f3007759e1085659cb5"
+        },
+        {
+          "kind": "entry_code",
+          "length": 4,
+          "sha256": "cd91c5876cd288087223b6e1b844a78dfeb0d2298d56814e3388934274fb9277"
+        }
+      ],
+      "baseline_correct_amenities": [
+        "carbon_monoxide_alarm",
+        "heating",
+        "kitchen",
+        "self_checkin",
+        "smoke_alarm",
+        "wifi"
+      ],
+      "notes": "Property 3: Garden Apartment in Estrela\nLisbon, Portugal\n\nPROPERTY TYPE\nEntire apartment (whole place) with private garden\n\nLOCATION & ENTRANCE\nThe apartment is in the Estrela district at 18 Rua de Sao Bernardo, ground floor. The private arrival guide describes the lockbox on the inside face of the gate. Enter through the gate and locate the lockbox to retrieve the apartment key.\n\nPARKING\nNo parking on the premises. The nearby public garage charges at all hours, including after 18:00 (6:00 PM) and overnight, contrary to what the public listing may suggest. Parking is not included or validated. Guests take a ticket upon entry and pay at the machine before returning to the car. None of the three properties in this practicum has parking on the premises.\n\nCHECK-IN & CHECK-OUT\nCheck-in is at 15:00 (3:00 PM). Check-out is by 11:00 (11:00 AM).\n\nNETWORK ACCESS\nWi-Fi network name and password are provided in the private arrival guide. These credentials are private and must never appear in any public-facing or submitted materials.\n\nThese arrival details are what guests rely on to get in. Keep them complete and current, and never leave a property without them.\n\nLAUNDRY\nThere is no washing machine inside the apartment, contrary to what the public listing states. A laundrette is located two streets away and provides washing and drying services. The private arrival guide includes directions to the laundrette.\n\nAMENITIES\n• Full kitchen with dishwasher, oven, stove, refrigerator, microwave\n• One bedroom\n• One bathroom\n• Private garden accessible from the living room\n• Air conditioning\n• Maximum occupancy: 2 guests\n\nLOCATION NOTES\nEstrela is a quiet residential neighborhood known for the Basilica da Estrela and the adjacent garden. Tram 28E stops nearby and connects to central Lisbon. The neighborhood has cafés, small grocery stores, and restaurants within walking distance.\n\nNOTES\nThis is a ground-floor apartment with garden access, suitable for guests with mobility concerns. The private garden is fully enclosed and receives afternoon sun.",
+      "notes_sha256": "f6b2e24d8e6d72eee8b120e640db6e038b704e79a7ebb454905cfa42abc3f0c0",
+      "photos": [
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P3/p3_bedroom.jpg",
+          "sha256": "b301f884f4094c403f341aea5d1939a3ed6d179afd31c87477702aec5ee2155f",
+          "property_id": "P3",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P3/p3_entrance.jpg",
+          "sha256": "927233dc42af4202abf98c192678ac41cbdcf448bb9a7666b88438d59927a92f",
+          "property_id": "P3",
+          "role": "main_entrance"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P3/p3_kitchen.jpg",
+          "sha256": "fc5fb622aaae3c63f2d8218a62dec1d0201b36bd4f9e7c9c27270cd3d65bc996",
+          "property_id": "P3",
+          "role": "photograph"
+        },
+        {
+          "source": "assets-v2/property-pack/agent-visible/photos/P3/p3_living_room.jpg",
+          "sha256": "7d7fc8e52e8bd2a1c40a6b72ec258fadf03833fafc951b2903dc12f1f8a7e9a8",
+          "property_id": "P3",
+          "role": "photograph"
+        }
+      ],
+      "required": {
+        "correction": {
+          "washer": false
+        },
+        "superseded": {
+          "washer": true
+        },
+        "private_method": "lockbox",
+        "private_facts": {
+          "entrance": "P3_main",
+          "paid_parking": true,
+          "parking_all_hours": true
+        }
+      }
+    }
+  },
+  "host_id": 1,
+  "recipient_id": 2,
+  "guest_authority": {
+    "thread_id": 3,
+    "guest_id": 18,
+    "host_id": 1
+  },
+  "event_body_sha256": {
+    "manager.feedback": "832ee2479177a0a84f41330a5676b662047a8e5823e4563392ce224b69bd4918",
+    "guest.closure": "74fdacbc57620f840000c4e889ac082140d57510ff50632ba073a09253089eaa"
+  },
+  "feedback": {
+    "body_sha256": "832ee2479177a0a84f41330a5676b662047a8e5823e4563392ce224b69bd4918",
+    "caption_min_ms": 3000.0,
+    "header_min_px": 120
+  },
+  "frame": [
+    390,
+    844
+  ],
+  "source_sha256": {
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/build-contract.py": "35e44713bb804a41a663defb1fb3332c6c87a9736c50568103fddd973aed8f51",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/instruction.md": "c54775710e115d1f31e8fcce09b55983b23a334c991f10ee623c4cdaa74543e7",
+    "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/business-v1/agent-materials/instruction.md": "c54775710e115d1f31e8fcce09b55983b23a334c991f10ee623c4cdaa74543e7",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_rubric.py": "716cf312f735294d39eeee6710c1cf08069504462afbc4343408fd9b0d2a953a",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/fixtures/bindings.json": "bd36382ab2ba9d8303e184958173a6217e76bd5c7b30fa328a92c8282c1afee0",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/fixtures/airbnb/airbnb.db": "994216c09d47a02794c3b3d17cc1a2a1c821e3354e0da80a62264271ca9d5809",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/fixtures/google/google.db": "822d5c7ee43546c0efad7e8c56100e1f773a871003db32133b587697c160f3c1",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/fixtures/resources.json": "bbad04673b3c446c2c926814b497874032c3572eb935c2d4dc0f0bc39a85c1ad",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/fixtures/property-notes.json": "431a1ba423aff3d5a26174caeaf4a35e22cdbba47487441d31ce11d6725c37c3",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/environment/business-controller.mjs": "6d76562a2ca0bb26ffc2408cc2b94a17d13f419e6b20a9443146e9622b3e2879",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/environment/observe.py": "dad9bb376a4e588a29d9e7cabbbb7078d08663c97ea60fc24bc2a619ab513d3e",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/semantics.py": "14f1f28446b346b82a6af4ca1f2e59dccd03c0b5984e61c3cd29d6a560155016",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/fixtures/design-calibration/candidate-policy-v6.json": "cc33d2906d4eb22b90550d93c544c2c7a2febe1c09f0dce00fb73aba06fa7611",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/design-policy.json": "cf8f7d48db196fe60072ae6c8af02cee456fd6841ab4f02888953e75bb55a84b",
+    "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/rehearsal-v2/RELEASE_DECISION.json": "d1d9659dad55cab3e83a034a1ee7ad78f1d91d7a6d2c2dfc9164b0b4dc97caf8",
+    "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/business-v1/OBLIGATION_MAP.md": "ad70136a0c1271902f3dbe4ee4d4fb741c283428a979a2ef8af929689230b172",
+    "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/feasibility-v1/DELIVERY_EVENT_EVIDENCE_CONTRACT.md": "16402e8f719f4cf58a4621b0cc25e7615a36d09cf0225d26cece78c286d07089",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/verify.py": "7a4aef55002db5a65b2a49dce5a4b3cf03a4d64dc2c99d717cc276660f29bd22",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_grader.py": "3f3bfcc9f35ce4b5808109ae7620ada8e556d3c502b8b1dc26af5db1f6547768",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_evidence.py": "05b82a74cd7bc5bea8b52e04a8312e5f8465cd7cfa94e9be97f6dbfc9fa561d3",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_guides.py": "06871a6d8a60fa319b05206b58d8346ec8e5782cbb10a465c754aa3c24e1fe2f",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_videos.py": "02198202352a6609e62c092e3e93da0527b28e79517b47e59256019fbe428b98",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/video_visibility.py": "6b47b03d6b6d948dc77ded235e3af5f0fd6f02885e883e2774e587d0766b77a4",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_routes.py": "78dd9b9aab6ae896a999b4d1597a36ab17e8889c4692af9bee2f47d11d3d6a5e",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/header_measurement.py": "578eee62cfb45171fb7465813aa6ecc7289c0ea62a167a67e23e03b5926c375d",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/business_claims.py": "94a21ca8e5ca7ce95bd9a10f07038ad09d475143ae4a591417baa3a7fb567861",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/security.py": "304d7e93c6cdfb25223a5e7390b56eec95d49267031b14f2605395c699d14188",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/readers.py": "9ec4c3af5690b912c0c94ec56b2cb6a458093d4dd6ecd2ab2565ccaea87f0e02",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/media_provenance.py": "76a9007b9a15d3f3f19b461e60d2383321bc0e460d64b0c8b8cff7311389b82d",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/design_quality.py": "300841330bb63932450eacb1bae94c9ec81f18e544924b974b1230fb2c84b224",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/section_content.py": "255cb45c9d17322ecec2f4dde8a903d9b20e3375a4d58e515d8aa6c299e6f582",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/pdf_paint.py": "a966204ade80e59a0998c331608dba71e142acfc3d90462c1f12784ada8043ca",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/visual_pair.py": "129b8d2f436c0352b8799c69d5e665cfc5a94b46c6ef7e84145fe726d018ba6f",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/native_pair.py": "2daceddcfcc23c64757e0e410a236c12ffaf59e740a7a0f1b2f8c303c78cf949",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/capture_evidence.py": "e4d999fd20d160be035607c83fdad3e22df7f57de74f6c11ccb301af48b80bfd",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/review_offer.py": "4991e01ec1d6d4f196685a9c48f6a855ab774c001b70f9dcdfef9ac4b8fbcff5",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/producer_time.py": "9d80b01ad7d4f417a6b161aa10ebf49644db85aff2b94109c91e3bc6c230b257",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/test.sh": "fc6d395a4aa4dbf82029e3852eb345e1b864b66c6998730d0ce74d9d97f15337",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/requirements.txt": "d26cdf4c711572ba558e1993fdd7418f553ac2d3459024649980f2a68a6c9b45",
+    "cua/harbor/tasks-desktop/task17_hospitality_design_practicum/tests/Dockerfile": "6678405a387cfbe1c5e840985dc3716a5a3127a35022a8906358ea6ec9c42688"
+  },
+  "metrics": {
+    "reward": "Surviving assertion points divided by the fixed 100-point denominator.",
+    "task_progress": "Supported points before demonstrated invariant losses, divided by 100.",
+    "protected_state": "Global I1/I2 protection scalar only; all six protections and their targeted losses remain in invariant results.",
+    "unknown": "Earns no points; reported independently and blocks complete-success claims.",
+    "controller_liveness": "Controller runtime heartbeat health, separate from whether gates became eligible.",
+    "refusal": "Missing/corrupt trusted collection, identity/clock mismatch, controller never established at least 20 successful ticks, or incomplete credential-disclosure evidence.",
+    "unresolved_protection": "Withhold affected credit and report withheld_by; only demonstrated violations appear in destroyed_by.",
+    "quality_overlap": "Q3 is C3; Q5 adaptation combines C2/C4/Q2/C3 with no extra reward."
+  },
+  "release_blockers": [],
+  "coverage_limits": [
+    "Finite native/development corpus; no universal accuracy or human-label agreement claim.",
+    "Unsupported styles, paint, prose and export scales remain unknown, receive no success credit and stay in the denominator.",
+    "An uncredited unknown must not be attributed to an agent mistake without independent evidence."
+  ],
+  "release_review": "rehearsal-v2/RELEASE_DECISION.json"
+}

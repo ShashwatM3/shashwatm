@@ -1,0 +1,318 @@
+{
+  "task_success": false,
+  "training_reward": 0.6418,
+  "graded_project": "pop_beat_tutorial.mmpz",
+  "graded_project_chosen_because": "the newest of 1 collected project file(s); this contract is filename-neutral",
+  "component_scores": {
+    "instruments_loaded": 0.8889,
+    "instruments_filled": 0.3889,
+    "detail": 0.0,
+    "effects": 1.0,
+    "arrangement": 1.0,
+    "delivery": 0.6
+  },
+  "component_weights": {
+    "instruments_loaded": 18,
+    "instruments_filled": 18,
+    "detail": 5,
+    "effects": 5,
+    "arrangement": 6,
+    "delivery": 15
+  },
+  "all_checks_passed": false,
+  "audio_files_probed": [
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap01.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap02.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap03.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap04.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap05.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap06.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap07.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap08.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap09.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap10.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap11.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap12.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap13.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap14.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap15.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap16.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap17.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/classic 808/808-Clap18.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats01.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats02.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats03.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats04.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats05.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats06.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats07.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats08.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats09.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats10.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats11.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats12.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats13.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats14.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats15.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats16.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats17.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats18.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats19.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats20.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats21.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats22.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats23.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-HiHats24.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-OpenHiHats01.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-OpenHiHats02.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-OpenHiHats03.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/hihats/808-OpenHiHats04.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/kicks/808-Kick01.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/kicks/808-Kick02.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/kicks/808-Kick03.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/kicks/808-Kick04.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Rim1.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Rim2.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Rim3.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Rim4.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Snare01.wav",
+    "/home/agent/Documents/lmms/samples/808_drum_kit/snares/808-Snare02.wav",
+    "/home/agent/Documents/lmms/samples/Vocal Chops/Cymatics - Euphoria Riser 01.wav",
+    "/home/agent/Documents/lmms/samples/Vocal Chops/Cymatics - Euphoria Vocal Chop 20 - 150 BPM A Min.wav",
+    "/home/agent/Music/pop_beat_tutorial.wav"
+  ],
+  "assertions": [
+    {
+      "id": "loaded_analogbell",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_bells",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_binarypiano",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_ghostboy",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_snare",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_hihat",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_kick",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_soundfont_bass",
+      "group": "instruments_loaded",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "loaded_vocal_chops",
+      "group": "instruments_loaded",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "filled_analogbell",
+      "group": "instruments_filled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "filled_bells",
+      "group": "instruments_filled",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_binarypiano",
+      "group": "instruments_filled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_ghostboy",
+      "group": "instruments_filled",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_snare",
+      "group": "instruments_filled",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_hihat",
+      "group": "instruments_filled",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "filled_kick",
+      "group": "instruments_filled",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "filled_vocal_chops",
+      "group": "instruments_filled",
+      "pass": false,
+      "actual": 1,
+      "expected": 2,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "hihat_notes_are_panned",
+      "group": "detail",
+      "pass": false,
+      "actual": 0,
+      "expected": 10,
+      "weight": 3,
+      "compare": "ge"
+    },
+    {
+      "id": "drums_break_at_bar_13",
+      "group": "detail",
+      "pass": false,
+      "actual": 0,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "effect_enabled_on_a_track",
+      "group": "effects",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "three_effects_added",
+      "group": "effects",
+      "pass": true,
+      "actual": 3,
+      "expected": 3,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "track_count",
+      "group": "arrangement",
+      "pass": true,
+      "actual": 15,
+      "expected": 9,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "arrangement_reaches_bar_27",
+      "group": "arrangement",
+      "pass": true,
+      "actual": 6336,
+      "expected": 5184,
+      "weight": 4,
+      "compare": "ge"
+    },
+    {
+      "id": "project_saved",
+      "group": "delivery",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    },
+    {
+      "id": "render_exists",
+      "group": "delivery",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 5
+    },
+    {
+      "id": "render_is_not_silent",
+      "group": "delivery",
+      "pass": false,
+      "actual": 0,
+      "expected": 1000,
+      "weight": 6,
+      "compare": "ge"
+    },
+    {
+      "id": "render_is_the_whole_track",
+      "group": "delivery",
+      "pass": true,
+      "actual": 81595,
+      "expected": 30000,
+      "weight": 2,
+      "compare": "ge"
+    }
+  ],
+  "unscored": [
+    "tempo, which the recording's caption declares to be the viewer's choice",
+    "exact pitches and chords, improvised on camera and unreadable at 640x360",
+    "timbre, which the agent cannot hear and the stand-in samples do not reproduce",
+    "automation and effects, which the recording never actually applies",
+    "whether the recording was watched, inferred from the three discriminator checks rather than audited from the trajectory, which this container never sees"
+  ],
+  "graded": true
+}

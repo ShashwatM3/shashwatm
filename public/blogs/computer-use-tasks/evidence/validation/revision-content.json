@@ -1,0 +1,9 @@
+{
+  "same_content_and_images_in_both_variants": true,
+  "all_original_figure_sources_retained": true,
+  "article_refresh_mentions": 1,
+  "removed_pitch_and_date_labels": true,
+  "task_cases": 12,
+  "default_theme": "dark",
+  "paper_route": "paper.html"
+}

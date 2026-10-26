@@ -1,0 +1,10 @@
+{
+  "trial": "shop_course_term__dcF2xjs",
+  "trajectory_sha256": "671b6e6c27fa2757590a5bfd46fd50906a445f60b02b30f0a5a993a3da18f0f2",
+  "result_sha256": "af1bbd978a739fae0cc723791be4c46da281d50efd4b0e52764891ca59ab942e",
+  "trajectory_path": "cua/harbor/jobs/shop-course-term-astra-20260918a/shop_course_term__dcF2xjs/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/shop-course-term-astra-20260918a/shop_course_term__dcF2xjs/result.json",
+  "reports": [
+    "cua/FILES/TASK_DESIGN/task16_store_management_workflows/FAILURE_MODE_ANALYSIS_2026-09-18.md"
+  ]
+}

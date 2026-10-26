@@ -1,0 +1,10 @@
+{
+  "trial": "task17_hospitality_design_practi__ZYnHKyt",
+  "trajectory_sha256": "ea774738866b552ee1d158505a630e156ac14293d8976fa408b8e39bd4b67562",
+  "result_sha256": "9f3402b78c61d6ce7c48ef18581ff5efa3fa06e6e55f1a157e855e415b119896",
+  "trajectory_path": "cua/harbor/jobs/task17-hospitality-kimi-20260925-r7-kimi-k2.6-sail-20260925T213032098Z/task17_hospitality_design_practi__ZYnHKyt/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs/task17-hospitality-kimi-20260925-r7-kimi-k2.6-sail-20260925T213032098Z/task17_hospitality_design_practi__ZYnHKyt/result.json",
+  "reports": [
+    "cua/FILES/TASK_DESIGN/task17_hospitality_design_practicum/trial-v2/FULL_TRIAL_REVIEW.md"
+  ]
+}

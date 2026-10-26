@@ -1,0 +1,130 @@
+{
+  "task_success": false,
+  "training_reward": 0.5538,
+  "protected_invariant_ratio": 1.0,
+  "graded_project": "quayside cue 112.mmp",
+  "graded_project_chosen_because": "the file named as the instruction asked",
+  "original_project_present": true,
+  "audio_files_probed": [
+    "/home/agent/Music/quayside cue 112.wav"
+  ],
+  "assertions": [
+    {
+      "id": "tempo_is_target",
+      "pass": true,
+      "actual": 112.0,
+      "expected": 112.0,
+      "weight": 5
+    },
+    {
+      "id": "bass_line_complete_and_transposed",
+      "pass": false,
+      "actual": 15,
+      "expected": 32,
+      "weight": 11
+    },
+    {
+      "id": "chord_pad_complete_and_transposed",
+      "pass": false,
+      "actual": 6,
+      "expected": 24,
+      "weight": 8
+    },
+    {
+      "id": "the_break_bar_is_not_the_pattern",
+      "pass": false,
+      "actual": 2,
+      "expected": 4,
+      "weight": 4
+    },
+    {
+      "id": "the_cue_runs_to_the_last_bar",
+      "pass": true,
+      "actual": 7680,
+      "expected": 7680,
+      "weight": 4
+    },
+    {
+      "id": "drums_under_every_section_that_asks_for_them",
+      "pass": false,
+      "actual": 30,
+      "expected": 32,
+      "weight": 6
+    },
+    {
+      "id": "every_graded_track_is_audible",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 4
+    },
+    {
+      "id": "automation_lane_exists_on_the_named_parameter",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 4
+    },
+    {
+      "id": "the_fade_goes_the_right_way",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 3
+    },
+    {
+      "id": "render_exists",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 8
+    },
+    {
+      "id": "render_is_not_silent",
+      "pass": true,
+      "actual": 32767,
+      "expected": 1000,
+      "weight": 4,
+      "compare": "ge"
+    },
+    {
+      "id": "render_is_the_whole_cue",
+      "pass": true,
+      "actual": 87853,
+      "expected": 83143,
+      "weight": 2,
+      "compare": "ge"
+    },
+    {
+      "id": "saved_under_the_new_name",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 2
+    }
+  ],
+  "invariants": [
+    {
+      "id": "original_tempo_untouched",
+      "pass": true,
+      "actual": 96.0,
+      "expected": 96.0,
+      "weight": 1
+    },
+    {
+      "id": "original_still_incomplete",
+      "pass": true,
+      "actual": 14,
+      "expected": 14,
+      "weight": 1
+    },
+    {
+      "id": "notes_were_rewritten_not_knob_transposed",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 1
+    }
+  ],
+  "graded": true
+}

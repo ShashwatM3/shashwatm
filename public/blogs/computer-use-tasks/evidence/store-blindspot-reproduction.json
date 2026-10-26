@@ -1,0 +1,42 @@
+{
+  "scope": "Current retained term contract applied to immutable selected historical databases; later date semantics differ from historical grading, recorded below. No live exploit or new model run.",
+  "baseline_differences_from_historical": {
+    "c6_dates_from_the_calendar_and_still_scheduled": {
+      "historical": 1,
+      "current": [
+        [
+          0
+        ]
+      ]
+    }
+  },
+  "contract_sha256": "1a6c279a03d3c4cc1cd335352e61d7646e08da6c5ec03507cd3767b9acbcf4e0",
+  "trial": "shop_course_term__dcF2xjs",
+  "original_databases_unchanged": true,
+  "database_hashes": {
+    "canvas": "f031a5a8ad8fe82dd5bbf3323d8a34214b8c10f7037961c84fc734afc6e5c450",
+    "shopify": "9128f521e65d6f0c532994e7c4b664e5611499df66cc6410f76975fd4157b88c"
+  },
+  "assertions": 30,
+  "invariants": 5,
+  "cases": [
+    {
+      "case": "20 wrong prices",
+      "sql": "UPDATE product_variants SET price_cents=price_cents+100 WHERE product_id IN (SELECT id FROM products WHERE title IN ('Fleece Crew','Corduroy Overshirt','Quilted Gilet'))",
+      "rows_changed": 20,
+      "changed_checks": []
+    },
+    {
+      "case": "Wrong Fleece SKU",
+      "sql": "UPDATE product_variants SET sku='WRONG-CODE' WHERE sku='FLC-S-HEA'",
+      "rows_changed": 1,
+      "changed_checks": []
+    },
+    {
+      "case": "Eight duplicate Cardigan SKUs",
+      "sql": "UPDATE product_variants SET sku='CAR-S-CAM' WHERE product_id IN (SELECT id FROM products WHERE title='Lambswool Cardigan')",
+      "rows_changed": 8,
+      "changed_checks": []
+    }
+  ]
+}

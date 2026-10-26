@@ -1,0 +1,10 @@
+{
+  "trial": "task3_lmms_arrangement__tbYjADC",
+  "trajectory_sha256": "e3cb824db5db97055d1a46f0fb299bb481fa9175f23da2091b57d4cac90fdb42",
+  "result_sha256": "0f5e1f99206da3608c2f60d64016587b79a7b5f5b33b3102a44b12f931dc0d60",
+  "trajectory_path": "cua/harbor/jobs-task3/task3-lmms-sonnet5-bedrock-20260914-141633/task3_lmms_arrangement__tbYjADC/agent/trajectory.json",
+  "result_path": "cua/harbor/jobs-task3/task3-lmms-sonnet5-bedrock-20260914-141633/task3_lmms_arrangement__tbYjADC/result.json",
+  "reports": [
+    "cua/tmp/task3-lmms-sonnet5-bedrock-20260914-141633/analysis/findings.md"
+  ]
+}

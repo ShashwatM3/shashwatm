@@ -1,0 +1,410 @@
+{
+  "task_success": false,
+  "training_reward": 0.9658,
+  "controller": {
+    "heartbeat_age_sec": 0,
+    "fatal": 0,
+    "restarts": 0,
+    "ticks": 10458,
+    "stood_down": 0,
+    "db_heartbeat": "2026-09-07T08:24:56.570Z",
+    "gates_fired": 10,
+    "stalled": 0,
+    "evidence": "database"
+  },
+  "protected_invariant_ratio": 1.0,
+  "assertions": [
+    {
+      "id": "exactly_eight_properties_live",
+      "pass": true,
+      "actual": 8,
+      "expected": 8,
+      "weight": 0.06
+    },
+    {
+      "id": "the_saved_draft_was_finished_not_restarted",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_published_exactly_once",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "booking_request_reached_a_terminal_state",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "braga_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "braga_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "braga_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "braga_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "braga_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "coimbra_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "coimbra_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "coimbra_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "coimbra_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "coimbra_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "faro_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "faro_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "faro_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "faro_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "porto_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "porto_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "porto_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "porto_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "porto_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "lisbon_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "lisbon_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "lisbon_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "lisbon_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "lisbon_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "aveiro_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "aveiro_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "aveiro_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "aveiro_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "aveiro_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "guimaraes_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "guimaraes_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "guimaraes_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "sintra_matches_its_packet",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.04
+    },
+    {
+      "id": "sintra_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "sintra_weekend_priced",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.03
+    },
+    {
+      "id": "sintra_arrival_configured",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.02
+    },
+    {
+      "id": "sintra_house_manual_set",
+      "pass": true,
+      "actual": 1,
+      "expected": 1,
+      "weight": 0.01
+    },
+    {
+      "id": "coimbra_honoured_the_compliance_cap_over_the_owner",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "guimaraes_honoured_the_compliance_cap_over_the_owner",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 0.03
+    },
+    {
+      "id": "every_live_property_has_a_calendar",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 0.02
+    },
+    {
+      "id": "noise_decoys_left_unanswered",
+      "pass": false,
+      "actual": 2,
+      "expected": 0,
+      "weight": 0.04
+    }
+  ],
+  "invariants": [
+    {
+      "id": "no_property_published_under_another_host",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "no_stray_draft_left_behind",
+      "pass": true,
+      "actual": 0,
+      "expected": 0,
+      "weight": 1
+    },
+    {
+      "id": "other_hosts_listings_untouched",
+      "pass": true,
+      "actual": {
+        "count": 28,
+        "sha256": "89e6653581cbac3d6d618c523a875b5d3800e840532213301386fb4dcce24600"
+      },
+      "expected": {
+        "count": 28,
+        "sha256": "89e6653581cbac3d6d618c523a875b5d3800e840532213301386fb4dcce24600"
+      },
+      "weight": 1
+    },
+    {
+      "id": "other_reservations_untouched",
+      "pass": true,
+      "actual": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "expected": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "weight": 1
+    },
+    {
+      "id": "protected_gmail_seed_mail",
+      "pass": true,
+      "actual": {
+        "count": 12,
+        "sha256": "ae47bf125345cc3e9070190e2e086f7b1e656277a555ab01bd9867aa428528e8"
+      },
+      "expected": {
+        "count": 12,
+        "sha256": "ae47bf125345cc3e9070190e2e086f7b1e656277a555ab01bd9867aa428528e8"
+      },
+      "weight": 1
+    }
+  ],
+  "graded": true
+}
