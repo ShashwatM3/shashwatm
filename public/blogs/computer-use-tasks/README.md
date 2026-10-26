@@ -16,4 +16,4 @@ This collection presents eleven computer-use tasks and their observed results. I
 
 The original catalog, work dossier and session-authorship ledger are local background sources, not copied wholesale into the shareable packet. Relevant historical reports are retained as evidence; some contain interpretations corrected by this review. Read the research before reusing those claims.
 
-The dark variation uses a black canvas, sans-serif typography, a borderless contents sidebar and original numerical artwork based on recording lengths. The earlier paper variation remains available. Design references are credited in the source index.
+The dark variation uses a black canvas, sans-serif typography, a borderless contents sidebar and a dimmed, tinted collage of task screenshots. The earlier paper variation remains available. Design references are credited in the source index.
